@@ -6,7 +6,7 @@ void main()
 	char name[30];
 	printf("\n\t Personal Details \n\n");
 	printf("\nEnter your Name : ");
-//	scanf("%s",&name);
+	//scanf("%s",&name);
 	// not include blank space for output.
 	gets(name);
 	printf("Enter your Age : ");
