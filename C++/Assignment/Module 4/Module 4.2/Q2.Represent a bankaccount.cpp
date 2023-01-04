@@ -1,76 +1,78 @@
 #include<iostream>
-#include<stdio.h>		//for character
-#include<string.h>		//for copying string
-
 using namespace std;
 //	creating class
 class bank
 {
 	public:
-//	creating data members
-	long long accno,balance;
-	char name[100];
-	char acctype[100];
-	
-//	creating function
-	bank(long long acc_no, char *nam, char *acc_type, long long bal)
-	{
-//		assign value for input from main
-		accno=acc_no;
-		strcpy(name,nam);
-		strcpy(acctype,acc_type);
-		balance=bal;
-	}
-//	creating deposit function
-	void deposit()
-	{
-		int dep;
-		cout<<"\nEnter Deposit Amount : ";
-		cin>>dep;
-		balance+=dep;
-	}
-//	creating withdraw function
-	void withdraw()
-	{
-		int wid;
-		cout<<"\nEnter Withdraw Amount : ";
-		cin>>wid;
-		balance-=wid;
-	}
-//	creating display function
-	void display()
-	{
-		cout<<"\n--------------------------------";
-		cout<<"\n Account No. : "<<accno;
-		cout<<"\n Name : "<<name;
-		cout<<"\n Account Type : "<<acctype;
-		cout<<"\n Balance : "<<balance;
-	}
+//		creating data members
+		long long accNo,balance;
+		string name,accType;
+//		creating function for take input from main function
+		void assign(long long acc_no, string nam,string acc_Type, long long bal)
+		{
+			accNo=acc_no;
+			name=nam;
+			accType=acc_Type;
+			balance=bal;
+		}
+//		creating member function for deposit
+		void deposit()
+		{
+			int dep;
+			cout<<"\n Enter Deposit Amount : ";
+			cin>>dep;
+			balance+=dep;
+		}
+//		creating member function for withdraw
+		void withdraw()
+		{
+			int wit;
+			cout<<"\n Enter Withdraw Amount : ";
+			cin>>wit;
+			if(wit>balance)
+			{
+			cout<<"\n Insufficient Balance!!!!!!!!!!!!!!";
+			}
+			else
+			{
+			balance-=wit;
+			}
+		}
+//		creating member function for display
+		void details()
+		{
+			cout<<"\n\n----------------------------------------";
+			cout<<"\n\t Account Holder Details ";
+			cout<<"\n----------------------------------------";
+			cout<<"\n Account Name : "<<name;
+			cout<<"\n Balance : "<<balance;
+		}
 };
+
 //	creating main function
 int main()
 {
+//	creating object
+	bank b1;
 //	creating variables
 	long long acc_no,bal;
-	char nam[100];
-	char acc_type[100];
-//	input from user
-	cout<<endl<<"Enter Details : "<<endl;
-	cout<<"--------------------------------"<<endl;
-	cout<<"\n Account No. : ";
+	string nam,acc_Type;
+//	input value
+	cout<<"\n\t Account Details ";
+	cout<<"\n----------------------------------------";
+	cout<<"\n Enter Account Number : ";
 	cin>>acc_no;
 	fflush(stdin);
-	cout<<"\n Name : ";
-	gets(nam);
-	cout<<"\n Account Type : ";
-	cin>>acc_type;
-	cout<<"\n Balance : ";
+	cout<<"\n Enter Name : ";
+	getline(cin,nam);
+	cout<<"\n Enter Account Type : ";
+	cin>>acc_Type;
+	cout<<"\n Enter Balance : ";
 	cin>>bal;
 //	calling member functions
-	bank cust(acc_no,nam,acc_type,bal);
-	cust.deposit();
-	cust.withdraw();
-	cust.display();
-	
+	b1.assign(acc_no,nam,acc_Type,bal);
+	b1.deposit();
+	b1.withdraw();
+	b1.details();
 	return 0;
 }
