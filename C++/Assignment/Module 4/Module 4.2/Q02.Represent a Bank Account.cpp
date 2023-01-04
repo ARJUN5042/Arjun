@@ -7,7 +7,7 @@ class bank
 //		creating data members
 		long long accNo,balance;
 		string name,accType;
-//		creating function for take input from main function
+//		creating assign value function
 		void assign(long long acc_no, string nam,string acc_Type, long long bal)
 		{
 			accNo=acc_no;
