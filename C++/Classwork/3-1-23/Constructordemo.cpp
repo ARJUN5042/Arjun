@@ -28,6 +28,10 @@ class Sample
 		{
 			cout<<"\n\nFirst Name : "<<fname<<"\nLast Name : "<<lname<<"\nAge : "<<age;
 		}
+		~Sample()
+		{
+			cout<<"\nDestuctor constructor called.";
+		}
 };
 
 int main()
