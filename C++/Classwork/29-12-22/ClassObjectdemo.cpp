@@ -1,15 +1,14 @@
+
 #include<iostream>
 using namespace std;
-
-class Student   // Class Creation
+class student
 {
-	public:		
+	public:
 		int a=10;
 };
-
 int main()
 {
-	Student std;  // Object Creation
+	student std;
 	cout<<std.a;
 	return 0;
 }
