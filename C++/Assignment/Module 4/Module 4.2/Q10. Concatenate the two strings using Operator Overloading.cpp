@@ -20,10 +20,9 @@ class addString
 		//Operator Overloading for Concatenate string
 		addString operator+(addString s)
 		{
-			addString o;
-			strcat(str,s.str);
-			strcpy(o.str,str);
-			return o;
+			strcat(str,s.str);		//concatenate both string
+			strcpy(s.str,str);	   //copying string in other string
+			return s;			  //return s string
 		}
 };
 int main()

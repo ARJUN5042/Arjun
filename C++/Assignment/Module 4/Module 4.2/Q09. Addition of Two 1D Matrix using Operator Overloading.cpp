@@ -25,16 +25,15 @@ class Matrix
 		//Operator Overloading for addition of two matrix
 		Matrix operator+(Matrix x)
 		{
-			Matrix m;
 			for(i=0;i<5;i++)
 			{
-			    m.mat[i]=a[i] + x.a[i];
+			    mat[i]=a[i] + x.a[i];
 			}
 			for(i=0;i<5;i++)
 			{
-				cout<<m.mat[i]<<"\t";		//display element after addition
+				cout<<mat[i]<<"\t";		//display element after addition
 			}
-			return m;		//return value for matrix;
+			return x;		//return value for matrix;
 		}
 };
 
