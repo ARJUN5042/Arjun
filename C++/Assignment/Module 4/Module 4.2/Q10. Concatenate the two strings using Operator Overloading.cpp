@@ -1,37 +1,43 @@
 #include<iostream>
-#include<string.h>
 using namespace std;
 //	creating class
-class addString
-{
+class addString{
 	public:
-		char str[100];
-		//creating input method for string
+		//creating data members
+		string name, add;
+		//creating method for input string
 		void input()
 		{
-			cout<<"\n\tEnter Your String :  ";
-			cin.getline(str,100); 	   //use for input space in char data type data-member
+			cout<<"\nEnter Name : ";
+			getline(cin,name);
 		}
-		//creating display method for concatenate string
-		void display()
+		//creating method for display string with return type
+		string display()
 		{
-			cout<<"\n\tConcatenate String : "<<str;
+			return name;
 		}
-		//Operator Overloading for Concatenate string
-		addString operator+(addString s)
+		//operator overloading for concatenate strings
+		addString operator + (addString a)
 		{
-			strcat(str,s.str);		//concatenate both string
-			strcpy(s.str,str);	   //copying string in other string
-			return s;			  //return s string
+			add = name + a.name;
+			cout<<"\n\nConcatenate String : "<<add;
+			return a;
 		}
 };
+//	creating main function
 int main()
 {
-	//creating 3 objects of class
-	addString s1,s2,s3;
-	s1.input();		   //calling input method for object 1
-	s2.input();		  //calling input method for object 2
-	s3 = s1 + s2;	 //adding 1st and 2nd object
-	s3.display();	//calling display method for after adding both object
-	return 0; 
+	string x,y;
+	//creating object
+	addString a,b,c;
+	a.input();			 	  //calling method for 1st input
+	b.input();				 //calling method for 2nd input
+	x = a.display();		//intializing method as variable
+	cout<<"\nString 1 : "<<x;
+	y = b.display();		//intializing method as variable
+	cout<<"\nString 2 : "<<y;
+	c = a + b;				//implementing for concatenate string
+	
+	
+	return 0;
 }
