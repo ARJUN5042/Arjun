@@ -15,7 +15,7 @@ class Sort{
 			
 			for(i=0;i<n;i++)
 			{
-				cout<<"\n Enter Elements ["<<i<<"] = ";
+				cout<<"\n Enter Element ["<<i<<"] = ";
 				cin>>arr[i];
 			}
 			
