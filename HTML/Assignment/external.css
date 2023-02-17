@@ -1,0 +1,24 @@
+body{
+			background: lightgrey;
+		}
+		h1{
+			background: blueviolet;
+			text-align: center;
+			padding: 20px;
+		}
+		div{
+			background: skyblue;
+			padding: 20px;
+			text-align: center;
+		}
+		div a{
+			text-decoration: none;
+			margin: 10px;
+			background: blue;
+			padding: 10px;
+			border-radius: 10px;
+			color: whitesmoke;
+		}
+		p{
+			color: green;
+		}

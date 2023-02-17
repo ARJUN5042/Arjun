@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<title>Register</title>
+</head>
+<body>
+<header>
+	<h1 class="title">Shopping</h1>
+</header>
+<div class="menu">
+	<a href="imgdemo.html">Home</a>
+	<a href="products.html">Products</a>
+	<a href="wishlist.html">Wishlist</a>
+	<a href="cart.html">My Cart</a>
+	<a href="profile.html">Profile</a>
+	<a href="contact.html">Contact Us</a>
+	<a href="register.html">Register</a>
+	<a href="login.html">Login</a>
+</div>
+<h1 class="h_home">
+		Register
+	</h1>
+<div align="center" style="background: grey;">
+	<form name="register" method="post" action="login.html">
+		<table style="border: none;">
+			<tr>
+				<td>Firstname : </td>
+				<td><input type="text" name="fname" placeholder="Enter Your Name" required></td>
+			</tr>
+			<tr>
+				<td>Lastname : </td>
+				<td><input type="text" name="lname" placeholder="Enter Your Surname" required></td>
+			</tr>
+			<tr>
+				<td>Email : </td>
+				<td><input type="email" name="email" placeholder="Enter Your Email" required></td>
+			</tr>
+			<tr>
+				<td>Mobile No. </td>
+				<td>
+					<input type="text" value="+91" size="2">
+					<input type="text" name="number" size="15" placeholder="Enter your number" required></td>
+			</tr>
+			<tr>
+				<td>Gender : </td>
+				<td>
+					<input type="radio" name="gender" value="male">Male
+					<input type="radio" name="gender" value="female">Female
+					<input type="radio" name="gender" value="other">Others
+				</td>
+			</tr>
+			<tr>
+				<td>Hobbies : </td>
+				<td>
+					<input type="checkbox" name="hobbies" value="cricket">Cricket
+					<input type="checkbox" name="hobbies" value="chess">Chess
+					<input type="checkbox" name="hobbies" value="music">Music
+					<input type="checkbox" name="hobbies" value="videogames">Video Games
+				</td>
+			</tr>
+			<tr>
+				<td>Qualification : </td>
+				<td>
+					<select>
+						<option>Select</option>
+						<option>SSC</option>
+						<option>HSC</option>
+						<option>Graduate</option>
+						<option>Post Graduate</option>
+						<option>Ph.D</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Address : </td>
+				<td>
+					<textarea rows="5" cols="25" placeholder="Enter Your Address"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Password : </td>
+				<td>
+					<input type="Password" name="pass" placeholder="Enter Your Password" required>
+				</td>
+			</tr>
+			<tr>
+				<td>Re-type Password : </td>
+				<td>
+					<input type="Password" name="repass" placeholder="Re-Enter your Password" required>
+				</td>
+			</tr>
+			<tr align="center">
+				<td colspan="2">
+					<input type="submit" name="action" value="Submit">
+				</td>
+			</tr>
+
+		</table>
+	</form>
+</div>
+</body>
+</html>

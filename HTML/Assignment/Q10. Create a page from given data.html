@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Individual Registration</title>
+	<style type="text/css">
+		*{font-family: sans-serif;}
+		table{
+			width: 60%;
+			margin: auto;
+			background: skyblue;
+			padding: 10px;
+		}
+		
+		
+		.a{
+			text-align: right;
+			
+		}
+		.a::before{
+			content: "\002A";
+			color: red;
+			margin-right: 5px;
+		}
+		.b{
+			width: 200px;
+		}
+		.c{
+			width: 100px;
+		}
+		th{
+			padding-left: 5px;
+			color: red;
+		}
+		caption{
+			color: red;
+			font-weight: bold;
+			font-size: 20px;
+			margin: 10px 0;
+			background: linear-gradient(skyblue,purple,skyblue,purple);
+			padding: 5px 0;
+		}
+		.btn{
+			color: white;
+			font-weight: bold;
+			background: darkblue;
+		}
+
+	</style>
+</head>
+<body>
+<div>
+	
+	<form name="individual registration" method="post">
+		<table>
+			<caption align="center">Individual Registration</caption>
+			<tr>
+
+				<th colspan="4" align="left">User Particulars</th>
+				
+			</tr>
+			<tr>
+				<td></td>
+				<td class="a">Login ID</td>
+				<td>
+					<input type="text" name="id" required>
+				</td>
+					<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class="a">Password</td>
+				<td>
+					<input type="Password" name="pass" required>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class="a">Confirm Password</td>
+				<td>
+					<input type="Password" name="password" required>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<th colspan="4" align="left">Personal Particulars</th>
+				
+			</tr>
+			<tr>
+				<td class="a">Salutation</td>
+				<td>
+					<select>
+						<option>Select</option>
+						<option>Option 1</option>
+						<option>Option 2</option>
+					</select>
+				</td>
+				<td class="a">First Name</td>
+				<td>
+					<input type="text" name="fname" required>
+				</td>
+			</tr>
+			<tr>
+				<td class="a b">Middle Name </td>
+				<td>
+					<input type="text" name="mname">
+				</td>
+				<td class="a">Last Name </td>
+				<td>
+					<input type="text" name="lname" required>
+				</td>
+			</tr>
+			<tr>
+				<td class="a">Resident Status</td>
+				<td>
+					<select required>
+						<option>Select</option>
+						<option>Option 1</option>
+						<option>Option 2</option>
+					</select>
+				</td>
+				<td class="a c">Country</td>
+				<td>
+					<select required>
+						<option>Select</option>
+						<option>India</option>
+						<option>Germany</option>
+						<option>Australia</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="a">Email-Id </td>
+				<td>
+					<input type="email" name="email" required>
+				</td>
+				<td class="a">Mobile Number </td>
+				<td>
+					<input type="text" name="number" required>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="4" align="left">Account Particulars</th>
+			</tr>
+			<tr>
+				<td class="a">15 Digit Account No</td>
+				<td>
+					<input type="text" name="account no">
+				</td>
+				<td class="a">
+					Nick Name
+				</td>
+				<td>
+					<input type="text" name="nick">
+				</td>
+			</tr>
+			<tr>
+				<td class="a">
+					Fund Transfer
+				</td>
+				<td>
+					<select>
+						<option>Select</option>
+						<option>Savings</option>
+						<option>Current</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th align="left" colspan="4">
+					Declaration
+				</th>
+			</tr>
+			<tr>
+				<td colspan="4">
+					I have read, understood and hereby agree to the Terms and Conditions in respect of all products and channels.<br>
+					I understood that any changes in the terms and conditions applicable to this relationship would be made available to me on request at any JOB branches. I confirmed that all accounts under this login name are operated singly and in case of joint account operated by either or survivor/anyone or survivor(s) under his/her joint name respectively. I do hereby that information furnished in this form is true to the best of my knowledge and belief.
+				
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td align="right">
+					<input type="submit" class="btn" name="submit" value="submit">
+				</td>
+				<td align="left">
+					<input type="reset" class="btn" name="reset" value="Reset">
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	</form>
+
+</div>
+</body>
+</html>
