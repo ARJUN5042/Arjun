@@ -1,0 +1,33 @@
+Q5.) What do you understand By Data Redundancy?
+
+Answer:-
+	In DBMS, when the same data is stored in different tables, it causes data redundancy.
+Sometimes, it is done on purpose for recovery or backup of data, faster access of data, or updating data easily. Redundant 
+data costs extra money, demands higher storage capacity and requires extra effort to keep all the files up to date.
+Sometimes, unintentional duplicity of data causes a problem for the database to work properly, or it may become harder for 
+the end user to access data. Redundant data unnecessarily occupy space in the database to save identical copies, which leads 
+to space constraints, which is one of the major problems.
+
+Problems that are cuased due to redundancy in the database
+	Redundancy in DBMS gives rise to anomalies and we will study it further. In a database management system, the problems 
+that occur while working on data include inserting, deleting and updating data in the database.
+
+1. Insertation Anomaly:
+	Insertion anomaly arises when you are trying to insert some data into the database, but you are not able to insert it.
+2. Deletion Anomaly:
+	Deletion anomaly arises when you delete some data from the database, but some unrelated data is also deleted; that is, 
+        there will be a loss of data due to deletion anomaly.
+3. Updating Anomaly:
+	An update anomaly arises when you update some data in the database, but the data is partially updated, which causes data 
+	inconsistency.
+
+Advantages of data redundancy in DBMS:
+-Provides Data Security: Data redundancy can enhance data security as it is difficult for cyber attackers to attack data that are 
+ in different locations.
+-Provides Data Reliability: Reliable data improves accuracy because organizations can check and confirm whether data is correct.
+-Create Data Backup: Data redundancy helps in backing up the data.
+
+Disadvantages of data redundancy in DBMS:
+-Data corruption: Redundant data leads to high chances of data corruption.
+-Wastage of storage: Redundant data requires more space, leading to a need for more storage space.
+-High cost: Large storage is required to store and maintain redundant data, which is costly.

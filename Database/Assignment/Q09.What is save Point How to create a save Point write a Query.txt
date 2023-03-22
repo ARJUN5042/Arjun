@@ -1,0 +1,123 @@
+Q9. What is save point? How to create a save Point write a Query?
+
+Answer:
+
+->Savepoint is a command in SQL that is used with the rollback command.
+->It is a command in Transaction Control Language that is used to mark the transaction in a table.
+->Consider you are making a very long table, and you want to roll back only to a certain position in a table then; 
+  this can be achieved using the savepoint.
+->If you made a transaction in a table, you could mark the transaction as a certain name, and later on, if you want to 
+  roll back to that point, you can do it easily by using the transaction's name.
+->Savepoint is helpful when we want to roll back only a small part of a table and not the whole table. In simple words, 
+  we can say savepoint is a bookmark in SQL.
+
+Let us see the practical examples to understand this concept more clearly. 
+We will use the MySQL database for writing all the queries.
+
+To create a table in the database, first, we need to select the database in which we want to create a table.
+
+Then we will write a query to create a table named student in the selected database 'dbs'.
+
+q-
+CREATE TABLE student
+(
+ID INT, 
+Name VARCHAR(20), 
+Percentage INT, 
+Location VARCHAR(20), 
+DateOfBirth DATE
+);
+
+Now, we will write a single query to insert multiple records in the student table:
+q-
+INSERT INTO student(ID, Name, Percentage, Location, DateOfBirth) VALUES
+(1, "Manthan Koli", 79, "Delhi", "2003-08-20"), 
+(2, "Dev Dixit", 75, "Pune", "1999-06-17"), 
+(3, "Aakash Deshmukh", 87, "Mumbai", "1997-09-12"), 
+(4, "Aaryan Jaiswal", 90, "Chennai", "2005-10-02"), 
+(5, "Rahul Khanna", 92, "Ambala", "1996-03-04"), 
+(6, "Pankaj Deshmukh", 67, "Kanpur", "2000-02-02"), 
+(7, "Gaurav Kumar", 84, "Chandigarh", "1998-07-06"), 
+(8, "Sanket Jain", 61, "Shimla", "1990-09-08"), 
+(9, "Sahil Wagh", 90, "Kolkata", "1968-04-03");
+
+To use the TCL commands in SQL, we first need to initiate the transaction by using the BEGIN / START TRANSACTION command.
+
+q-
+START TRANSACTION;
+
+We will save our initiated transaction using the SAVEPOINT command along with some specific names of this savepoint.
+
+q-
+SAVEPOINT ini;
+
+Here, we have saved the initiated transaction with the name of 'ini'.
+
+Then, we decided to insert a new record with an ID of 10 into the existing student table.
+
+q-
+INSERT INTO student VALUES (10, "Saurabh Singh", 54, "Kashmir", "1989-01-06");
+
+We will execute the SELECT query to verify that the new record with ID as ten is inserted successfully.
+
+q-
+SELECT * FROM student;
+
+To save the transaction with this newly inserted record, we will create a new savepoint.
+
+q-
+SAVEPOINT ins;
+
+Here, the newly inserted record table is saved with the savepoint named 'ins'.
+
+To update the record in the student table and set the updated name as 'Mahesh Kuwar' for the record whose ID is 1, 
+we will execute the following query:
+
+q-
+UPDATE student SET Name = "Mahesh Kuwar" WHERE ID =1;
+
+To verify that the record's name field with ID as 1 is updated successfully, we will again execute the SELECT query.
+
+q-
+SELECT * FROM student;
+
+To save the transaction with this updated record, we will create a new savepoint.
+
+q-
+SAVEPOINT upd;
+
+Here, the table with the updated record is saved with the savepoint named 'upd'.
+
+To remove the record from the student table with ID as 6, we will execute the following query:
+
+q-
+DELETE FROM student WHERE ID= 6;
+
+We will again execute the SELECT query to verify that the record with ID as 6 is removed successfully.
+
+q-
+SELECT * FROM student;
+
+To save the transaction with this removed record, we will create a new savepoint.
+
+q-
+SAVEPOINT del;
+
+Here, the table with the deleted record is saved with the savepoint named 'del'.
+
+Later, we decided that we need the record in the student table, which we have deleted in the previous step.
+
+Since at each and every operation, we have created a savepoint. Using that savepoint, we can jump to any point of 
+the transaction. To do so, we will execute the ROLLBACK command along with the name of the savepoint to which we want to jump.
+
+q-
+ROLLBACK TO upd;
+
+Since we don't want the record with the ID as 6 to be deleted from the student table, we have rollback 
+to the savepoint named as upd.
+
+To verify that we have achieved the exact table which we had after updating the student table in the earlier steps, 
+we will again execute the SELECT query.
+
+q-
+SELECT * FROM student;

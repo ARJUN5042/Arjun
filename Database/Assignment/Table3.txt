@@ -1,0 +1,105 @@
+Creating Databse:-
+
+CREATE DATABASE table3;
+------------------------------------------------------------------------
+Creating Table1:-
+
+CREATE TABLE employee
+(
+    Employee_id int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    First_name varchar(25),
+    Last_name varchar(25),
+    Salary varchar(25),
+    Joining_date varchar(100),
+    Department varchar(50)
+);
+------------------------------------------------------------------------
+Inserting Data in Table 1:-
+
+INSERT INTO employee(First_name,Last_name,Salary,Joining_date,Department) VALUES
+("John","Abraham","1000000","01-JAN-13 12.00.00 AM","Banking"),
+("Michael","Clarke","800000","01-JAN-13 12.00.00 AM","Insurance"),
+("Roy","Thomas","700000","01-FEB-13 12.00.00 AM","Banking"),
+("Tom","Jose","600000","01-FEB-13 12.00.00 AM","Insurance"),
+("Jerry","Pinto","650000","01-FEB-13 12.00.00 AM","Insurance"),
+("Philip","Mathew","750000","01-JAN-13 12.00.00 AM","Services"),
+("TestName1","123","650000","01-JAN-13 12.00.00 AM","Services"),
+("TestName2","Lname%","600000","01-FEB-13 12.00.00 AM","Banking");
+------------------------------------------------------------------------
+Creating Table 2:-
+
+CREATE TABLE incentive
+(
+    Employee_ref_id int(10) NOT NULL,
+    FOREIGN KEY (Employee_ref_id) REFERENCES employee(Employee_id),
+    Incentive_date varchar(100),
+    Incentive_amount varchar(20)
+);
+------------------------------------------------------------------------
+Inserting Data in Table 2:-
+
+INSERT INTO incentive(Employee_ref_id,Incentive_date,Incentive_amount) VALUES
+(1,"01-FEB-13","5000"),
+(2,"01-FEB-13","3000"),
+(3,"01-FEB-13","4000"),
+(1,"01-JAN-13","4500"),
+(2,"01-JAN-13","3500");
+------------------------------------------------------------------------
+Queries:-
+
+a) Get First_Name from employee table using Tom name “Employee Name”.
+Answer:- SELECT First_name AS "Employee Name" FROM employee WHERE Employee_id=4;
+------------------------------------------------------------------------
+b) Get FIRST_NAME, Joining Date, and Salary from employee table.
+Answer:- SELECT First_name,Joining_date,Salary FROM employee;
+------------------------------------------------------------------------
+c) Get all employee details from the employee table order by First_Name
+   Ascending and Salary descending?
+Answer:- SELECT * FROM employee ORDER BY First_name ASC;
+	 SELECT * FROM employee ORDER BY Salary DESC;
+
+or 
+	 SELECT * FROM employee ORDER BY First_name ASC,Salary DESC;
+------------------------------------------------------------------------
+d) Get employee details from employee table whose first name contains ‘J’.
+Answer:- SELECT * FROM employee WHERE First_name like "%j%";
+------------------------------------------------------------------------
+e) Get department wise maximum salary from employee table order by salary
+ascending?
+Answer:- SELECT Department, MAX(Salary) FROM Employee
+	 GROUP BY Department ORDER BY MAX(Salary) ASC;
+------------------------------------------------------------------------
+f) Select first_name, incentive amount from employee and incentives table for
+those employees who have incentives and incentive amount greater than 3000.
+Answer:- SELECT employee.First_name, incentive.Incentive_amount FROM employee
+	 INNER JOIN incentive ON employee.employee_id = incentive.Employee_ref_id 
+ 	 WHERE incentive.incentive_amount > 3000;
+------------------------------------------------------------------------
+g) Create After Insert trigger on Employee table which insert records in view table.
+Answer:- 
+------------------------------------------------------------------------
+For trigger create a new table:-
+CREATE TABLE viewrecordupdates
+(
+	Employee_id int(10) NOT NULL PRIMARY_KEY,
+	First_name varchar(25),
+	Last_name varchar(25),
+	Salary varchar(25),
+	Joining_date varchar(100),
+	Department varchar(50),
+	Date_Time timestamp,
+	Action_Performed varchar(50)
+);
+------------------------------------------------------------------------
+Creating Trigger:-
+
+DELIMITER $$
+CREATE TRIGGER insertData AFTER INSERT ON employee FOR EACH ROW
+BEGIN
+INSERT INTO viewrecordupdates(Employee_id,First_name,Last_name,Salary,Joining_date,Department,Action_Performed)
+VALUES
+(new.Employee_id,new.First_name,new.Last_name,new.Salary,new.Joining_date,new.Department,"Record Inserted");
+END
+------------------------------------------------------------------------
+INSERT INTO employee(First_name,Last_name,Salary,Joining_date,Department) VALUES
+("Arjun","Hirpara","700000","01-MAR-13 12.00.00. AM","Banking");

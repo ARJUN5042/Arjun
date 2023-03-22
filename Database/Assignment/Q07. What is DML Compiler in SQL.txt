@@ -1,0 +1,41 @@
+Q7. What is DML Compiler in SQL?
+
+Answer:
+	Translates DML statements in a query language within low level instructions understandable through the query 
+	evaluation engine. Attempts to transforms users request within an equivalent and well-organized from for executing 
+	the query understandable through Data Manager, Interprets DDL statements and records them within a set of tables 
+	containing Meta data in a form that can be used through other elements of a DBMS. 
+
+Following are the four main DML commands in SQL:
+
+1. SELECT Command :
+	SELECT is the most important data manipulation command in Structured Query Language. The SELECT command shows 
+	the records of the specified table. It also shows the particular record of a particular column by using the WHERE clause.
+
+Syntax:
+SELECT column_Name_1, column_Name_2, ….., column_Name_N FROM Name_of_table;  
+SELECT * FROM table_name;
+SELECT FROM table_name WHERE column_name=value;
+
+2. INSERT Command :
+	INSERT is another most important data manipulation command in Structured Query Language, which allows users 
+	to insert data in database tables.
+
+Syntax:
+INSERT INTO TABLE_NAME ( column_Name1 , column_Name2 , column_Name3 , .... column_NameN )  
+VALUES (value_1, value_2, value_3, .... value_N ) ;
+
+3. UPDATE Command :
+	UPDATE is another most important data manipulation command in Structured Query Language, which allows users to update or 
+	modify the existing data in database tables.
+
+Syntax:
+UPDATE Table_name SET [column_name1= value_1, ….., column_nameN = value_N] WHERE CONDITION;
+
+4. DELETE Command :
+	DELETE is a DML command which allows SQL users to remove single or multiple existing records from the database tables.
+	This command of Data Manipulation Language does not delete the stored data permanently from the database. 
+	We use the WHERE clause with the DELETE command to select specific rows from the table.
+
+Syntax:
+DELETE FROM Table_Name WHERE condition;

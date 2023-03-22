@@ -1,0 +1,39 @@
+Creating database:-
+
+CREATE DATABSE Table1;
+------------------------------------------------------------------------
+Creating table 1:-
+
+CREATE TABLE STUDENT
+(
+    Rollno int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(50),
+    Branch VARCHAR(50)
+);
+------------------------------------------------------------------------
+Inserting Data:-
+
+INSERT INTO student(Name,Branch) VALUES("Jay","Computer Science"),
+				       ("Suhani","Electronic and Com"),
+                                       ("Kriti","Electronic and Com");
+------------------------------------------------------------------------
+Creating table 2:-
+
+CREATE TABLE Exam
+(
+    Rollno INT(10) NOT NULL,
+    FOREIGN KEY (Rollno) REFERENCES student (Rollno),
+    S_code VARCHAR(50),
+    Marks VARCHAR(50),
+    P_code VARCHAR(50)
+);
+------------------------------------------------------------------------
+
+Inserting Data in table 2:-
+
+INSERT INTO exam(Rollno,S_code,Marks,P_code) VALUES(1,"CS11","50","CS"),
+						   (1,"CS12","60","CS"),
+                                                   (2,"EC101","66","EC"),
+                                                   (2,"EC102","70","EC"),
+                                                   (3,"EC101","45","EC"),
+                                                   (3,"EC102","50","EC");

@@ -1,0 +1,41 @@
+Q6. What is DDL Interpreter?
+
+Answer:
+	It interprets DDL statements and record them in tables containing metadata.
+Its a language in database through which you can make the logical design of the schemas.
+
+The most common command types in DDL are CREATE, ALTER and DROP. All three types have a predefined syntax that must be followed 
+for the command to run and changes to take effect.
+
+1. CREATE:
+Syntax
+
+CREATE TABLE [table name] ([column definitions]) [table parameters];
+CREATE DATABASE defines a logical database under the active location root directory. The database normally consists of a 
+subdirectory of the same name that holds the physical table and index files. Users can use stogroups to implicitly specify 
+different storage directories for individual database objects.
+CREATE TABLE creates a table by defining its columns and each column's data type and field length. The command can also be used 
+to create primary and foreign keys for the table.
+
+2. DROP
+Syntax
+
+DROP object type object name;
+DROP DATABASE does the exact opposite of the CREATE DATABASE It deletes a database defined at a certain location, along with 
+all the objects logically associated with it. It also deletes the database subdirectory even if it is empty and contains no objects 
+logically associated with the database.
+DROP TABLE deletes a database table and all associated indexes, views and synonyms built on it.
+
+3. ALTER
+Syntax
+
+ALTER object type object name parameters;
+ALTER TABLE adds, removes or alters columns and their data types. It can also enforce referential and domain integrity by 
+creating or dropping UNIQUE, PRIMARY, FOREIGN KEY, and CHECK constraints in XDB mode. In Db2 mode, the command can also be used 
+to enforce uniqueness constraints.
+
+4. TRUNCATE
+Syntax
+
+TRUNCATE tablename/databasename;
+TRUNCATE is used to quickly remove all records from a table, while preserving its full structure so it can be reused later.
