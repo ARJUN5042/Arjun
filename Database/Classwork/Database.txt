@@ -1,0 +1,348 @@
+DBMS - Database management system
+
+we can store and manage large amount of data using DBMS.
+
+sql--> structured query language
+
+we can create, update, delete tables using sql queries.
+
+DDL--> Data Definition Language--> create,alter,drop,truncate
+
+DML--> Data Manipulation Language--> insert,update,delete
+
+DQL--> Data Query Language--> select
+
+
+
+delete from candidates where c_id=4
+
+truncate table candidates--> delete only records
+
+drop table candidates--> delete whole table
+
+
+Foreign key--> It is a field in one table that refers to the primary of other table.
+
+
+SUBCATEGORY TABLE with 1 foreign key
+CREATE TABLE subcategory
+(
+    subcate_id int(10) PRIMARY KEY AUTO_INCREMENT,
+    subcate_name varchar(200),
+    
+    cate_id_fk int(10),
+    FOREIGN KEY (cate_id_fk) REFERENCES category(cate_id)
+)
+
+create 2 foreign keys in PRODUCT table
+
+CREATE TABLE product
+(
+    prd_id int(10) PRIMARY KEY AUTO_INCREMENT,
+    prd_name varchar(200),
+    prd_price varchar(200),
+    prd_desc_price varchar(200),
+    
+    cate_id_fk int(10),
+    subcate_id_fk int(10),
+    
+    FOREIGN KEY(cate_id_fk) REFERENCES category(cate_id),
+    FOREIGN KEY(subcate_id_fk) REFERENCES subcategory(subcate_id)
+)
+
+task:
+create 3 table
+school, teacher, student_name
+
+DQL
+
+SELECT * FROM product WHERE prd_price=2500;
+SELECT * from product WHERE prd_price>=1000;
+SELECT * from product WHERE prd_price>1000;
+SELECT * from product WHERE prd_price<=1000;
+SELECT * from product WHERE prd_price<1000;
+SELECT * FROM product WHERE prd_price BETWEEN 1000 AND 3000;
+SELECT * FROM product ORDER BY prd_name ASC;
+SELECT * FROM product ORDER BY prd_price DESC;
+SELECT MIN(prd_price) FROM product;
+SELECT MAX(prd_price) FROM product;
+SELECT COUNT(prd_id) FROM product;
+SELECT SUM(prd_price) FROM product;
+SELECT AVG(prd_price) FROM product;
+SELECT * FROM product WHERE prd_name LIKE 'D%'; --->for starting with d letter
+SELECT * FROM product WHERE prd_name LIKE '%s'; --->for ending with s letter
+SELECT * FROM product WHERE prd_name LIKE '%a%'; --->for in-between a letter
+SELECT * FROM product WHERE prd_name LIKE '_i%'; --->for letter position
+SELECT * FROM product WHERE prd_name LIKE 'S%i'; --->for start letter and end letter
+
+
+Joins:-
+
+---> To join two or more tables which are related to each other
+
+Types of Joins:-
+
+1) Inner Join
+
+2) Outer Join
+
+3) Left Join
+
+4) Right Join
+
+5) Full Join
+
+join 2 tables-->
+
+SELECT category.cate_name, subcategory.subcate_name FROM category
+JOIN subcategory ON category.cate_id=subcategory.cate_id_fk;
+
+
+
+select tablename1.columnname, table name2.columnname from tablename1
+join tablename2 on tablename1.columnname=tablename2.columnname(foreign key1)
+join tablename3 on tablename2.columnname=tablename3.columnname(foreign key2)
+
+join 3 tables-->
+
+SELECT category.cate_name, subcategory.subcate_name, product.prd_name, product.prd_price, product.prd_desc_price FROM category
+JOIN subcategory ON category.cate_id=subcategory.cate_id_fk
+JOIN product ON category.cate_id=product.cate_id_fk;
+
+
+Task 
+create 2 tables students and teacher and join them
+
+task:-
+SELECT * FROM employee WHERE First_name='Tom';
+SELECT First_name,Joining_date,Salary FROM employee;
+
+
+
+
+store procedure in sql
+
+function --> to perform a task again and again
+
+procedure --> 
+create procedure procedure_name
+
+create table-->
+
+create table candidates
+(
+c_id int(10),
+c_name varchar(200),
+c_address varchar(200)
+);
+
+
+create procedure(function)-->
+
+DELIMITER $$
+
+CREATE PROCEDURE insertData()
+BEGIN
+INSERT INTO candidates(c_id,c_name,c_address) VALUES(1,"Manav","Rajkot");
+END
+
+after that refresh the page
+
+calling procedure-->
+
+CALL insertData();
+CALL insertData();
+CALL insertData();
+CALL insertData();
+CALL insertData();
+CALL insertData();
+CALL insertData();
+
+after that insert that same data which you insert first time
+
+creating new procedure for add different data-->
+
+DELIMITER $$
+
+CREATE PROCEDURE insertDiffData(i int(20), j varchar(200), k varchar(200))
+BEGIN
+INSERT INTO candidates(c_id, c_name, c_address) VALUES(i,j,k);
+END
+
+calling procedure-->
+
+CALL insertDiffData(2,"Jayesh","Ahmedabad");
+CALL insertDiffData(3,"Suresh","Surat");
+CALL insertDiffData(4,"Ramesh","Gandhinagar");
+CALL insertDiffData(5,"Brijesh","Bhavnagar");
+
+task:-
+student id, name, sub, marks, total marks, average marks
+
+CREATE TABLE student
+(
+    s_id int(20),
+    s_name varchar(200),
+    s_subject varchar(200),
+    s_marks varchar(200)
+);
+DELIMITER $$
+
+CREATE PROCEDURE inserData()
+BEGIN
+INSERT INTO student(s_id,s_name,s_subject,s_marks) VALUES(1,"Arjun","Maths","95");
+END
+CALL inserData();
+DELIMITER $$
+
+CREATE PROCEDURE insertDiffData(i int(20),j varchar(200),k varchar(200),l varchar(200))
+BEGIN
+	INSERT INTO student(s_id,s_name,s_subject,s_marks) VALUES(i,j,k,l);
+END
+CALL insertDiffData(2,"Suresh","Social-Study","80");
+CALL insertDiffData(3,"Mahesh","Science","70");
+CALL insertDiffData(4,"Brijesh","Maths","80");
+CALL insertDiffData(5,"Yogesh","Social-Study","60");
+SELECT SUM(s_marks) from student;  answer 385
+SELECT AVG(s_marks) from student; answer 77
+
+Task from photo:-
+CREATE TABLE tblProduct
+(
+    Prd_ID int PRIMARY KEY AUTO_INCREMENT,
+    prd_Name varchar(25),
+    Recommended_Price varchar(25),
+    Category varchar(25)
+);
+INSERT INTO tblproduct(prd_Name,Recommended_Price,Category) VALUES("Shirts","200","Mens'Wear"),
+("Saari","500","Woman's Wear"), ("Diapers","100","Kid'sWear");
+CREATE TABLE tblCustomer
+(
+    CustomerID int PRIMARY KEY AUTO_INCREMENT,
+    FirstName varchar(25),
+    LastName varchar(25),
+    City varchar(25),
+    State varchar(25),
+    Zip varchar(25)
+);
+INSERT INTO tblcustomer(FirstName,LastName,City,State,Zip) VALUES("Arjun", "Hirpara","Savarkundla","Gujarat","354515"),
+("Rakesh","Patel","Mumbai","Maharashtra","234523"),
+("Nilesh","Jyani","Surat","Gujarat","234657");
+
+3rd Table
+CREATE TABLE tblSales
+(
+    Sales_ID int PRIMARY KEY AUTO_INCREMENT,
+    Prd_ID int,
+    FOREIGN KEY (Prd_ID) REFERENCES tblproduct(Prd_ID),
+    Cust_ID int,
+    FOREIGN KEY (Cust_ID) REFERENCES tblcustomer(CustomerID),
+    SalesPrice varchar(25),
+    SalesDate date
+);
+INSERT INTO tblsales(SalesPrice,SalesDate) VALUES("500","23-2-2022"),
+("400","12-3-2022"),("345","12-1-2021");
+
+UPDATE tblsales SET Prd_ID=1 WHERE Sales_ID=1;
+UPDATE tblsales SET Cust_ID=1 WHERE Sales_ID=1;
+UPDATE tblsales SET Prd_ID=2 WHERE Sales_ID=2;
+UPDATE tblsales SET Cust_ID=2 WHERE Sales_ID=2;
+UPDATE tblsales SET Prd_ID=3 WHERE Sales_ID=3;
+UPDATE tblsales SET Cust_ID=3 WHERE Sales_ID=3;
+
+
+trigger-->
+
+creating database-->
+CREATE DATABASE trigger_db;
+
+creating table-->
+CREATE TABLE test
+(
+    id int(10),
+    name varchar(200),
+    date_time timestamp,
+    action_performed varchar(200)
+);
+
+creating 2nd table-->
+CREATE TABLE candidates
+(
+    c_id int(10),
+    c_name varchar(200)
+);
+INSERT INTO candidates(c_id,c_name) VALUES(1,"Manav");
+
+creating triggers-->
+
+DELIMITER $$
+CREATE TRIGGER insert_trigger AFTER INSERT ON candidates FOR EACH ROW
+BEGIN
+
+INSERT INTO test(id,name,action_performed) VALUES(new.c_id,new.c_name,"Record Inserted");
+
+END
+
+insert data
+INSERT INTO candidates(c_id,c_name) VALUES(2,"Arjun");
+
+Update Data with trigger-->
+
+DELIMITER $$
+CREATE TRIGGER update_trigger AFTER UPDATE ON candidates FOR EACH ROW
+BEGIN
+
+INSERT INTO test(id,name,action_performed) VALUES(new.c_id,new.c_name,"Record Updated");
+
+END
+
+INSERT INTO candidates(c_id,c_name) VALUES(3,"Satyam");
+INSERT INTO candidates(c_id,c_name) VALUES(3,"Dharmik");
+
+delete data with trigger-->
+
+DELIMITER $$
+CREATE TRIGGER delete_trigger AFTER DELETE ON candidates FOR EACH ROW
+BEGIN
+
+INSERT INTO test(id,name,action_performed) VALUES(old.c_id,old.c_name,"Record Deleted");
+
+END
+
+INSERT INTO candidates(c_id,c_name) VALUES(3,"Dharmik");
+DELETE FROM candidates WHERE c_id=3;
+
+
+school-teacher
+
+CREATE DATABASE s_c;
+CREATE TABLE school
+(
+    sc_id int(10),
+    sc_name varchar(200),
+    time_date timestamp,
+    action_performed varchar(200)
+);
+CREATE TABLE student
+(
+    s_id int(10),
+    s_name varchar(200)
+);
+DELIMITER $$
+
+CREATE TRIGGER insert_trigger AFTER INSERT ON student FOR EACH ROW
+BEGIN
+INSERT INTO school(sc_id,sc_name,action_performed) VALUES(new.s_id,new.s_name,"Data Inserted");
+END
+DELIMITER $$
+
+CREATE TRIGGER update_trigger AFTER UPDATE ON student FOR EACH ROW
+BEGIN
+INSERT INTO school(sc_id,sc_name,action_performed) VALUES(new.s_id,new.s_name,"Data Updated");
+END
+DELIMITER $$
+
+CREATE TRIGGER delete_trigger AFTER DELETE ON student FOR EACH ROW
+BEGIN
+INSERT INTO school(sc_id,sc_name,action_performed) VALUES(old.s_id,old.s_name,"Data Deleted");
+END

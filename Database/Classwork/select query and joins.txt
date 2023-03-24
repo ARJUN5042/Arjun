@@ -1,0 +1,66 @@
+SELECT MIN(prd_price) FROM product
+
+SELECT MAX(prd_price) FROM product
+
+SELECT COUNT(prd_id) FROM product
+
+SELECT SUM(prd_price) FROM product
+
+SELECT AVG(prd_price) FROM product
+
+SELECT * FROM product WHERE prd_name LIKE 'D%'
+
+SELECT * FROM product WHERE prd_name LIKE '%s'
+
+SELECT * FROM product WHERE prd_name LIKE '%e%'
+
+SELECT * FROM product WHERE prd_name LIKE '_r%'
+
+SELECT * FROM product WHERE prd_name LIKE 'D%s'
+
+
+
+Joins:-
+
+---> To join two or more tables which are related to each other
+
+
+Types of Joins:-
+
+1) Inner Join
+
+2) Outer Join
+
+3) Left Join
+
+4) Right Join
+
+5) Full Join
+
+syntax-->
+
+SELECT TABLE_NAME_1.COLUMN_NAME, TABLE_NAME_2.COLUMN_NAME FROM TABLE_NAME_1
+JOIN TABLE_NAME_2 ON TABLE_NAME_1.COLUMN_NAME=TABLE_NAME_2.COLUMN_NAME(OF FOREIGN KEY)
+JOIN TABLE_NAME_3 ON TABLE_NAME_2.COLUMN_NAME=TABLE_NAME_3.COLUMN_NAME(OF FOREIGN KEY OF TABLE_2)
+
+select tablename1.columnname, table name2.columnname from tablename1
+join tablename2 on tablename1.columnname=tablename2.columnname(foreign key1)
+join tablename3 on tablename2.columnname=tablename3.columnname(foreign key2)
+
+SELECT category.cate_name,subcategory.subcate_name FROM category
+JOIN subcategory on category.cate_id=subcategory.cate_id_fk
+
+
+SELECT category.cate_name,subcategory.subcate_name,product.prd_name,product.prd_price,product.prd_desc_price FROM category
+
+JOIN subcategory ON category.cate_id=subcategory.cate_id_fk
+
+JOIN product ON category.cate_id=product.cate_id_fk
+
+
+
+Moxit,sanjay,raj,khushi,dipak,harshad,arjun,avinash
+
+
+
+
