@@ -7,9 +7,10 @@ public class Q3_LeapYearOrNot
 	{
 		System.out.println("Enter Year : ");
 		Scanner year = new Scanner(System.in);
-		int y = year.nextInt();
+		int y = year.nextInt();//Input for Users
 		year.close();
 		
+		//Creating condition for Leap Year
 		if(y%4==0)
 		{
 			System.out.println(y+" is a Leap Year.");

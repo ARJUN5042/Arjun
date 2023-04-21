@@ -8,12 +8,14 @@ public class Q1_GreatestNumberFromInput
 		System.out.println("Enter Values:-");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter A: ");
-		int a = sc.nextInt();
+		int a = sc.nextInt();//Taking input for a
 		System.out.println("Enter B: ");
-		int b = sc.nextInt();
+		int b = sc.nextInt();//Taking input for b
 		System.out.println("Enter C: ");
-		int c = sc.nextInt();
+		int c = sc.nextInt();//Taking input for c
 		sc.close();
+		
+		//Making conditions for greater number
 		
 		if(a>b && a>c)
 		{
