@@ -1,6 +1,6 @@
 package com.simple;
 
-public class Contion1 
+public class Condition1 
 {
 	public static void main(String[] args) 
 	{
