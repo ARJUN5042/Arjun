@@ -1,5 +1,6 @@
 package com.simple;
 /*
+ * pascal's triangle
      1
     1 1
    1 2 1
@@ -24,7 +25,8 @@ public class Pyramid21
 	            }
 	            System.out.println();
 	        }
-	    }
+	 }
 }
+
 
 
