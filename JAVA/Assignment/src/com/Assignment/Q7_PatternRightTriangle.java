@@ -9,7 +9,7 @@ public class Q7_PatternRightTriangle
 		{
 			for(int j=1;j<=i;j++)
 			{
-				System.out.print(" "+n);
+				System.out.print(n+" ");
 				n++;//Incrementing value of variable
 			}
 			System.out.println();
