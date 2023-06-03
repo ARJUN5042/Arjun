@@ -1,5 +1,11 @@
 package com.Assignment;
-
+/*
+1
+12
+123
+1234
+12345 
+*/
 public class Q6_PatternRightTriangle 
 {
 	public static void main(String[] args) 

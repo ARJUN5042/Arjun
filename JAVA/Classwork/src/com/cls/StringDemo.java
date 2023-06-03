@@ -11,7 +11,7 @@ public class StringDemo
 		System.out.println("Lowercase is.. "+s1.toLowerCase());
 		System.out.println("SubString is.. "+s1.substring(2));
 		System.out.println("SubString is.. "+s1.substring(2,7));
-		System.out.println("Char at is.. "+s1.length());
+		System.out.println("Char is.. "+s1.length());
 		System.out.println("Original is.. "+s1);
 	}
 }

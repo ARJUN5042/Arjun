@@ -10,13 +10,24 @@ public class Q2_VowelOrConsonent
 		System.out.println("Enter a Single Character : ");
 		String input = sc.next();
 		
-//		boolean uppercase = input.charAt(0)>=65 && input.charAt(0)<=90;
-//		boolean lowercase = input.charAt(0)>=97 && input.charAt(0)<=122;
-//		boolean vowels = input.equals("a")||input.equals("A")||input.equals("e")||input.equals("E")||input.equals("i")||input.equals("I")||input.equals("o")||input.equals("O")||input.equals("u")||input.equals("U");
-//		
-		if(input.length()!=1)
+		char c=input.charAt(0);
+		
+		if(input.length()!=1 || !Character.isLetter(input.charAt(0)))
 		{
-			System.out.println("You Entered morethan one character...");
+			System.out.println("Error!!!!! Input character is not Letter or More than One Character...");
+		}
+		else
+		{
+			if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u'||c=='A'||c=='E'||c=='I'||c=='O'||c=='U')
+			{
+				System.out.println("You Entered : "+c);
+				System.out.println("And It is Vowel......");
+			}
+			else
+			{
+				System.out.println("You Entered : "+c);
+				System.out.println("And It is Consonant......");
+			}
 		}
 	}
 }

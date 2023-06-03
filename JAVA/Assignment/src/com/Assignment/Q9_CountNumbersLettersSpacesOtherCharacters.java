@@ -7,41 +7,39 @@ public class Q9_CountNumbersLettersSpacesOtherCharacters
 	public static void main(String[] args) 
 	{
 		Scanner sc=new Scanner(System.in);
-		System.out.println("Enter something: ");
-		String test=sc.nextLine();
-		System.out.println(test);
-		count(test);		
-		sc.close();
-	}
-	public static void count(String x)
-	{
-		char[] ch = x.toCharArray();
-		int letter =0;
-		int space =0;
-		int num =0;
-		int other =0;
-		for(int i=0;i<x.length();i++)
+		System.out.print("Enter a String: ");
+		String s=sc.nextLine();//take user input
+		System.out.println("You Entered : "+s);
+		//initializing variables for counting
+		int letters=0;
+		int numbers=0;
+		int spaces=0;
+		int specialCharacter=0;
+		
+		for(int i=0;i<s.length();i++)
 		{
-			if(Character.isLetter(ch[i]))
+			char ch=s.charAt(i);
+			if(Character.isLetter(ch))
 			{
-				letter++;
+				letters++;
 			}
-			else if(Character.isDigit(ch[i]))
+			else if(Character.isDigit(ch))
 			{
-				num++;
+				numbers++;
 			}
-			else if(Character.isSpaceChar(ch[i]))
+			else if(Character.isWhitespace(ch))
 			{
-				space++;
+				spaces++;
 			}
 			else
 			{
-				other++;
+				specialCharacter++;
 			}
 		}
-		System.out.println("Letter: "+letter);
-		System.out.println("Space: "+space);
-		System.out.println("Number: "+num);
-		System.out.println("Others: "+other);
+		//Display counted letters,spaces,numbers and special character 		
+		System.out.println("Letters : "+letters);
+		System.out.println("Numbers : "+numbers);
+		System.out.println("Spaces : "+spaces);
+		System.out.println("Special Character: "+specialCharacter);
 	}
 }
