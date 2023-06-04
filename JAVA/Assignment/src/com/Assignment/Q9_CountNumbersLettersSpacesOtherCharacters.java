@@ -41,5 +41,6 @@ public class Q9_CountNumbersLettersSpacesOtherCharacters
 		System.out.println("Numbers : "+numbers);
 		System.out.println("Spaces : "+spaces);
 		System.out.println("Special Character: "+specialCharacter);
+		sc.close();
 	}
 }
