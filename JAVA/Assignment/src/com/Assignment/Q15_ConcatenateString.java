@@ -1,6 +1,6 @@
 package com.Assignment;
 
-public class Q15_ConcanateString 
+public class Q15_ConcatenateString 
 {
 	public static void main(String[] args) 
 	{
@@ -9,7 +9,7 @@ public class Q15_ConcanateString
 		//printing original strings
 		System.out.println("First String: "+s1);
 		System.out.println("Second String:"+s2);
-		//concanate with using append
+		//concatenate with using append
 		s1.append(s2);
 		System.out.println("Concanate String: "+s1);
 	}

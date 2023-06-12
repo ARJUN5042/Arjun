@@ -11,7 +11,7 @@ public class Q10_PrintASCIIValueForGivenCharacter
 		char ch=sc.nextLine().charAt(0);
 		//Using Type Casting to converting char into int
 		int asciiValue=(int)ch;
-		
 		System.out.println("You Entered : "+ch+" And ASCII Value is : "+asciiValue);
+		sc.close();
 	}
 }

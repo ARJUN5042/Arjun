@@ -8,8 +8,8 @@ public class Q11_5_55_555
 	{
 		Scanner sc =new Scanner(System.in);
 		System.out.println("Enter Number: ");
-		int n=sc.nextInt();
-		
+		int n=sc.nextInt();//taking user input
 		System.out.println(n+" + "+n+n+" + "+n+n+n);
+		sc.close();
 	}
 }

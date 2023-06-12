@@ -17,5 +17,6 @@ public class Q16_ComparingCharacter
 		boolean b1=s1.contentEquals(s2);
 		//display result
 		System.out.println("Comparing "+s1+" and "+s2+": "+b1);
+		sc.close();
 	}
 }
