@@ -8,17 +8,18 @@ public class Q8_ReadPositiveIntegerAndCountNumbersOfDigit
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Positive Numbers : ");
-		long n=sc.nextLong();
+		long n=sc.nextLong();//user input for positive number
+		//making condition for user input is correct or not
 		if(n<=0)
 		{
 			System.out.println("Please Enter a positive Number");
 		}
 		else
 		{
-			int count=0;
-			while(n>0)
+			int count=0;//initialize
+			while(n>0)//condition
 			{
-				count++;
+				count++;//updation //making count +1 at every time get into loop
 				n/=10;
 			}
 			System.out.println("The number of digits is: "+count);

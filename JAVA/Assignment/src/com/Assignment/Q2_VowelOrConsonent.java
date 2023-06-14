@@ -29,5 +29,6 @@ public class Q2_VowelOrConsonent
 				System.out.println("And It is Consonant......");
 			}
 		}
+		sc.close();
 	}
 }

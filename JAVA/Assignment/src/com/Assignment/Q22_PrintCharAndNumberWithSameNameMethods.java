@@ -2,6 +2,7 @@ package com.Assignment;
 
 class PrintNumberAndChar
 {
+	//creating same method name but arguments are different
 	public void print(int n, char c)
 	{
 		System.out.println("Number is: "+n+" , And Character is: "+c);

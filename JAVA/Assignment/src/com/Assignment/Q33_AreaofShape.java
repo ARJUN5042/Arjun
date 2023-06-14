@@ -1,13 +1,16 @@
 package com.Assignment;
-
+//creating super abstract class
 abstract class Shape
 {
+	//creating abstract methods
 	public abstract void rectangleArea(double length, double breadth);
 	public abstract void squareArea(double side);
 	public abstract void circleArea(double radius);
 }
+//creating sub class
 class Area extends Shape
 {
+	//specify methods via method overriding
 	public void rectangleArea(double length, double breadth)
 	{
 		double rectangleArea = length * breadth;

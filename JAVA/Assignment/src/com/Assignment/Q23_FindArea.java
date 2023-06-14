@@ -2,6 +2,7 @@ package com.Assignment;
 
 class CalculateArea
 {
+	//creating both method with same name
 	public void Area(int side)
 	{
 		int area = side * side;

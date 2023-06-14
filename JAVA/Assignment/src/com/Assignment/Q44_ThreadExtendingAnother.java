@@ -1,17 +1,20 @@
 package com.Assignment;
-
+//creating class and extends in thread
 class Thread2 extends Thread
 {
+	//creating run method
 	@Override
 	public void run() 
 	{
+		//using for loop
 		for(int i=0;i<=5;i++)
 		{
+			//using try...catch block
 			try 
 			{
-				Thread.sleep(1000);
+				Thread.sleep(1000);//every process time gap
 			} 
-			catch (Exception e) 
+			catch (Exception e) //if any error occurs then it will handled by catch block
 			{
 				e.printStackTrace();
 			}
@@ -24,7 +27,7 @@ public class Q44_ThreadExtendingAnother
 {
 	public static void main(String[] args) 
 	{
-		Thread2 t1 = new Thread2();
-		t1.start();
+		Thread2 t1 = new Thread2();//creating object of class
+		t1.start();//start thread
 	}
 }

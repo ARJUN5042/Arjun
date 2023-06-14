@@ -2,6 +2,7 @@ package com.Assignment;
 
 class PrintNumber
 {
+	//declaring all methods with same name but different data types
 	public void printn(int n)
 	{
 		System.out.println("Integer Datatype: "+n);
@@ -35,7 +36,7 @@ class PrintNumber
 		System.out.println("Boolean Datatype: "+n);
 	}
 }
-public class Q21_DataTypesUsingMethodOverleading 
+public class Q21_DatatypesUsingMethodOverloading 
 {
 	public static void main(String[] args) 
 	{
