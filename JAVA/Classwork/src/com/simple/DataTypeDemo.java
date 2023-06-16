@@ -8,7 +8,7 @@ public class DataTypeDemo
 		long l1=12345678;	//8 byte
 		float f1=423.23f;	//4 byte
 		double d1=3452523.34;	//8 byte
-		byte b1=123;	//1 byte
+		byte b1=127;	//1 byte
 		char c1='T';	//2 byte
 		boolean bb=true;	//1 bit
 		System.out.println("int is : "+i1);

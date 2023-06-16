@@ -21,6 +21,10 @@ class NameNotValidException extends Exception
 	{
 		this.errorMessage = errorMessage;
 	}
+	public String getErrorMessage()
+	{
+		return errorMessage;
+	}
 }
 //creating class for throws above exception
 class Student
@@ -72,11 +76,11 @@ public class Q42_StudentProgramWithAgeAndNameException
 			System.out.println(e.getErrorMessage());
 			e.printStackTrace();
 		}
-		catch (NameNotValidException e)//catch block for name exception
+		catch (NameNotValidException e1)//catch block for name exception
 		{
 			//if name contains numbers or special character than handled by this exception
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			System.out.println(e1.getErrorMessage());
+			e1.printStackTrace();
 		}
 	}
 }
