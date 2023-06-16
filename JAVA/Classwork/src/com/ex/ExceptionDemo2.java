@@ -10,7 +10,7 @@ public class ExceptionDemo2
 		{
 			Scanner sc=new Scanner(System.in);
 			int[] a=new int[5];
-			for(int i=0;i<5;i++)
+			for(int i=0;i<=5;i++)
 			{
 				System.out.println("Enter Value : ");
 				a[i]=sc.nextInt();
