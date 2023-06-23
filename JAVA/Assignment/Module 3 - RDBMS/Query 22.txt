@@ -1,0 +1,3 @@
+SELECT empno, ename, job, MIN(sal) AS minimumSal FROM emp 
+GROUP BY job 
+ORDER BY job ASC;

@@ -1,0 +1,2 @@
+SELECT empno,ename,sal,sal/30 AS dailySalary,sal*12 AS annualSal FROM emp 
+ORDER BY annualSal ASC;

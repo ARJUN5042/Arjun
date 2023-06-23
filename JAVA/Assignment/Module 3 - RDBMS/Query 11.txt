@@ -1,0 +1,2 @@
+SELECT empno,ename FROM emp 
+WHERE empno NOT LIKE "78%";

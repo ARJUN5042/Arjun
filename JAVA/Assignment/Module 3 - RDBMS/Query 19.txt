@@ -1,0 +1,2 @@
+SELECT empno,ename,job,sal FROM emp 
+WHERE sal = (SELECT MAX(sal) FROM emp);

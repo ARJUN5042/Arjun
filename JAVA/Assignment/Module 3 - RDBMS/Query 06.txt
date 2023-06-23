@@ -1,0 +1,2 @@
+SELECT empno,ename,sal,(YEAR(CURRENT_DATE) - YEAR(hiredate)) AS exp_year FROM emp 
+WHERE mgr=7839;

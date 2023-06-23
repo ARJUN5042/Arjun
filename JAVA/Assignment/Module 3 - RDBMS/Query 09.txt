@@ -1,0 +1,2 @@
+SELECT empno,ename FROM emp 
+WHERE sal*12 BETWEEN 22000 AND 45000;

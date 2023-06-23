@@ -1,0 +1,2 @@
+SELECT * FROM emp 
+ORDER BY deptno ASC, job DESC;

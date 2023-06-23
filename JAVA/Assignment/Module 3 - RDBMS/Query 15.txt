@@ -1,0 +1,6 @@
+SELECT empno, ename, sal FROM emp 
+WHERE sal 
+IN
+(SELECT sal FROM emp 
+WHERE ename IN("FORD","SMITH")) 
+ORDER BY sal DESC;

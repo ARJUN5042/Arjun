@@ -1,0 +1,4 @@
+SELECT e1.empno, e1.ename, e1.job, e1.deptno FROM emp e1 
+JOIN emp e2 
+ON e1.`job` = e2.`job` 
+WHERE e1.`deptno`=20 AND e2.`deptno`=10;

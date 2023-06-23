@@ -1,0 +1,2 @@
+SELECT job, SUM(sal) FROM emp 
+WHERE job="MANAGER";

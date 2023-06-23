@@ -1,0 +1,2 @@
+SELECT ename,job,deptno FROM emp 
+WHERE job="CLERK" AND deptno=20;

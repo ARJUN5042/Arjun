@@ -1,0 +1,3 @@
+SELECT empno,ename,job,deptno FROM emp 
+WHERE deptno=10 
+AND job NOT IN(SELECT job FROM emp WHERE deptno=20);
