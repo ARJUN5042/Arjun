@@ -9,12 +9,39 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
+  <context-param>
+  <param-name>dburl</param-name>
+  <param-value>jdbc:mysql://localhost:3306/assignment</param-value>
+  </context-param>
+  <context-param>
+  <param-name>dbusername</param-name>
+  <param-value>root</param-value>
+  </context-param>
+<!--  <servlet>
   <servlet-name>Arjun</servlet-name>
   <servlet-class>com.servlet1.SecondDemo</servlet-class>
-  </servlet>
+  </servlet>   
+  <servlet-mapping>
+  <servlet-name>Arjun</servlet-name>
+  <url-pattern>/arjun</url-pattern>
+  </servlet-mapping> -->
+   
+  <servlet>
+  <servlet-name>Arjun</servlet-name>
+  <servlet-class>com.servlet1.ServletConfigDemo</servlet-class>
+  <init-param>
+  <param-name>username</param-name>
+  <param-value>arjun</param-value>
+  </init-param>
+  <init-param>
+  <param-name>password</param-name>
+  <param-value>arjun123</param-value>
+  </init-param>
+  
+  </servlet>   
   <servlet-mapping>
   <servlet-name>Arjun</servlet-name>
   <url-pattern>/arjun</url-pattern>
   </servlet-mapping>
+  
 </web-app>
