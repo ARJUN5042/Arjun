@@ -1,5 +1,6 @@
 package com.collection;
 
+import java.util.Enumeration;
 import java.util.Vector;
 
 public class VectorDemo 
@@ -24,5 +25,11 @@ public class VectorDemo
 		System.out.println("Now Capacity.. "+v1.capacity());
 		//capacity not change and reserving memory(waste of memory)
 		System.out.println("Now value is..."+v1);
+		
+		Enumeration e1 = v1.elements();
+		while (e1.hasMoreElements())
+		{
+			System.out.println(e1.nextElement());
+		}
 	}
 }
