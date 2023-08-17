@@ -27,5 +27,4 @@ public class FirstDemo extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		out.println("<h1 align='center' style='color:red'>Welcome to Servlet...</h1>");
 	}
-
 }
