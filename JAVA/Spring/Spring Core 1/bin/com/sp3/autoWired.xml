@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+<bean id="phone" class="com.sp3.Phone">
+	<property name="phno" value="123123" />
+</bean>
+
+<bean id="pr1" class="com.sp3.Person" autowire="byType">
+	<property name="pname" value="Rahul" />
+	<!-- <property name="phone" ref="pphh1" /> -->
+</bean>
+</beans>

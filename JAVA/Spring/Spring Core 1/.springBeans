@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/beans.xml</config>
 		<config>src/com/sp2/collections.xml</config>
+		<config>src/com/sp3/autoWired.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

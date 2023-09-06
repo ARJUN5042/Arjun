@@ -5,7 +5,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Test_Collection 
 {
-	ApplicationContext context=new ClassPathXmlApplicationContext("com/sp2/collections.xml");
-	Customer c1=(Customer)context.getBean("cc1");
-	
+	public static void main(String[] args) 
+	{
+		ApplicationContext context=new ClassPathXmlApplicationContext("com/sp2/collections.xml");
+		Customer cc1=(Customer)context.getBean("cc1");
+		System.out.println(cc1.getLists());
+		System.out.println(cc1.getSets());
+	}
 }
