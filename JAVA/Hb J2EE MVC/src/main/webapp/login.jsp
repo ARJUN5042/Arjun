@@ -8,7 +8,7 @@
 </head>
 <body>
 ${msg }
-<form method="post" action="">
+<form method="post" action="LoginController">
 <table>
 <tr>
 	<td>User Name : </td>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+
+	<bean id="pp1" class="com.sp2.Person">
+		<property name="pid" value="123" />
+		<property name="pname" value="Rahul" />
+		<property name="city" value="S.nagar" />
+	</bean>
+
+	<bean id="cc1" class="com.sp2.Customer">
+		<property name="lists">
+			<list>
+				<value>1</value>
+				<bean id="pp2" class="com.sp2.Person">
+					<property name="pid" value="1234" />
+					<property name="pname" value="Rocky" />
+					<property name="city" value="G.nagar" />
+				</bean>
+				<ref bean="pp1" />
+				<ref bean="pp1" />
+			</list>
+
+		</property>
+		<property name="sets">
+			<set>
+				<value>555</value>
+				<bean id="pp3" class="com.sp2.Person">
+					<property name="pid" value="4321" />
+					<property name="pname" value="Ricky" />
+					<property name="city" value="B.nagar" />
+				</bean>
+				<ref bean="pp1"/>
+			</set>
+		</property>
+
+	</bean>
+
+</beans>

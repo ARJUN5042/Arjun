@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+<bean id="m1" class="com.sp1.Message" init-method="ankita" destroy-method="arjun">
+	<property name="msg" value="Hello Spring Demo"></property>
+</bean>
+<bean id="m2" class="com.sp1.Message">
+	<property name="msg">
+		<value>Hello Spring 2 Demo</value>
+	</property>
+</bean>
+<bean id="s1" class="com.sp1.Student">
+	<property name="sid"><value>1</value></property>
+	<property name="sname"><value>Rahul</value></property>
+	<property name="degree"><value>MCA</value></property>
+</bean>
+<bean id="s2" parent="s1">
+	<property name="country"><value>India</value></property>
+	<property name="address"><value>Sola Road</value></property>
+	<property name="city"><value>Ahmedabad</value></property>
+</bean>
+<bean id="e1" class="com.sp1.Employee">
+</bean>
+<bean id="e2" class="com.sp1.Employee">
+	<constructor-arg name="eid" value="123"></constructor-arg>
+	<constructor-arg name="ename" value="Arjun"></constructor-arg>
+	<constructor-arg name="desg" value="Jr.Dev"></constructor-arg>	
+</bean>
+
+<!-- Scope -->
+<bean id="c1" class="com.sp1.Customer" scope="prototype" />
+
+<!-- Reference Setter Getter -->
+<bean id="p1" class="com.sp1.Phone">
+	<property name="phno" value="123123"/>
+</bean>
+<bean id="pr1" class="com.sp1.Person">
+	<property name="pname" value="Arjun"></property>
+	<property name="phone" ref="p1"></property>
+</bean>
+
+<bean id="pr2" class="com.sp1.Person1">
+	<constructor-arg name="name" value="Ankita"></constructor-arg>
+	<constructor-arg name="phone" ref="p1" />
+</bean>
+
+
+</beans>
