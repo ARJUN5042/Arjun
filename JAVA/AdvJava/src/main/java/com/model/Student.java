@@ -3,6 +3,7 @@ package com.model;
 public class Student 
 {
 	private int sid;
+	private String sname,city,degree;
 	public int getSid() {
 		return sid;
 	}
@@ -27,5 +28,4 @@ public class Student
 	public void setDegree(String degree) {
 		this.degree = degree;
 	}
-	private String sname,city,degree;
 }

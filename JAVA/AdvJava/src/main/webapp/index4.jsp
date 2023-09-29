@@ -12,12 +12,12 @@
 	<jsp:param value="arjun" name="ename"/>
 	<jsp:param value="12345" name="salary"/>
 </jsp:forward>
-<%-- 
-<jsp:include page="index5.jsp">
+ 
+<%-- <jsp:include page="index5.jsp">
 	<jsp:param value="arjun" name="ename"/>
 	<jsp:param value="12345" name="salary"/>
-</jsp:include>
---%>
+</jsp:include> --%>
+
 <h1>Arjun Hirpara</h1>
 </body>
 </html>
