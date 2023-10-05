@@ -13,7 +13,14 @@ import org.hibernate.annotations.GenericGenerator;
 public class User 
 {
 	private int id;
-	private String firstname,lastname,email,mobile,password,gender;
+	private String firstname,lastname,email,mobile,password,gender,image;
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	@Id
 	@GenericGenerator(name = "increment", strategy = "increment")
 	@GeneratedValue(generator = "increment")
