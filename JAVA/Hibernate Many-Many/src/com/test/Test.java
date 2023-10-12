@@ -28,16 +28,15 @@ public class Test
 		
 		Students ss1=new Students();
 		ss1.setSname("Arjun");
-		ss1.setDegree("BE");
+		ss1.setDegree("MCA");
 		ss1.setSubjects(subjects);
 		
 		Students ss2=new Students();
 		ss2.setSname("Ankita");
-		ss2.setDegree("BBA");
+		ss2.setDegree("MBA");
 		ss2.setSubjects(subjects);
 		
 		dao.addStudent(ss1);
 		dao.addStudent(ss2);
-		
 	}
 }

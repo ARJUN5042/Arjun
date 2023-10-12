@@ -1,6 +1,6 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.util.DBUtil"%>
+<%@page import="com.util.HBUtil"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -47,13 +47,13 @@
             <div class="row product__filter">
             <%
             int serviceid=Integer.parseInt(request.getParameter("serviceid"));
-            Connection cn=new DBUtil().getConnectionData();
-        	String qry="select * from subservices where serviceid=?";
-        	PreparedStatement st=cn.prepareStatement(qry);
-        	st.setInt(1, serviceid);
-        	ResultSet rs=st.executeQuery();
-        	while(rs.next())
-        	{        
+                        Connection cn=new HBUtil().getConnectionData();
+                    	String qry="select * from subservices where serviceid=?";
+                    	PreparedStatement st=cn.prepareStatement(qry);
+                    	st.setInt(1, serviceid);
+                    	ResultSet rs=st.executeQuery();
+                    	while(rs.next())
+                    	{
             %>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">

@@ -85,7 +85,7 @@ public class RegisterDao
 		{
 			session=new HBUtil().getSessionData();
 			tx=session.beginTransaction();
-			Query q=session.createQuery("update User u set u.firstname=?0,u.username=?1,u.email=?2,u.mobile=?3,u.password=?4,u.gender=?5,u.image=?6 where u.id=?7");
+			Query q=session.createQuery("update User u set u.firstname=?0,u.lastname=?1,u.email=?2,u.mobile=?3,u.password=?4,u.gender=?5,u.image=?6 where u.id=?7");
 			q.setString(0, user.getFirstname());
 			q.setString(1, user.getLastname());
 			q.setString(2, user.getEmail());

@@ -33,8 +33,6 @@ public class HBUtil
 		
 		fact=cfg.buildSessionFactory();
 		session=fact.openSession();
-		
-		
 		return session;
 	}
 }

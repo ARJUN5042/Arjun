@@ -39,7 +39,7 @@
 </tr>
 <tr>
 	<td>Profile Picture : </td>
-	<td><input type="file" name="image"/>
+	<td><input type="file" name="image" value="${user.image }"/>
 	</td>
 </tr>
 <tr>

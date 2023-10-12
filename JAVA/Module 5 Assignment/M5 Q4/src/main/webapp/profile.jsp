@@ -43,7 +43,7 @@
 		</tr>
 		<tr>
 			<th>Profile Photo:</th>
-			<td colspan="2"><img alt="" width="300px" height="300px" src="<%=user.getImage() %>"></td>
+			<td colspan="2"><img alt="image" width="300px" height="300px" src="images\<%=user.getImage() %>"></td>
 		</tr>
 		<tr>
 			<th>Action</th>
