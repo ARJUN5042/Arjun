@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	
+    <bean id="studentList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <bean class="com.assignment.Student">
+                    <property name="id" value="1"/>
+                    <property name="fname" value="Arjun"/>
+                    <property name="lname" value="Hirpara"/>
+                    <property name="email" value="arjun@gmail.com"/>
+                    <property name="mobile" value="1234567890"/>
+                </bean>
+                <bean class="com.assignment.Student">
+                    <property name="id" value="2"/>
+                    <property name="fname" value="Satyam"/>
+                    <property name="lname" value="Hirpara"/>
+                    <property name="email" value="satyam@gmail.com"/>
+                    <property name="mobile" value="9876543210"/>
+                </bean>
+                <bean class="com.assignment.Student">
+                    <property name="id" value="3"/>
+                    <property name="fname" value="Ravi"/>
+                    <property name="lname" value="Dhula"/>
+                    <property name="email" value="ravi@gmail.com"/>
+                    <property name="mobile" value="1234123411"/>
+                </bean>
+                <bean class="com.assignment.Student">
+                    <property name="id" value="4"/>
+                    <property name="fname" value="Rutvik"/>
+                    <property name="lname" value="Rathod"/>
+                    <property name="email" value="rutvik@gmail.com"/>
+                    <property name="mobile" value="1232352310"/>
+                </bean>
+                <bean class="com.assignment.Student">
+                    <property name="id" value="5"/>
+                    <property name="fname" value="Darshan"/>
+                    <property name="lname" value="Gohel"/>
+                    <property name="email" value="darshan@gmail.com"/>
+                    <property name="mobile" value="9834233210"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>

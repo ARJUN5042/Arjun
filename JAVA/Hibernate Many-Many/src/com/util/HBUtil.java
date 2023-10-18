@@ -20,7 +20,7 @@ public class HBUtil
 	{
 		prop=new Properties();
 		prop.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-		prop.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/hb1");
+		prop.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/hb2");
 		prop.setProperty("hibernate.connection.username", "root");
 		prop.setProperty("hibernate.connection.password", "");
 		prop.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");

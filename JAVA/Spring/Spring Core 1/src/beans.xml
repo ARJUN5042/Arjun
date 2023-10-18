@@ -23,6 +23,7 @@
 	<property name="address"><value>Sola Road</value></property>
 	<property name="city"><value>Ahmedabad</value></property>
 </bean>
+
 <bean id="e1" class="com.sp1.Employee">
 </bean>
 <bean id="e2" class="com.sp1.Employee">

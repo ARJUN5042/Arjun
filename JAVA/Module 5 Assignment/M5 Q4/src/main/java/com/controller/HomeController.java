@@ -78,7 +78,7 @@ public class HomeController extends HttpServlet {
 		user.setMobile(request.getParameter("mobile"));
 		user.setPassword(request.getParameter("password"));
 		user.setGender(request.getParameter("gender"));
-		System.out.println(3);
+		
 		String savePath="D:\\Arjun\\JAVA\\Module 5 Assignment\\M5 Q4\\src\\main\\webapp\\images";
 		File fileSaveDir = new File(savePath);
 		if(!fileSaveDir.exists())
@@ -90,13 +90,12 @@ public class HomeController extends HttpServlet {
 		file.write(savePath + File.separator + fileName);
 		
 		user.setImage(fileName);
-		System.out.println(4);
 		int x=new RegisterDao().updateUser(user);
 		if(x>0)
 		{
-			System.out.println(5);
+			
 			response.sendRedirect("HomeController?action=showuser&id="+user.getId());
-			System.out.println(6);
+			
 		}
 	}
 

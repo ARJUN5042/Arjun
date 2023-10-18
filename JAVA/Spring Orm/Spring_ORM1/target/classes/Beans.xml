@@ -41,6 +41,6 @@
 </bean>
 <bean class="com.dao.StudentDao" id="studentDao">
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
-    </bean>
+</bean>
 
 </beans>

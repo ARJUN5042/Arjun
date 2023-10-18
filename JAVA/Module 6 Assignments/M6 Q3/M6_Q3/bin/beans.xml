@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+ <!-- Define the inner bean for UserRepository -->
+    <bean id="userRepository" class="com.assignment.UserRepositery"/>
+
+    <!-- Define UserService and inject the inner UserRepository bean as a property -->
+    <bean id="userService" class="com.assignment.UserService">
+        <property name="userRepository">
+            <bean class="com.assignment.UserRepositery"/>
+        </property>
+    </bean>
+</beans>
