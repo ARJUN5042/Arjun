@@ -8,14 +8,15 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "user")
+@Table(name="User")
 public class User 
 {
 	private int id;
 	private String name,email;
 	@Id
-	@GenericGenerator(name = "increment", strategy = "increment")
+	@GenericGenerator(name = "increment",strategy = "increment")
 	@GeneratedValue(generator = "increment")
+	
 	public int getId() {
 		return id;
 	}
@@ -34,5 +35,6 @@ public class User
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	
 }

@@ -5,13 +5,13 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-  	<servlet-name>ActionController</servlet-name>
-  	<display-name>ActionController</display-name>
+  	<servlet-name>DataController</servlet-name>
+  	<display-name>DataController</display-name>
   	<description></description>
-  	<servlet-class>com.controller.ActionController</servlet-class>
+  	<servlet-class>com.controller.DataController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>ActionController</servlet-name>
-  	<url-pattern>/ActionController</url-pattern>
+  	<servlet-name>DataController</servlet-name>
+  	<url-pattern>/DataController</url-pattern>
   </servlet-mapping>
 </web-app>

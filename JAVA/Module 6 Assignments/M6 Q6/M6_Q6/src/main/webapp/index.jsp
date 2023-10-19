@@ -8,8 +8,8 @@
 </head>
 <body>
 <h1>
-<a href="register.jsp">Register Here</a><br>
-<a href="show.jsp">View Users</a>
+<a href="insert.jsp">Register</a><br>
+<a href="show.jsp">View All Users</a>
 </h1>
 </body>
 </html>

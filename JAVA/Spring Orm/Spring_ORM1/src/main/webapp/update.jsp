@@ -1,4 +1,4 @@
-<%@page import="com.model.Student"%>
+<%@page import="com.model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 </head>
 <body>
 <%
-	Student s=(Student)request.getAttribute("s");
+User s=(User)request.getAttribute("s");
 %>
 <form method="post" action="ActionController">
 Enter Name: <input type="text" name="name" value="<%= s.getName()%>"><br>

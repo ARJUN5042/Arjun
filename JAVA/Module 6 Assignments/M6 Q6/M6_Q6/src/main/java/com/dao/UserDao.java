@@ -7,9 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.model.User;
 
-public class UserDao 
-{
-	private HibernateTemplate hibernateTemplate;
+public class UserDao {
+	HibernateTemplate hibernateTemplate;
 
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
@@ -18,36 +17,30 @@ public class UserDao
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
-	
+
 	@Transactional
-	public void insert(User u)
-	{
-		hibernateTemplate.saveOrUpdate(u);
+	public void insert(User user) {
+		hibernateTemplate.saveOrUpdate(user);
 	}
-	
+
 	@Transactional
-	public List<User> getAllUser()
-	{
+	public List<User> getAllUser() {
 		return hibernateTemplate.loadAll(User.class);
 	}
-	
+
 	@Transactional
-	public User getUser(int id)
-	{
-		return hibernateTemplate.load(User.class, id);
+	public User getUser(int id) {
+		return hibernateTemplate.get(User.class, id);
 	}
-	
+
 	@Transactional
-	public void update(User u)
-	{
-		hibernateTemplate.saveOrUpdate(u);
+	public void update(User user) {
+		hibernateTemplate.saveOrUpdate(user);
 	}
-	
+
 	@Transactional
-	public void delete(int id)
-	{
-		User u=hibernateTemplate.get(User.class, id);
-		hibernateTemplate.delete(u);
+	public void delete(int id) {
+		User user = hibernateTemplate.get(User.class, id);
+		hibernateTemplate.delete(user);
 	}
-	
 }

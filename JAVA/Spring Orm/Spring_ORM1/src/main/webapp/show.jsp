@@ -1,7 +1,7 @@
-<%@page import="com.model.Student"%>
+<%@page import="com.model.User"%>
 <%@page import="java.util.List"%>
 <%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
-<%@page import="com.dao.StudentDao"%>
+<%@page import="com.dao.UserDao"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,9 +13,9 @@
 </head>
 <body>
 <%
-	ApplicationContext a=new ClassPathXmlApplicationContext("Beans.xml");
-	StudentDao studentDao=(StudentDao)a.getBean("studentDao");
-	List<Student> list=studentDao.getAllStudent();
+ApplicationContext a=new ClassPathXmlApplicationContext("Beans.xml");
+	UserDao studentDao=(UserDao)a.getBean("studentDao");
+	List<User> list=studentDao.getAllStudent();
 %>
 <table border="1">
 <tr>
@@ -25,7 +25,7 @@
 	<th>Actions</th>
 </tr>
 <%
-	for(Student s: list)
+for(User s: list)
 	{
 %>
 <tr>

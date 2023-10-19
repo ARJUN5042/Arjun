@@ -1,5 +1,5 @@
 <%@page import="com.model.Address"%>
-<%@page import="com.model.Student"%>
+<%@page import="com.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,7 +10,9 @@
 </head>
 <body>
 <%
-	Student student=(Student)request.getAttribute("student");
+p
+
+	User student=(User)request.getAttribute("student");
 	Address address=(Address)request.getAttribute("address");
 %>
 <table>
