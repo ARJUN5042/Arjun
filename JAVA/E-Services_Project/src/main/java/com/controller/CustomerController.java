@@ -100,14 +100,27 @@ public class CustomerController extends HttpServlet {
 					if(x>0)
 					{
 						response.sendRedirect("payment.jsp?price="+bmodel.getPrice());
-//						out.println("<script type=\"text/javascript\">");
-//						out.println("alert('Booked Service Successfully !');");
-//						out.println("window.location.href='cust-home.jsp';");
-//						out.println("</script>");
-//						response.sendRedirect("cust-home.jsp");
 					}
 				}
-				
+				else if(action.equalsIgnoreCase("succ-pay"))
+				{
+					BookModel bmodel=new BookModel();
+					bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
+					bmodel.setCustomerid(Integer.parseInt(request.getParameter("cid")));
+					bmodel.setBstatus("done");
+					bmodel.setPstatus("successful");
+					int x=new CustomerDao().payment(bmodel);
+					{
+						if(x>0)
+						{
+							response.sendRedirect("cust-home.jsp");
+						}
+						else
+						{
+							System.out.println("something went wrong...");
+						}
+					}
+				}
 	}
 
 }

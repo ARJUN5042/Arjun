@@ -214,7 +214,7 @@
 						<li class="nav-item"><a class="nav-link"
 							href="addservices.jsp">Add Main Services</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="pages/ui-features/dropdowns.html">Add Sub Services</a></li>
+							href="subservices.jsp">Add Sub Services</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="pages/ui-features/typography.html">View Main Services</a></li>
 						<li class="nav-item"><a class="nav-link"

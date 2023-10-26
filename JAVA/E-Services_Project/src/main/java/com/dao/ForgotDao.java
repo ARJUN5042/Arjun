@@ -44,7 +44,7 @@ public class ForgotDao
 		int r=0;
 		try {
 			Connection conn=new DBUtil().getConnectionData();
-			String sql="update  customer set password=? where customerid=?";
+			String sql="update customer set password=? where customerid=?";
 			PreparedStatement stmt=conn.prepareStatement(sql);
 			stmt.setString(1, f.getPassword());
 			stmt.setInt(2, f.getCustomerid());

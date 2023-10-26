@@ -50,7 +50,7 @@ public class AdminController extends HttpServlet {
 			AddServicesModel asm = new AddServicesModel();
 			asm.setServicename(request.getParameter("servicename"));
 
-			String savePath = "C:\\Users\\hirpa\\eclipse-workspace\\E-Services_Project\\src\\main\\webapp\\uploadimage";
+			String savePath = "D:\\Arjun\\JAVA\\E-Services_Project\\src\\main\\webapp\\uploadimage";
 			File fileSaveDir = new File(savePath);
 			if (!fileSaveDir.exists()) {
 				fileSaveDir.mkdir();
@@ -72,7 +72,7 @@ public class AdminController extends HttpServlet {
 			ssm.setSubsname(request.getParameter("subsname"));
 			ssm.setContent(request.getParameter("content"));
 			
-			String savePath = "C:\\Users\\hirpa\\eclipse-workspace\\E-Services_Project\\src\\main\\webapp\\uploadimage";
+			String savePath = "D:\\Arjun\\JAVA\\E-Services_Project\\src\\main\\webapp\\uploadimage";
 			File fileSaveDir = new File(savePath);
 			if (!fileSaveDir.exists()) {
 				fileSaveDir.mkdir();

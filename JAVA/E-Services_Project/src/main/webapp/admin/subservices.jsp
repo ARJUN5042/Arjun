@@ -1,6 +1,6 @@
+<%@page import="com.util.DBUtil"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.util.HBUtil"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -43,14 +43,14 @@
 										<form method="post" action="../AdminController"
 											class="forms-sample" enctype="multipart/form-data">
 											<div class="form-group">
-												<label>Main Services</label> <select name="serviceid"
-													class="js-example-basic-single w-100">
+												<label>Main Services</label> 
+												<select name="serviceid" class="js-example-basic-single w-100">
 													<%
-													Connection cn = new HBUtil().getConnectionData();
-																								String qry = "select * from services";
-																								PreparedStatement st = cn.prepareStatement(qry);
-																								ResultSet rs = st.executeQuery();
-																								while (rs.next()) {
+													Connection cn = new DBUtil().getConnectionData();
+													String qry = "select * from services";
+													PreparedStatement st = cn.prepareStatement(qry);
+													ResultSet rs = st.executeQuery();
+													while (rs.next()) {
 													%>
 													<option value="<%=rs.getInt(1)%>"><%=rs.getString(2)%></option>
 													<%

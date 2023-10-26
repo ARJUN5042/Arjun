@@ -31,8 +31,7 @@ public class UserDao
 	public User getLogin(int id)
 	{
 		return hibernateTemplate.get(User.class, id);
-	}
-	
+	}	
 	
 	@Transactional
 	public List<User> getAllUser()

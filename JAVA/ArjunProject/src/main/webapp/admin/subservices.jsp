@@ -1,6 +1,6 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.util.HBUtil"%>
+<%@page import="com.util.DBUtil"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -48,7 +48,7 @@
                     <label>Main Services</label>
                     <select name="serviceid" class="js-example-basic-single w-100">
                     <%
-                    Connection cn=new HBUtil().getConnectionData();
+                    Connection cn=new DBUtil().getConnectionData();
                                         	String qry="select * from services";
                                         	PreparedStatement st=cn.prepareStatement(qry);
                                         	ResultSet rs=st.executeQuery();

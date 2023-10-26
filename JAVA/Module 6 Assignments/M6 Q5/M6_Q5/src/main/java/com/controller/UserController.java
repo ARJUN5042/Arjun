@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import com.dao.UserDao;
 import com.model.User;
 
+@WebServlet("/UserController")
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -47,22 +49,10 @@ public class UserController extends HttpServlet {
 		}
 		else if(action.equalsIgnoreCase("Login"))
 		{
-			User user=new User();
 			int id=Integer.parseInt(request.getParameter("id"));
-			String email=request.getParameter("email");
-			String password=request.getParameter("password");
-			
-			User u=userDao.getLogin(id);
-			if(u != null)
-			{
-				request.setAttribute("id", u.getId());
-				request.setAttribute("user", user);
-				request.getRequestDispatcher("profile.jsp").forward(request, response);
-			}
-			else
-			{
-				System.out.println("error");
-			}
+			User user=userDao.getLogin(id);
+			request.setAttribute("user", user);
+			request.getRequestDispatcher("profile.jsp").forward(request, response);
 			
 		}
 		else if(action.equalsIgnoreCase("edit"))

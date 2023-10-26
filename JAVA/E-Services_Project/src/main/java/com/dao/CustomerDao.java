@@ -118,5 +118,25 @@ public class CustomerDao
 		}		
 		return x;
 	}
+	public int payment(BookModel bmodel)
+	{
+		int x=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="Update book set bstatus=?,pstatus=? where bid=?";
+		try 
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setString(1, bmodel.getBstatus());
+			st.setString(2, bmodel.getPstatus());
+			st.setInt(3, bmodel.getBid());
+			x=st.executeUpdate();
+			cn.close();
+		} catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return x;
+	}
 	
 }

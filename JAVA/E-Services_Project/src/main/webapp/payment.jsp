@@ -20,7 +20,8 @@
 	{
 		alert("1");
 		var number=document.getElementById("amount").value;
-		xhttp.open("GET","http://localhost:8080/E-Services_Project/OrderCreation?amount="+number,false);
+		var bid=document.getElementById("bid").value;
+		xhttp.open("GET","http://localhost:8080/E-Services_Project/OrderCreation?amount="+number+"&bid="+bid,false);
 		alert("2");
 		xhttp.send();
 		RazorpayOrderId=xhttp.responseText;
@@ -36,10 +37,12 @@
 	{
 		alert("3");
 		var number=document.getElementById("amount").value;
+		/* var bid=document.getElementById("bid").value; */
 		alert(number);
 		var options={
 				"key":"rzp_test_sPhCuuWP15dnn6",
 				"amount":number,
+				/* "bid":bid, */
 				"currency":"INR",
 				"name":"Tops",
 				"description":"Test",
@@ -47,12 +50,12 @@
 				"callback_url":"http://localhost:8080/E-Services_Project/OrderCreation",
 				//optional
 				"prefill":{
-					"name":"rahul sanghavi",
-					"email":"rahulsanghavi.tops@gmail.com",
-					"contact":"9016545414"
+					"name":"Arjun Hirpara",
+					"email":"hirparaarjun49@gmail.com",
+					"contact":"7383851940"
 				},
 				"notes":{
-					"address":"s.nagar"
+					"address":"Ahmedabad"
 				},
 				"theme":{
 					"color":"#3399cc"
@@ -82,8 +85,10 @@
 <center>
 	<%
 		String price=request.getParameter("price");
+		String bid=request.getParameter("bid");
 	%>
 	<input type="hidden" id="amount" value="<%=price%>">
+	<input type="hidden" id="bid" value="<%=bid %>">
 	<button id="payButton" onclick="CreateOrderID()" class="bttnStyle">Pay Now</button>
 </center>
 </body>

@@ -7,32 +7,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.*;
+
+import com.model.BookModel;
 import com.razorpay.*;
-/**
- * Servlet implementation class OrderCreation
- */
 @WebServlet("/OrderCreation")
 public class OrderCreation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      int id; 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	int id; 
+	int bid;
     public OrderCreation() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RazorpayClient client=null;
 		String orderId=null;
 		try {
 			client=new RazorpayClient("rzp_test_sPhCuuWP15dnn6","ukmAlKMm728ceKiUnbNZBJGI");
-			
 			String amount=request.getParameter("amount");
+			bid=Integer.parseInt(request.getParameter("bid"));
 			Integer digit=new Integer(Integer.parseInt(amount)*100);
 			
 			JSONObject options=new JSONObject();
@@ -48,13 +42,10 @@ public class OrderCreation extends HttpServlet {
 		response.getWriter().append(orderId);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RazorpayClient client=null;
 		try {
-			client=new RazorpayClient("rzp_test_GXlEmvx1Yd5yJo","noAZKb6He1siRT6L0X25ygRT");
+			client=new RazorpayClient("rzp_test_sPhCuuWP15dnn6","ukmAlKMm728ceKiUnbNZBJGI");
 			JSONObject options=new JSONObject();
 			options.put("razorpay_payment_id",request.getParameter("razorpay_payment_id"));
 			options.put("razorpay_order_id",request.getParameter("razorpay_order_id"));
@@ -64,11 +55,11 @@ public class OrderCreation extends HttpServlet {
 			{
 				response.getWriter().append("Payment Successfull");
 				Thread.sleep(2000);
-				response.sendRedirect("");
 			}
 			else
 			{
-				response.getWriter().append("Payment Failed");
+				response.getWriter().append("Payment Successfull  1!!!");
+				response.sendRedirect("CustomerController?action=succ-pay&bid="+bid);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

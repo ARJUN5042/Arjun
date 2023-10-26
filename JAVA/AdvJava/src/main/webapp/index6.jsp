@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="s1" class="com.model.User"></jsp:useBean>
+<jsp:useBean id="s1" class="com.model.Student"></jsp:useBean>
 <jsp:setProperty property="sid" name="s1" value="123"/>
 <jsp:setProperty property="sname" name="s1" value="Rahul"/>
 <jsp:setProperty property="city" name="s1" value="S.nagar"/>
 <jsp:setProperty property="degree" name="s1" value="MCA"/>
 
-<jsp:useBean id="s2" class="com.model.User"></jsp:useBean>
+<jsp:useBean id="s2" class="com.model.Student"></jsp:useBean>
 <jsp:setProperty property="sid" name="s2" value="321"/>
 <jsp:setProperty property="sname" name="s2" value="Arjun"/>
 <jsp:setProperty property="city" name="s2" value="G.nagar"/>

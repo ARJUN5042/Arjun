@@ -44,13 +44,13 @@
 	<td><%=user.getGender() %></td>
 	<td>
 			<form name="edit" method="post" action="UserController">
-				<input type="hidden" name="sid" value="<%=user.getId()%>">
+				<input type="hidden" name="id" value="<%=user.getId()%>">
 				<input type="submit" name="action" value="EDIT">
 			</form>
 		</td>
 		<td>
 			<form name="delete" method="post" action="UserController">
-				<input type="hidden" name="sid" value="<%=user.getId()%>">
+				<input type="hidden" name="id" value="<%=user.getId()%>">
 				<input type="submit" name="action" value="DELETE">
 			</form>
 		</td>
