@@ -6,29 +6,13 @@
 //.....50
 int main()
 {
-	for(int i=1;i<=10;i++)
+	for(int i=1;i<=50;i++)
 	{
+		if(i==11 || i==21 || i==31 || i==41)
+		{
+			printf("\n");
+		}
 		printf("%d  ",i);
-	}
-	printf("\n");
-	for(int i=11;i<=20;i++)
-	{
-		printf("%d ",i);
-	}
-	printf("\n");
-	for(int i=21;i<=30;i++)
-	{
-		printf("%d ",i);
-	}
-	printf("\n");
-	for(int i=31;i<=40;i++)
-	{
-		printf("%d ",i);
-	}
-	printf("\n");
-	for(int i=41;i<=50;i++)
-	{
-		printf("%d ",i);
 	}
 	
 	return 0;

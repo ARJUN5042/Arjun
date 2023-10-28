@@ -138,5 +138,27 @@ public class CustomerDao
 		}
 		return x;
 	}
+	public int getBookID(int customerid)
+	{
+		int bid=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="select max(bid) from book where customerid=?";
+		try 
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setInt(1, customerid);
+			ResultSet rs=st.executeQuery();
+			if(rs.next())
+			{
+				bid=rs.getInt(1);
+			}
+			cn.close();
+		} catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bid;
+	}
 	
 }

@@ -26,6 +26,7 @@
                             <li><a href="#"><%=session.getAttribute("firstname")+" "+session.getAttribute("lastname") %></a>
                                 <ul class="dropdown">
                                     <li><a href="viewprofile.jsp">View Profile</a></li>
+                                    <li><a href="viewbookedservices.jsp">View Booked Services</a></li>
                                     <li><a href="logout.jsp">Logout</a></li>
                                 </ul>
                             </li>

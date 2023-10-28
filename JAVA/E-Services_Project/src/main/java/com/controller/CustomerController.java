@@ -27,6 +27,26 @@ public class CustomerController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String action=request.getParameter("action");
+		if(action.equalsIgnoreCase("succ-pay"))
+		{
+			BookModel bmodel=new BookModel();
+			bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
+//			bmodel.setCustomerid(Integer.parseInt(request.getParameter("customerid")));
+			bmodel.setBstatus("done");
+			bmodel.setPstatus("successful");
+			int x=new CustomerDao().payment(bmodel);
+			{
+				if(x>0)
+				{
+					response.sendRedirect("cust-home.jsp");
+				}
+				else
+				{
+					System.out.println("something went wrong...");
+				}
+			}
+		}
 
 	}
 
@@ -99,28 +119,14 @@ public class CustomerController extends HttpServlet {
 					int x=new CustomerDao().bookServices(bmodel);
 					if(x>0)
 					{
-						response.sendRedirect("payment.jsp?price="+bmodel.getPrice());
+						int bid=new CustomerDao().getBookID(bmodel.getCustomerid());
+						response.sendRedirect("payment.jsp?price="+bmodel.getPrice()+"&bid="+bid);
+					}
+					else {
+						System.out.println("did not get book id");
 					}
 				}
-				else if(action.equalsIgnoreCase("succ-pay"))
-				{
-					BookModel bmodel=new BookModel();
-					bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
-					bmodel.setCustomerid(Integer.parseInt(request.getParameter("cid")));
-					bmodel.setBstatus("done");
-					bmodel.setPstatus("successful");
-					int x=new CustomerDao().payment(bmodel);
-					{
-						if(x>0)
-						{
-							response.sendRedirect("cust-home.jsp");
-						}
-						else
-						{
-							System.out.println("something went wrong...");
-						}
-					}
-				}
+				
 	}
 
 }
