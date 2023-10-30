@@ -29,7 +29,7 @@
 				<td><input type="email" id="email" name="email" required></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="SendOTP" name="action"></td>
+				<td><input type="submit" value="Submit" name="action"></td>
 			</tr>
 		</table>
 	</form>
