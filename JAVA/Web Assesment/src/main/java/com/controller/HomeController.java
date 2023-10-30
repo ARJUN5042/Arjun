@@ -7,35 +7,49 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class HomeController
- */
+import com.dao.HomeDao;
+import com.model.UserModel;
+
 @WebServlet("/HomeController")
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public HomeController() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		String action=request.getParameter("action");
+		if(action.equalsIgnoreCase("user"))
+		{
+			int uid=Integer.parseInt(request.getParameter("uid"));
+			UserModel hmodel=new HomeDao().getLogin(uid);
+			request.setAttribute("hmodel", hmodel);
+			System.out.println(1);
+			request.getRequestDispatcher("user-home.jsp").forward(request, response);
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		UserModel hmodel=new UserModel();
+		hmodel.setUid(Integer.parseInt(request.getParameter("uid")));
+		hmodel.setPassword(request.getParameter("npassword"));
+		
+		int x=new HomeDao().updatePass(hmodel);
+		if(x>0)
+		{
+			System.out.println("Password Updated..");
+			response.sendRedirect("login.jsp");
+		}
+		else
+		{
+			System.out.println("error");
+		}
+		
+		
 	}
 
 }

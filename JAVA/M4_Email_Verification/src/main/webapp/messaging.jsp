@@ -12,16 +12,16 @@
 </head>
 <body>
 <h1>Message</h1>
-<%-- <%
+<%
 	Message messages=(Message)session.getAttribute("message");
-%> --%>
+%>
 <!-- User's Inbox -->
 <div>
 	<h2>Inbox</h2>
 	<ul>
-		<% for (Message message : message) { %>
-                <li><strong>From:</strong> <%= message.getSenderId() %></li>
-                <li><strong>Message:</strong> <%= message.getMessage() %></li>
+		<% for (Message m : message) { %>
+                <li><strong>From:</strong> <%= m.getSenderId() %></li>
+                <li><strong>Message:</strong> <%= m.getMessage() %></li>
                 <hr>
             <% } %>
 

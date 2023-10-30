@@ -38,7 +38,8 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("model", model);
 			session.setAttribute("firstname", model.getFirstname());
 			session.setAttribute("lastname", model.getLastname());
-			response.sendRedirect("user-home.jsp");
+			response.sendRedirect("HomeController?action=user&uid="+model.getUid());
+			System.out.println(1.1);
 		}
 	}
 
