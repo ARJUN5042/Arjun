@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="org.apache.catalina.tribes.group.interceptors.MessageDispatchInterceptorMBean"%>
 <%@page import="com.model.Message"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -13,17 +14,17 @@
 <body>
 <h1>Message</h1>
 <%
-	Message messages=(Message)session.getAttribute("message");
+	List<Message> messages=(List<Message>)session.getAttribute("messages");
 %>
 <!-- User's Inbox -->
 <div>
 	<h2>Inbox</h2>
 	<ul>
-		<% for (Message m : message) { %>
-                <li><strong>From:</strong> <%= m.getSenderId() %></li>
-                <li><strong>Message:</strong> <%= m.getMessage() %></li>
+		<c:forEach items="${messages } var="message">
+                <li><strong>From:</strong>${message.senderId }</li>
+                <li><strong>Message:</strong>${message.message }</li>
                 <hr>
-            <% } %>
+            </c:forEach>
 
 	</ul>
 </div>

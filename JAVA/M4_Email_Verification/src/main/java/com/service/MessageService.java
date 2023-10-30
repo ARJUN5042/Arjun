@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dao.MessageDao;
 import com.model.Message;
+import com.model.User;
 
 public class MessageService 
 {
@@ -27,5 +28,9 @@ public class MessageService
 	public List<Message> getMessageByUserId(int userid)
 	{
 		return messageDao.getMessageByUser(userid);
+	}
+
+	public List<Message> getMessagesForUser(Message message) {
+		return messageDao.getMessageByUser(message);
 	}
 }

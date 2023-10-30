@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.model.User;
+import com.util.DBUtil;
+import com.util.EmailUtil;
 
 
 public class UserDao 
@@ -55,6 +57,7 @@ public class UserDao
 			{
 				return mapResultSetToUser(rs);
 			}
+			connection.close();
 		}
 		catch(SQLException e)
 		{
@@ -73,5 +76,54 @@ public class UserDao
 		user.setMobile(rs.getString("mobile"));
 		user.setPassword(rs.getString("password"));
 		return user;
+	}
+
+	public boolean updateUser(User user) 
+	{
+		String qry="update user set firstname=?,lastname=?,email=?,mobile=?,password=? where uid=?";
+		try(PreparedStatement st=connection.prepareStatement(qry))
+		{
+			st.setString(1, user.getFirstName());
+			st.setString(2, user.getLastName());
+			st.setString(3, user.getEmail());
+			st.setString(4, user.getMobile());
+			st.setString(5, user.getPassword());
+			st.setInt(6, user.getUid());
+			int x=st.executeUpdate();
+			return x>0;			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean isEmailRegistered(String email) 
+	{
+		User f=new User();
+		String qry="select * from user where email=?";
+		try(PreparedStatement st=connection.prepareStatement(qry))
+		{
+			st.setString(1, email);
+			ResultSet rs=st.executeQuery();
+			if(rs.next())
+			{
+				f.setUid(rs.getInt(1));
+				f.setEmail(rs.getString("email"));
+				f.setFirstName(rs.getString(2));
+				f.setLastName(rs.getString(3));
+			}
+			else
+			{
+				f=null;
+			}
+			return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

@@ -33,9 +33,8 @@ public class MessageController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		User user=(User)request.getSession().getAttribute("user");
-		
-		List<Message> messages=messageService.getMessagesForUser(user);
+		Message message=(Message)request.getSession().getAttribute("message");
+		List<Message> messages=messageService.getMessagesForUser(message);
 		
 		request.setAttribute("messages", messages);
 		request.getRequestDispatcher("/messaging.jsp").forward(request, response);

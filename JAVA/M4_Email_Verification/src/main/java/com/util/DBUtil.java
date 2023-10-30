@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class DBUtil 
 {
 	private static Connection connection;
-	private DBUtil()
+	public DBUtil()
 	{
 		
 	}

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.model.Message;
+import com.model.User;
 
 public class MessageDao 
 {
@@ -66,5 +67,25 @@ public class MessageDao
 		message.setReceiverId(rs.getInt("receiverid"));
 		message.setMessage(rs.getString("message"));
 		return message;
+	}
+	
+	public List<Message> getMessageByUser(Message message) {
+		List<Message> messages=new ArrayList<>();
+		String sql="select * from message where senderid=? OR receiverid=?";
+		try(PreparedStatement st=connection.prepareStatement(sql))
+		{
+			st.setInt(1, message.getSenderId());
+			st.setInt(2, message.getReceiverId());
+			ResultSet rs=st.executeQuery();
+			while(rs.next())
+			{
+				messages.add(mapResultSetToMessage(rs));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return messages;
 	}
 }
