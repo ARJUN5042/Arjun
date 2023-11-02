@@ -60,10 +60,10 @@
 										</p>
 										<label> <input type="radio"
 											style="height: 14px; width: 14px; margin-right: 10px"
-											name="gender" value="male">Male&nbsp;&nbsp;
+											name="gender" value="Male">Male&nbsp;&nbsp;
 										</label> <label><input type="radio"
 											style="height: 14px; width: 14px; margin-right: 10px"
-											name="gender" value="female">Female&nbsp;&nbsp;</label> <label><input
+											name="gender" value="Female">Female&nbsp;&nbsp;</label> <label><input
 											type="radio"
 											style="height: 14px; width: 14px; margin-right: 10px"
 											name="gender" value="transgender">Transgender</label>

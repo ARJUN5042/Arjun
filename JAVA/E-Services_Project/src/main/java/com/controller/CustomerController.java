@@ -65,6 +65,7 @@ public class CustomerController extends HttpServlet {
 					{
 						HttpSession session = request.getSession();
 						session.setAttribute("model", model);
+						session.setAttribute("customerid", model.getCustomerid());
 						session.setAttribute("firstname", model.getFirstname());
 						session.setAttribute("lastname", model.getLastname());
 						response.sendRedirect("cust-home.jsp");

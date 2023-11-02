@@ -13,7 +13,7 @@
 <meta name="keywords" content="Male_Fashion, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Male-Fashion | Template</title>
+<title>View Bookd Services</title>
 
 <!-- Google Font -->
 <link
@@ -34,7 +34,6 @@
 	<%@ include file="cust-header.jsp"%>
 
 	<!-- Shopping Cart Section Begin -->
-	<section class="shopping-cart spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
@@ -42,38 +41,51 @@
 						<table>
 							<thead>
 								<tr>
-									<th>Services</th>
-									<th>SubServices</th>
-									<th>Total</th>
-									<th></th>
+									<th>Book Id</th>
+									<th>Sub Services Image</th>
+									<th>Sub Service Name</th>
+									<th>Sub Service Price</th>
+									<th>Book Date</th>
+									<th>Payment Status</th>
 								</tr>
 							</thead>
 							<tbody>
 								<%
-								int bid = Integer.parseInt(request.getParameter("bid"));
+								int customerid = Integer.parseInt(request.getParameter("customerid"));
 								Connection cn = new DBUtil().getConnectionData();
-								String qry = "select * from book where bid=?";
+								String qry = "select book.bid,subservices.image,subservices.subsname,subservices.price,book.bdate,book.pstatus from book inner join subservices on book.subid=subservices.subid where book.customerid=? order by book.bid ASC";
 								PreparedStatement st = cn.prepareStatement(qry);
-								st.setInt(1, bid);
+								st.setInt(1, customerid);
 								ResultSet rs = st.executeQuery();
 								while (rs.next()) {
 								%>
 								<tr>
-									<td class="product__cart__item">
-										<div class="product__cart__item__pic">
-											<img src="<%=rs.getInt(1)%>" alt="">
-										</div>
-										<div class="product__cart__item__text"></div>
-									</td>
-									<td class="quantity__item">
-										<div class="quantity">
-											<div class="pro-qty-2">
-												<h6><%=rs.getInt(2)%></h6>
-											</div>
-										</div>
-									</td>
-									<td class="cart__price"><h5><%=rs.getString(5)%></h5></td>
-									<td class="cart__close"><i class="fa fa-close"></i></td>
+											<td>
+												<h6><%=rs.getInt(1)%></h6>
+											</td>
+											<td>
+												<div class="product__item__pic set-bg" data-setbg="uploadimage/<%=rs.getString(2)%>"></div>
+											</td>
+											<td>
+												<div class="product__item__text">
+												<h6><%=rs.getString(3)%></h6>
+												</div>
+											</td>
+											<td>
+												<div class="product__item__text">
+												<h6><%=rs.getString(4)%> Rs.</h6>
+												</div>
+											</td>
+											<td>
+												<div class="product__item__text">
+												<h6><%=rs.getString(5)%></h6>
+												</div>
+											</td>
+											<td>
+												<div class="product__item__text">
+												<h6><%=rs.getString(6)%></h6>
+												</div>
+											</td>
 								</tr>
 								<%
 								}
@@ -82,12 +94,10 @@
 							</tbody>
 						</table>
 					</div>
-
 				</div>
-
 			</div>
 		</div>
-	</section>
+	<!-- </section> -->
 	<!-- Shopping Cart Section End -->
 
 
