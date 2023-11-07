@@ -161,4 +161,75 @@ public class CustomerDao
 		return bid;
 	}
 	
+	public int getCustomerid(int customerid)
+	{
+		int cutomerid=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="select customerid from customer";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			ResultSet rs=st.executeQuery();
+			if(rs.next())
+			{
+				customerid=rs.getInt(1);
+			}
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return customerid;
+	}
+	
+	public int updateCustomer(CustomerModel hmodel)
+	{
+		int x=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="update customer set firstname=?,lastname=?,gender=?,address=?,city=?,pincode=?,mobno=? where customerid=?";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setString(1, hmodel.getFirstname());
+			st.setString(2, hmodel.getLastname());
+			st.setString(3, hmodel.getGender());
+			st.setString(4, hmodel.getAddress());
+			st.setString(5, hmodel.getCity());
+			st.setInt(6, hmodel.getPincode());
+			st.setString(7, hmodel.getMobno());
+			st.setInt(8, hmodel.getCustomerid());
+			x=st.executeUpdate();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return x;
+	}
+	
+	public int updatePassword(CustomerModel hmodel,String currentPassword)
+	{
+		int x=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="update customer set password=? where customerid=? and password=? ";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setString(1, hmodel.getPassword());
+			st.setInt(2, hmodel.getCustomerid());
+			st.setString(3,currentPassword);
+			x=st.executeUpdate();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return x;
+	}
+	
 }

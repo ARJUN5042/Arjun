@@ -1,3 +1,4 @@
+<%@page import="com.model.CustomerModel"%>
 <%@page import="com.util.DBUtil"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -40,22 +41,22 @@
 					<div class="col-lg-8 col-md-6">
 						<h6 class="checkout__title">Customer Details</h6>
 						<%
-						int customerid=Integer.parseInt(request.getParameter("customerid"));
-            			Connection cn=new DBUtil().getConnectionData();
-                        String qry="select * from customer where customerid=?";
-                        PreparedStatement st=cn.prepareStatement(qry);
-                        st.setInt(1, customerid);
-                        ResultSet rs=st.executeQuery();
-                        while(rs.next())
-                        {
-            			%>
+						int customerid = Integer.parseInt(request.getParameter("customerid"));
+						Connection cn = new DBUtil().getConnectionData();
+						String qry = "select * from customer where customerid=?";
+						PreparedStatement st = cn.prepareStatement(qry);
+						st.setInt(1, customerid);
+						ResultSet rs = st.executeQuery();
+						while (rs.next()) {
+						%>
 						<div class="row">
 							<div class="col-lg-6">
 								<div class="checkout__input">
 									<p>
 										Firstname<span>*</span>
 									</p>
-									<input type="text" name="firstname" value="<%=rs.getString(2) %>" readonly>
+									<input type="text" name="firstname"
+										value="<%=rs.getString(2)%>" readonly>
 								</div>
 							</div>
 							<div class="col-lg-6">
@@ -63,29 +64,38 @@
 									<p>
 										Lastname<span>*</span>
 									</p>
-									<input type="text" name="lastname" value="<%=rs.getString(3)%>" readonly>
+									<input type="text" name="lastname" value="<%=rs.getString(3)%>"
+										readonly>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-6">
 								<div class="checkout__input">
-									<p>
-										Gender<span>*</span>
-									</p>
-									<label> <input type="text" name="gender" value="<%=rs.getString(4)%>" readonly></label>
-								</div>
+										<p>
+											Gender<span>*</span>
+										</p>
+										<label> <input type="radio"
+											style="height: 14px; width: 14px; margin-right: 10px"
+											name="gender" value="Male" <%= rs.getString(4).equals("Male") ? "checked" : "" %> disabled>Male&nbsp;&nbsp;
+										</label> <label><input type="radio"
+											style="height: 14px; width: 14px; margin-right: 10px"
+											name="gender" value="Female" <%= rs.getString(4).equals("Female") ? "checked" : "" %> disabled>Female&nbsp;&nbsp;
+											</label> <label><input type="radio"
+											style="height: 14px; width: 14px; margin-right: 10px"
+											name="gender" value="Transgender" <%= rs.getString(4).equals("Transgender") ? "checked" : "" %> disabled>Transgender</label>
+									</div>
 							</div>
 							<div class="col-lg-6">
-									<div class="checkout__input">
-										<p>
-											Address<span>*</span>
-										</p>
-										<label> <textarea id="address" name="address" rows="4"
-												cols="41" readonly><%=rs.getString(5)%></textarea>
-										</label>
-									</div>
+								<div class="checkout__input">
+									<p>
+										Address<span>*</span>
+									</p>
+									<label> <textarea id="address" style="border: 1px solid #e1e1e1; color: #b7b7b7;" name="address" rows="4"
+											cols="41" readonly><%=rs.getString(5)%></textarea>
+									</label>
 								</div>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-6">
@@ -93,7 +103,8 @@
 									<p>
 										City<span>*</span>
 									</p>
-									<input type="text" name="city"  value="<%=rs.getString(6)%>" readonly>
+									<input type="text" name="city" value="<%=rs.getString(6)%>"
+										readonly>
 								</div>
 							</div>
 							<div class="col-lg-6">
@@ -101,7 +112,8 @@
 									<p>
 										Pincode<span>*</span>
 									</p>
-									<input type="text" name="pincode" value="<%=rs.getString(7)%>" readonly>
+									<input type="text" name="pincode" value="<%=rs.getString(7)%>"
+										readonly>
 								</div>
 							</div>
 						</div>
@@ -111,7 +123,8 @@
 									<p>
 										Mobile Number<span>*</span>
 									</p>
-									<input type="number" name="mobno" value="<%=rs.getString(8)%>" readonly>
+									<input type="number" name="mobno" value="<%=rs.getString(8)%>"
+										readonly>
 								</div>
 							</div>
 							<div class="col-lg-6">
@@ -119,15 +132,20 @@
 									<p>
 										Email<span>*</span>
 									</p>
-									<input type="email" name="email" value="<%=rs.getString(9)%>" readonly>
+									<input type="email" name="email" value="<%=rs.getString(9)%>"
+										readonly>
 								</div>
 							</div>
 						</div>
 						<%
 						}
 						%>
+						<form method="post" action="CustomerController">
 						<button type="submit" class="site-btn" name="action"
-							value="register">Edit Profile</button>
+							value="editprofile">Edit Profile</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="submit" class="site-btn" name="action"
+							value="changepassword">Change Password</button>
+							</form>
 					</div>
 				</div>
 			</div>

@@ -66,7 +66,7 @@
 											name="gender" value="Female">Female&nbsp;&nbsp;</label> <label><input
 											type="radio"
 											style="height: 14px; width: 14px; margin-right: 10px"
-											name="gender" value="transgender">Transgender</label>
+											name="gender" value="Transgender">Transgender</label>
 									</div>
 								</div>
 								<div class="col-lg-6">

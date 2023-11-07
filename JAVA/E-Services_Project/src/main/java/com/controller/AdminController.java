@@ -2,6 +2,9 @@ package com.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +15,7 @@ import javax.servlet.http.Part;
 
 import com.dao.AdminDao;
 import com.model.AddServicesModel;
+import com.model.AssignServicemanModel;
 import com.model.SubServiceModel;
 
 @WebServlet("/AdminController")
@@ -90,6 +94,32 @@ public class AdminController extends HttpServlet {
 				response.sendRedirect("admin/dashboard.jsp");
 			}
 		}
+		
+		else if(action.equalsIgnoreCase("assign"))
+		{
+			AssignServicemanModel asm=new AssignServicemanModel();
+			asm.setBid(Integer.parseInt(request.getParameter("bid")));
+			asm.setServiceid(Integer.parseInt(request.getParameter("serviceid")));
+			asm.setSubid(Integer.parseInt(request.getParameter("subid")));
+			asm.setCustomerid(Integer.parseInt(request.getParameter("customerid")));
+			asm.setServicemanid(Integer.parseInt(request.getParameter("servicemanid")));
+			
+			Date d1=new Date();
+			SimpleDateFormat sm=new SimpleDateFormat("dd/MM/yyyy");
+			asm.setAdate(sm.format(d1).toString());
+			
+			int x=new AdminDao().assignServiceman(asm);
+			if(x>0)
+			{
+				response.sendRedirect("admin/dashboard.jsp");
+			}
+			else
+			{
+				System.out.println("assign table error");
+			}
+		}
+		
+		
 	}
 
 }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.model.AddServicesModel;
+import com.model.AssignServicemanModel;
 import com.model.SubServiceModel;
 import com.util.DBUtil;
 
@@ -48,6 +49,30 @@ public class AdminDao
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+		return x;
+	}
+	
+	public int assignServiceman(AssignServicemanModel asm)
+	{
+		int x=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="insert into assignserviceman(servicemanid,serviceid,subid,bid,customerid,adate) values(?,?,?,?,?,?)";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setInt(1, asm.getServicemanid());
+			st.setInt(2, asm.getServiceid());
+			st.setInt(3, asm.getSubid());
+			st.setInt(4, asm.getBid());
+			st.setInt(5, asm.getCustomerid());
+			st.setString(6, asm.getAdate());
+			x=st.executeUpdate();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return x;
 	}
 }

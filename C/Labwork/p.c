@@ -1,14 +1,49 @@
 #include<stdio.h>
 int main()
 {
-	int n=150,sum=0,rem=0;
-	while(n>0)
+	int a[20][20],b[20][20],mul[20][20];
+	for(int i=0;i<2;i++)
 	{
-		rem=n%10;
-		sum=sum+rem;
-		n/=10;
+		for(int j=0;j<2;j++)
+		{	
+		printf("Enter element a[%d][%d] ",i,j);
+		scanf("%d",&a[i][j]);
+		}
 	}
-	printf("Sum = %d",sum);
 	
+	for(int i=0;i<2;i++)
+	{
+		for(int j=0;j<2;j++)
+		{	
+		printf("Enter element b[%d][%d] ",i,j);
+		scanf("%d",&b[i][j]);
+		}
+	}
+	
+	
+	printf("Multiplication of Matrix:\n");
+	for(int i=0;i<2;i++)
+	{
+		for(int j=0;j<2;j++)
+		{	
+		mul[i][j]=0;
+			for(int k=0;k<2;k++)
+			{
+				mul[i][j]=mul[i][j]+a[i][k]*b[k][j];
+			}
+			printf("%d\t",mul[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n\n");
+	for(int i=0;i<2;i++)
+	{
+		for(int j=0;j<2;j++)
+		{	
+		printf("%d\t",mul[i][j]);
+		}
+		printf("\n");
+	}
+
 	return 0;
 }

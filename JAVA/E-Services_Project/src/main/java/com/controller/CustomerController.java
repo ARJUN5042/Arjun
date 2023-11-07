@@ -32,7 +32,6 @@ public class CustomerController extends HttpServlet {
 		{
 			BookModel bmodel=new BookModel();
 			bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
-//			bmodel.setCustomerid(Integer.parseInt(request.getParameter("customerid")));
 			bmodel.setBstatus("done");
 			bmodel.setPstatus("successful");
 			int x=new CustomerDao().payment(bmodel);
@@ -128,6 +127,88 @@ public class CustomerController extends HttpServlet {
 					}
 				}
 				
+				else if(action.equalsIgnoreCase("editprofile"))
+				{
+					CustomerModel hmodel=new CustomerModel();
+					int customerid=new CustomerDao().getCustomerid(hmodel.getCustomerid());
+					response.sendRedirect("editprofile.jsp");
+				}
+				else if(action.equalsIgnoreCase("updateprofile"))
+				{
+					CustomerModel hmodel=new CustomerModel();
+					hmodel.setCustomerid(Integer.parseInt(request.getParameter("customerid")));
+					hmodel.setFirstname(request.getParameter("firstname"));
+					hmodel.setLastname(request.getParameter("lastname"));
+					hmodel.setGender(request.getParameter("gender"));
+					hmodel.setAddress(request.getParameter("address"));
+					hmodel.setCity(request.getParameter("city"));
+					hmodel.setPincode(Integer.parseInt(request.getParameter("pincode")));
+					hmodel.setMobno(request.getParameter("mobno"));
+					
+					int x=new CustomerDao().updateCustomer(hmodel);
+					if(x>0)
+					{
+						response.sendRedirect("login.jsp");
+					}
+					else
+					{
+						System.out.println("profile not changed..");
+					}
+				}
+				else if(action.equalsIgnoreCase("changepassword"))
+				{
+					CustomerModel hmodel=new CustomerModel();
+					int customerid=new CustomerDao().getCustomerid(hmodel.getCustomerid());
+					response.sendRedirect("changepassword.jsp");
+				}
+				else if (action.equalsIgnoreCase("savepassword")) 
+				{
+					System.out.println("into change password process");
+					CustomerModel hmodel = new CustomerModel();
+					hmodel.setCustomerid(Integer.parseInt(request.getParameter("customerid")));
+					hmodel.setPassword(request.getParameter("npassword"));
+					String currentPassword = request.getParameter("password");
+					if (!currentPassword.equals("npassword")) 
+					{
+						int x = new CustomerDao().updatePassword(hmodel, currentPassword);
+						
+						if (x > 0) 
+						{
+							System.out.println("Password Changed");
+
+							try 
+							{
+								out.println("<h1>Processing..." + "<br>" + "<h2>Please wait.</h2>");
+							} 
+							finally 
+							{
+								try 
+								{
+									Thread.sleep(3000);
+
+									request.getRequestDispatcher("login.jsp").forward(request, response);
+
+									out.close();
+
+								}
+								catch (Exception e) 
+								{
+									e.printStackTrace();
+								}
+//							response.sendRedirect("login.jsp");
+							}
+						}
+						else 
+						{
+							System.out.println("error");
+						}
+					} 
+					else 
+					{
+						System.out.println("Error while Changing Password.");
+						response.sendRedirect("changepassword.jsp");
+					}
+				}
 	}
 
 }

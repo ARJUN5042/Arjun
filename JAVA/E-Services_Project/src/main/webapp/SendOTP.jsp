@@ -44,7 +44,7 @@
 				email=f.getEmail();
 			}
 			%>
-				<form method="post" action="ForgotController">
+				<form method="post" action="../ServicemanController">
 					<div class="row">
 						<div class="col-lg-8 col-md-6">
 							<h6 class="checkout__title">Send OTP Details</h6>

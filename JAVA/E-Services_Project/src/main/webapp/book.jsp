@@ -97,9 +97,9 @@
 											Email<span>*</span>
 										</p>
 										<input type="text" name="email" value="<%=cmodel.getEmail()%>">
-										<input type="text" name="customerid"
+										<input type="hidden" name="customerid"
 											value="<%=cmodel.getCustomerid()%>"> <input
-											type="text" name="subid"
+											type="hidden" name="subid"
 											value="<%=request.getParameter("subid")%>">
 									</div>
 								</div>
