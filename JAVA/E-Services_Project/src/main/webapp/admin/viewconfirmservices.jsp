@@ -65,7 +65,7 @@
 									<tbody>
 										<%
 										Connection cn = new DBUtil().getConnectionData();
-										String qry="SELECT book.`bid`,customer.`customerid`,customer.`firstname`,services.`servicename`,subservices.`subsname`,book.`bdate`,book.`price`,book.`bstatus`,book.pstatus,services.serviceid,subservices.subid FROM book INNER JOIN subservices ON book.`subid`=subservices.`subid` INNER JOIN customer ON book.`customerid`=customer.`customerid` INNER JOIN services ON subservices.`serviceid`=services.`serviceid` where book.bstatus='assigned'";
+										String qry="SELECT book.`bid`,customer.`customerid`,customer.`firstname`,services.`servicename`,subservices.`subsname`,book.`bdate`,book.`price`,book.`bstatus`,book.pstatus,services.serviceid,subservices.subid FROM book INNER JOIN subservices ON book.`subid`=subservices.`subid` INNER JOIN customer ON book.`customerid`=customer.`customerid` INNER JOIN services ON subservices.`serviceid`=services.`serviceid` where book.bstatus='confirm'";
 										PreparedStatement st = cn.prepareStatement(qry);
 										ResultSet rs = st.executeQuery();
 										while (rs.next()) {

@@ -234,4 +234,52 @@ public class ServicemanDao
 		return x;
 	}
 	
+	public int endService(BookModel bmodel,String additionalCharge)
+	{
+		int x=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="update book set price=price+?, bstatus=? where bid=?";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setString(1, additionalCharge);
+			st.setString(2, bmodel.getBstatus());
+			st.setInt(3, bmodel.getBid());
+			x=st.executeUpdate();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return x;
+	}
+
+	public String getCustomerEmail(int bid)
+	{
+		String email=null;
+		CustomerModel cmodel=new CustomerModel();
+		try {
+			Connection conn=new DBUtil().getConnectionData();
+			String sql="select customer.email,customer.firstname,customer.lastname from customer join book on customer.customerid=book.customerid where book.bid=?";
+			PreparedStatement stmt=conn.prepareStatement(sql);
+			stmt.setInt(1, bid);
+			ResultSet rs=stmt.executeQuery();
+			if(rs.next())
+			{
+				email=rs.getString("email");
+				cmodel.setFirstname(rs.getString(2));
+				cmodel.setLastname(rs.getString(3));
+			}
+			else
+			{
+				email=null;
+			}
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return email;
+	}
+	
 }

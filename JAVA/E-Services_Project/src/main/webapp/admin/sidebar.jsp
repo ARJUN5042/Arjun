@@ -242,9 +242,16 @@
 				<div class="collapse" id="form-elements">
 					<ul class="nav flex-column sub-menu">
 						<li class="nav-item"><a class="nav-link"
+							href="viewconfirmservices.jsp">View Confirmed Services</a></li>
+					</ul>
+				</div>
+				<div class="collapse" id="form-elements">
+					<ul class="nav flex-column sub-menu">
+						<li class="nav-item"><a class="nav-link"
 							href="viewcompletedservices.jsp">View Completed Services</a></li>
 					</ul>
-				</div></li>
+				</div>
+				</li>
 			<li class="nav-item"><a class="nav-link" data-toggle="collapse"
 				href="#charts" aria-expanded="false" aria-controls="charts"> <i
 					class="typcn typcn-chart-pie-outline menu-icon"></i> <span
