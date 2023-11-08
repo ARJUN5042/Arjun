@@ -3,9 +3,9 @@
 int main()
 {
 	char str[150];
-  	int vowels, consonant, digit, space;
+  	int vowels, consonant, digit, space,specialCharacter;
 
-	vowels = consonant = digit = space = 0;
+	vowels = consonant = digit = space = specialCharacter = 0;
 
   
   	printf("Enter a line of string: ");
@@ -37,12 +37,17 @@ int main()
 	{
       	++space;
     }
+    else
+    {
+    	++specialCharacter;
+	}
   	}
 
   	printf("Vowels: %d", vowels);
   	printf("\nConsonants: %d", consonant);
   	printf("\nDigits: %d", digit);
   	printf("\nWhite spaces: %d", space);
+  	printf("\nSpecial character: %d",specialCharacter-1);
 
   	return 0;
 }

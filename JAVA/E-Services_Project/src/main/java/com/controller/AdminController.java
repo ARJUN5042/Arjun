@@ -16,6 +16,7 @@ import javax.servlet.http.Part;
 import com.dao.AdminDao;
 import com.model.AddServicesModel;
 import com.model.AssignServicemanModel;
+import com.model.BookModel;
 import com.model.SubServiceModel;
 
 @WebServlet("/AdminController")
@@ -103,13 +104,16 @@ public class AdminController extends HttpServlet {
 			asm.setSubid(Integer.parseInt(request.getParameter("subid")));
 			asm.setCustomerid(Integer.parseInt(request.getParameter("customerid")));
 			asm.setServicemanid(Integer.parseInt(request.getParameter("servicemanid")));
-			
 			Date d1=new Date();
 			SimpleDateFormat sm=new SimpleDateFormat("dd/MM/yyyy");
 			asm.setAdate(sm.format(d1).toString());
 			
+			BookModel bmodel=new BookModel();
+			bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
+			bmodel.setBstatus("assigned");
 			int x=new AdminDao().assignServiceman(asm);
-			if(x>0)
+			int y=new AdminDao().assignedService(bmodel);
+			if(x>0 && y>0)
 			{
 				response.sendRedirect("admin/dashboard.jsp");
 			}
@@ -117,6 +121,7 @@ public class AdminController extends HttpServlet {
 			{
 				System.out.println("assign table error");
 			}
+			
 		}
 		
 		

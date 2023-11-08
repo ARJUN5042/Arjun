@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.awt.print.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import com.dao.CustomerDao;
 import com.dao.ForgotDao;
 import com.dao.ServicemanDao;
+import com.model.BookModel;
 import com.model.CustomerModel;
 import com.model.ServicemanModel;
 
@@ -304,7 +306,32 @@ public class ServicemanController extends HttpServlet {
 			}
 		}
 		
+		else if(action.equalsIgnoreCase("confirmservice"))
+		{
+			BookModel bmodel=new BookModel();
+			bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
+			bmodel.setBstatus("confirm");
+			System.out.println("dao");
+			int x=new ServicemanDao().confirmService(bmodel);
+			System.out.println("update");
+			if(x>0)
+			{
+				System.out.println("dashboard");
+				response.sendRedirect("serviceman/s-dashboard.jsp");
+			}
+		}
 		
+		else if(action.equalsIgnoreCase("rejectservice"))
+		{
+			BookModel bmodel=new BookModel();
+			bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
+			bmodel.setBstatus("done");
+			int x=new ServicemanDao().rejectService(bmodel);
+			if(x>0)
+			{
+				response.sendRedirect("serviceman/s-dashboard.jsp");
+			}
+		}
 		
 	}
 

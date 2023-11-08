@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import com.model.AddServicesModel;
 import com.model.AssignServicemanModel;
+import com.model.BookModel;
 import com.model.SubServiceModel;
 import com.util.DBUtil;
 
@@ -66,6 +67,26 @@ public class AdminDao
 			st.setInt(4, asm.getBid());
 			st.setInt(5, asm.getCustomerid());
 			st.setString(6, asm.getAdate());
+			x=st.executeUpdate();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return x;
+	}
+	
+	public int assignedService(BookModel bmodel)
+	{
+		int x=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="Update book set bstatus=? where bid=?";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setString(1, bmodel.getBstatus());
+			st.setInt(2, bmodel.getBid());
 			x=st.executeUpdate();
 			cn.close();
 		}

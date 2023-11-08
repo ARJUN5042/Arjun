@@ -77,10 +77,10 @@
 									
 									<tr>
 										<td>
-										<input type="text" name="serviceid" value="<%=serviceid%>">
-										<input type="text" name="subid" value="<%=subid%>">
-										<input type="text" name="bid" value="<%=bid%>">
-										<input type="text" name="customerid" value="<%=customerid%>">
+										<input type="hidden" name="serviceid" value="<%=serviceid%>">
+										<input type="hidden" name="subid" value="<%=subid%>">
+										<input type="hidden" name="bid" value="<%=bid%>">
+										<input type="hidden" name="customerid" value="<%=customerid%>">
 											<button type="submit" class="btn btn-primary mr-2"
 															name="action" value="assign">Assign Serviceman</button>
 										</td>

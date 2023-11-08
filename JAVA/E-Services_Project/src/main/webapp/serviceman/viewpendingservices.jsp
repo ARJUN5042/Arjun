@@ -1,9 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.util.DBUtil"%>
-<%@page import="com.model.AddServicesModel"%>
-<%@page import="java.util.List"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -69,8 +67,120 @@
   
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
    <%@include file="s-header.jsp" %>
+   
    <div class="container-fluid py-4">
-    <%@include file="container.jsp" %>
+   
+   <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Pending Services</h6>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-secondary text-x  font-weight-bolder opacity-7 ps-2">Book Id</th>
+                      <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Customer Id</th>
+                      <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Customer Name</th>
+                      <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Sub Service Name</th>
+                      <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Booking Date</th>
+                      <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Book Status</th>
+                      <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2" colspan="2" style="text-align:center;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <%
+                  int servicemanid=(Integer)session.getAttribute("servicemanid");
+                  Connection cn=new DBUtil().getConnectionData();
+                  String qry="SELECT book.bid,customer.`customerid`,customer.`firstname`,subservices.`subsname`,book.`bdate`,book.`bstatus`,serviceman.`servicemanid`,serviceman.`expertise` FROM assignserviceman JOIN book ON book.`bid`=assignserviceman.`bid` JOIN customer ON customer.`customerid`=assignserviceman.`customerid` JOIN serviceman ON serviceman.`servicemanid`=assignserviceman.`servicemanid` JOIN services ON services.`serviceid`=assignserviceman.`serviceid` JOIN subservices ON subservices.`subid`=assignserviceman.`subid` WHERE book.bstatus='assigned' AND serviceman.`servicemanid`=?";
+                  PreparedStatement st = cn.prepareStatement(qry);
+                  st.setInt(1, servicemanid);
+				  ResultSet rs = st.executeQuery();
+				  while(rs.next())
+				  {
+                  %>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs text-secondary mb-0"><%=rs.getInt(1) %></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs text-secondary mb-0"><%=rs.getInt(2) %></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs text-secondary mb-0"><%=rs.getString(3) %></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center">
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs text-secondary mb-0"><%=rs.getString(4) %></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center">
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs text-secondary mb-0"><%=rs.getString(5) %></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center">
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <p class="text-xs text-secondary mb-0"><%=rs.getString(6) %></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="align-middle">
+    <form method="post" action="../ServicemanController">
+        <input type="hidden" name="action" value="confirmservice">
+        <input type="hidden" name="bid" value="<%=rs.getString(1)%>">
+        <button type="submit" class="btn-link text-secondary font-weight-bold text-xs" style="border:none; border-radius:15px; padding:0;">
+            <span class="badge badge-sm bg-gradient-success">Confirm</span>
+        </button>
+    </form>
+</td>
+<td class="align-middle">
+    <form method="post" action="../ServicemanController">
+     <input type="hidden" name="action" value="rejectservice">
+     <input type="hidden" name="bid" value="<%=rs.getString(1)%>">
+        <button type="submit" class="btn-link text-secondary font-weight-bold text-xs" style="border:none; border-radius:15px; padding:0;">
+            <span class="badge badge-sm bg-gradient-secondary">Reject</span>
+        </button>   
+    </form>
+</td>
+
+                    </tr>
+                    <%
+				    }
+                    %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+   
+   
+   
+   
      <%@include file="footer.jsp" %>
    </div>
   </main>

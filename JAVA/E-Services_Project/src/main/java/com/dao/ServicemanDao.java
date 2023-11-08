@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.model.BookModel;
 import com.model.CustomerModel;
 import com.model.ServicemanModel;
 import com.util.DBUtil;
@@ -151,7 +152,6 @@ public class ServicemanDao
 	{
 		ServicemanModel f=new ServicemanModel();
 		try {
-		
 			Connection conn=new DBUtil().getConnectionData();
 			String sql="select * from  serviceman where email=?";
 			PreparedStatement stmt=conn.prepareStatement(sql);
@@ -193,6 +193,45 @@ public class ServicemanDao
 			e.printStackTrace();
 		}
 		return r;
+	}
+	
+	public int confirmService(BookModel bmodel)
+	{
+		int x=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="update book set bstatus=? where bid=?";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setString(1, bmodel.getBstatus());
+			st.setInt(2, bmodel.getBid());
+			x=st.executeUpdate();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return x;
+	}
+	public int rejectService(BookModel bmodel)
+	{
+		int x=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="update book set bstatus=? where bid=?";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setString(1, bmodel.getBstatus());
+			st.setInt(2, bmodel.getBid());
+			x=st.executeUpdate();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return x;
 	}
 	
 }
