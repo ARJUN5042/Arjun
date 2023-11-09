@@ -128,14 +128,13 @@
                       <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Sub Service Name</th>
                       <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Booking Date</th>
                       <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Book Status</th>
-                      <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2" colspan="2" style="text-align:center;">Action</th>
+                      <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                   <%
-                  /* int servicemanid=(Integer)session.getAttribute("servicemanid"); */
                   Connection cn=new DBUtil().getConnectionData();
-                  String qry="SELECT book.bid,customer.`customerid`,customer.`firstname`,subservices.`subsname`,book.`bdate`,book.`bstatus`,serviceman.`servicemanid`,serviceman.`expertise` FROM assignserviceman JOIN book ON book.`bid`=assignserviceman.`bid` JOIN customer ON customer.`customerid`=assignserviceman.`customerid` JOIN serviceman ON serviceman.`servicemanid`=assignserviceman.`servicemanid` JOIN services ON services.`serviceid`=assignserviceman.`serviceid` JOIN subservices ON subservices.`subid`=assignserviceman.`subid` WHERE book.bstatus='confirm'";
+                  String qry="SELECT book.bid,customer.`customerid`,customer.`firstname`,subservices.`subsname`,book.`bdate`,book.`bstatus`,serviceman.`servicemanid`,serviceman.`expertise`,customer.lastname FROM assignserviceman JOIN book ON book.`bid`=assignserviceman.`bid` JOIN customer ON customer.`customerid`=assignserviceman.`customerid` JOIN serviceman ON serviceman.`servicemanid`=assignserviceman.`servicemanid` JOIN services ON services.`serviceid`=assignserviceman.`serviceid` JOIN subservices ON subservices.`subid`=assignserviceman.`subid` WHERE book.bstatus='confirm'";
                   PreparedStatement st = cn.prepareStatement(qry);
                   /* st.setInt(1, servicemanid); */
 				  ResultSet rs = st.executeQuery();

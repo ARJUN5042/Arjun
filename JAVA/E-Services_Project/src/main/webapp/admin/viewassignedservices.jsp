@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Pending Services</title>
+<title>Assigned Services</title>
 <!-- base:css -->
 <link rel="stylesheet" href="vendors/typicons/typicons.css">
 <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
@@ -45,7 +45,7 @@
 				<div class="col-lg-6 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Sub Services</h4>
+							<h4 class="card-title">Assigned Services</h4>
 							<div class="table-responsive">
 								<table class="table" cellpadding="10">
 									<thead>
@@ -56,16 +56,17 @@
 											<th>Service Name</th>
 											<th>Sub Service Name</th>
 											<th>Booking Date</th>
+											<th>Assign Date</th>
 											<th>Price</th>
 											<th>Book Status</th>
 											<th>Payment Status</th>
-											<th>Assign ServiceMan</th>
+											<th>Assigned ServiceMan</th>
 										</tr>
 									</thead>
 									<tbody>
 										<%
 										Connection cn = new DBUtil().getConnectionData();
-										String qry="SELECT book.`bid`,customer.`customerid`,customer.`firstname`,services.`servicename`,subservices.`subsname`,book.`bdate`,book.`price`,book.`bstatus`,book.pstatus,services.serviceid,subservices.subid FROM book INNER JOIN subservices ON book.`subid`=subservices.`subid` INNER JOIN customer ON book.`customerid`=customer.`customerid` INNER JOIN services ON subservices.`serviceid`=services.`serviceid` where book.bstatus='assigned'";
+										String qry="SELECT DISTINCT book.`bid`,customer.`customerid`,customer.`firstname`,services.`servicename`,subservices.`subsname`,book.bdate,assignserviceman.`adate`,book.`price`, book.`bstatus`,book.`pstatus`,serviceman.`firstname`,serviceman.`lastname` FROM assignserviceman INNER JOIN book ON assignserviceman.`bid`=book.`bid` INNER JOIN customer ON customer.`customerid`=`assignserviceman`.`customerid` INNER JOIN services ON services.`serviceid`=assignserviceman.`serviceid` INNER JOIN subservices ON subservices.`subid`=assignserviceman.`subid` INNER JOIN serviceman ON serviceman.`servicemanid`=assignserviceman.`servicemanid` WHERE book.`bstatus`='assigned'";
 										PreparedStatement st = cn.prepareStatement(qry);
 										ResultSet rs = st.executeQuery();
 										while (rs.next()) {
@@ -80,19 +81,8 @@
 											<td><%=rs.getString(7)%></td>
 											<td><%=rs.getString(8)%></td>
 											<td><%=rs.getString(9) %></td>
-											<td>
-											<div class="col-md-6 grid-margin stretch-card">
-													<form method="post" action="assignserviceman.jsp"
-														class="forms-sample">
-														<input type="hidden" name="bid" value="<%= rs.getInt(1) %>">
-														<input type="hidden" name="customerid" value="<%= rs.getInt(2) %>">
-														<input type="hidden" name="serviceid" value="<%= rs.getInt(10) %>">
-														<input type="hidden" name="subid" value="<%= rs.getInt(11) %>">
-														<button type="submit" class="btn btn-primary mr-2"
-															name="action">Assign Serviceman</button>
-													</form>
-												</div>
-											</td>
+											<td><%=rs.getString(10) %></td>
+											<td><%=rs.getString(11)+" "+rs.getString(12) %></td>
 										</tr>
 										<%
 										}

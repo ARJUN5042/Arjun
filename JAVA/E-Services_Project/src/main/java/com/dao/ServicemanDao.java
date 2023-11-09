@@ -261,15 +261,13 @@ public class ServicemanDao
 		CustomerModel cmodel=new CustomerModel();
 		try {
 			Connection conn=new DBUtil().getConnectionData();
-			String sql="select customer.email,customer.firstname,customer.lastname from customer join book on customer.customerid=book.customerid where book.bid=?";
+			String sql="select customer.email from customer join book on customer.customerid=book.customerid where book.bid=?";
 			PreparedStatement stmt=conn.prepareStatement(sql);
 			stmt.setInt(1, bid);
 			ResultSet rs=stmt.executeQuery();
 			if(rs.next())
 			{
 				email=rs.getString("email");
-				cmodel.setFirstname(rs.getString(2));
-				cmodel.setLastname(rs.getString(3));
 			}
 			else
 			{

@@ -1,3 +1,4 @@
+<%@page import="com.dao.ServicemanDao"%>
 <%@page import="com.model.CustomerModel"%>
 <%@page import="com.model.ServicemanModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -86,7 +87,7 @@
 										String email=null;
 										if(session.getAttribute("otp")==null)
 										{
-											response.sendRedirect("serviceman/forgotpassword.jsp");
+											response.sendRedirect("serviceman/confirmedservices.jsp");
 										}
 										else
 										{

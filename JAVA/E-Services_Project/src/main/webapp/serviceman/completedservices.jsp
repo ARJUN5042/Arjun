@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" sizes="76x76"
 	href="./assets/img/apple-icon.png">
 <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-<title>Home Page</title>
+<title>Completed Service</title>
 <!--     Fonts and icons     -->
 <link rel="stylesheet" type="text/css"
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -76,7 +76,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Confirmed Services</h6>
+                <h6 class="text-white text-capitalize ps-3">Completed Services</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -147,16 +147,12 @@
                           </div>
                         </div>
                       </td>
-                    <td class="align-middle">
-                      	<button type="submit" class="btn-link text-secondary font-weight-bold text-xs" style="border:none; border-radius:15px; padding:0;">
-            			<span id="statusSpan" class="badge badge-sm bg-gradient-success">Show Ratings</span>
-            		</td>
 					<td class="align-middle">
     					<form method="post" action="../ServicemanController">
-     						<input type="hidden" name="action" value="endservice">
+     						<input type="hidden" name="action" value="rating_feedback">
      						<input type="hidden" name="bid" value="<%=rs.getString(1)%>">
         					<button type="submit" class="btn-link text-secondary font-weight-bold text-xs" style="border:none; border-radius:15px; padding:0;">
-            				<span class="badge badge-sm bg-gradient-secondary">Show FeedBack</span>
+            				<span class="badge badge-sm bg-gradient-secondary">Show Rating & FeedBack</span>
         					</button>   
     					</form>
 					</td>

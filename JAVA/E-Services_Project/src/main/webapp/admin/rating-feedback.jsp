@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Pending Services</title>
+<title>Rating-FeedBack</title>
 <!-- base:css -->
 <link rel="stylesheet" href="vendors/typicons/typicons.css">
 <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
@@ -45,58 +45,37 @@
 				<div class="col-lg-6 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Pending Services</h4>
+							<h4 class="card-title">Rating-Feedback</h4>
 							<div class="table-responsive">
 								<table class="table" cellpadding="10">
 									<thead>
 										<tr>
-											<th>Bid</th>
-											<th>Cid</th>
-											<th>CName</th>
-											<th>Service Name</th>
-											<th>Sub Service Name</th>
-											<th>Booking Date</th>
-											<th>Price</th>
-											<th>Book Status</th>
-											<th>Payment Status</th>
-											<th>Assign ServiceMan</th>
+											<th>Rating</th>
+											<th>Feedback</th>
+											
+											<th >Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<%
-										Connection cn = new DBUtil().getConnectionData();
-										String qry="SELECT book.`bid`,customer.`customerid`,customer.`firstname`,services.`servicename`,subservices.`subsname`,book.`bdate`,book.`price`,book.`bstatus`,book.pstatus,services.serviceid,subservices.subid FROM book INNER JOIN subservices ON book.`subid`=subservices.`subid` INNER JOIN customer ON book.`customerid`=customer.`customerid` INNER JOIN services ON subservices.`serviceid`=services.`serviceid` where book.bstatus='done'";
-										PreparedStatement st = cn.prepareStatement(qry);
-										ResultSet rs = st.executeQuery();
-										while (rs.next()) {
-										%>
+										
 										<tr>
-											<td><%=rs.getInt(1)%></td>
-											<td><%=rs.getInt(2)%></td>
-											<td><%=rs.getString(3)%></td>
-											<td><%=rs.getString(4)%></td>
-											<td><%=rs.getString(5)%></td>
-											<td><%=rs.getString(6)%></td>
-											<td><%=rs.getString(7)%></td>
-											<td><%=rs.getString(8)%></td>
-											<td><%=rs.getString(9) %></td>
+											<td>Rating</td>
+											<td>Feedback</td>
+											
 											<td>
 											<div class="col-md-6 grid-margin stretch-card">
-													<form method="post" action="assignserviceman.jsp"
+													<form method="post" action="../AdminController"
 														class="forms-sample">
-														<input type="hidden" name="bid" value="<%= rs.getInt(1) %>">
-														<input type="hidden" name="customerid" value="<%= rs.getInt(2) %>">
-														<input type="hidden" name="serviceid" value="<%= rs.getInt(10) %>">
-														<input type="hidden" name="subid" value="<%= rs.getInt(11) %>">
+														<input type="hidden" name="action" value="editrating">
 														<button type="submit" class="btn btn-primary mr-2"
-															name="action">Assign Serviceman</button>
+															name="action">Edit</button>
+														<button type="submit" class="btn btn-primary mr-2"
+															name="action">Delete</button>
 													</form>
 												</div>
 											</td>
 										</tr>
-										<%
-										}
-										%>
+										
 										
 									</tbody>
 								</table>

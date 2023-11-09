@@ -276,20 +276,26 @@ public class ServicemanController extends HttpServlet {
 			}
 		}
 
-		else if (action.equalsIgnoreCase("endservice")) {
-			BookModel bmodel = new BookModel();
-			int bid = Integer.parseInt(request.getParameter("bid"));
-			CustomerModel f = new CustomerModel();
-			ServicemanDao dao = new ServicemanDao();
-			String email = dao.getCustomerEmail(bid);
-			if (f == null) {
+		else if(action.equalsIgnoreCase("endservice"))
+		{
+			BookModel bmodel=new BookModel();
+			int bid=Integer.parseInt(request.getParameter("bid"));
+			String firstname=request.getParameter("firstname");
+			String lastname=request.getParameter("lastname");
+			String additionalCharge=request.getParameter("additionalCharge");
+			
+			CustomerModel  f=new CustomerModel();
+			ServicemanDao dao=new ServicemanDao();
+			String email=dao.getCustomerEmail(bid);
+			if (f == null) 
+			{
+				request.setAttribute("invalidemail", "Email Address Not Valid");
 				request.getRequestDispatcher("serviceman/confirmedservices.jsp").forward(request, response);
-			} else {
+			}
+			else {
 
 				String emailid = dao.getCustomerEmail(bid);
-				System.out.println(emailid);
-				String username = f.getFirstname() + " " + f.getLastname();
-				System.out.println(username);
+				String username = firstname + " " + lastname;
 				final String Senderid = "hirparaarjun49@gmail.com";
 				final String password = "pcpjalqcnrjmiwfd";
 
@@ -326,7 +332,7 @@ public class ServicemanController extends HttpServlet {
 					message.setSubject("OTP Request");
 					String msg1 = "<!DOCTYPE html><html><head></head><body><center><div style='background-color:#f8f8f8; width:500px; height:200px'><div style='background-color:#00e58b; width:500px; height:50px'><h3 style='color:white; padding-top:10px;'>EmailDemo.com </h3></div><p style='color:gray; margin-left:-300px;'>Dear "
 							+ username + ",</p><br><p style='color:gray; margin-top:-10px;'>" + otp
-							+ "  is your One Time Password for after complete service by serviceman.Do NOT share this code with anyone for security reasons.this is valid for 10 minutes.</p><div></center></body></html>";
+							+ "  is your One Time Password for Completed Service.Do NOT share this code with anyone for security reasons.this is valid for 10 minutes.</p><div></center></body></html>";
 					message.setContent(msg1, "text/html; charset=utf-8");
 
 					Transport.send(message);
@@ -335,7 +341,6 @@ public class ServicemanController extends HttpServlet {
 					otpsession.setAttribute("otp", otp);
 					otpsession.setMaxInactiveInterval(10 * 60); /* Session Set for 10 minutes */
 					otpsession.setAttribute("UserData", f);
-
 					response.sendRedirect("serviceman/enterOTP.jsp");
 				} catch (Exception e) {
 					request.setAttribute("msg", "Otp Not Send");
@@ -343,30 +348,40 @@ public class ServicemanController extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-		}
 
-		else if (action.equalsIgnoreCase("verifyotpendservice")) {
+		}
+		
+		else if(action.equalsIgnoreCase("verifyotpendservice"))
+		{
 			HttpSession session = request.getSession(false);
 			String G_otp = String.valueOf(session.getAttribute("otp"));
 			String E_otp = request.getParameter("EnterOTP");
-			int bid=Integer.parseInt(request.getParameter("bid"));
-			BookModel bmodel = new BookModel();
-			
 
-			String additionalCharge = request.getParameter("additionalCharge");
-			if (G_otp.equalsIgnoreCase(E_otp)) {
-				request.setAttribute("Otpmatch", "OTP Match");
-				if (additionalCharge != null) {
-					bmodel.setBstatus("completed");
-					int x = new ServicemanDao().endService(bmodel, additionalCharge);
-					response.sendRedirect("serviceman/enterOTP.jsp");
+			if (G_otp.equalsIgnoreCase(E_otp)) 
+			{	
+				BookModel bmodel=new BookModel();
+				bmodel.setBstatus("completed");
+				bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
+				String addtionalCharge=request.getParameter("additionalCharge");
+				int x=new ServicemanDao().endService(bmodel, addtionalCharge);
+				if(x>0)
+				{
+					request.setAttribute("Otpmatch", "OTP Match");
+					response.sendRedirect("serviceman/s-dashboard.jsp");
 				}
-				response.sendRedirect("serviceman/s-dashboard.jsp");
 			} else {
 				request.setAttribute("notmatch", "OTP Not Match");
 				request.getRequestDispatcher("serviceman/enterOTP.jsp").forward(request, response);
 			}
 		}
+
+
+		
+		
+		
+		
+		
+		
 
 	}
 

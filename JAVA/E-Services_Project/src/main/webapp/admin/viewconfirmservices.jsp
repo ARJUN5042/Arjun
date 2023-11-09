@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Pending Services</title>
+<title>Confirmed Services</title>
 <!-- base:css -->
 <link rel="stylesheet" href="vendors/typicons/typicons.css">
 <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
@@ -45,7 +45,7 @@
 				<div class="col-lg-6 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Sub Services</h4>
+							<h4 class="card-title">Confirmed Services</h4>
 							<div class="table-responsive">
 								<table class="table" cellpadding="10">
 									<thead>
@@ -59,7 +59,6 @@
 											<th>Price</th>
 											<th>Book Status</th>
 											<th>Payment Status</th>
-											<th>Assign ServiceMan</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -81,18 +80,6 @@
 											<td><%=rs.getString(8)%></td>
 											<td><%=rs.getString(9) %></td>
 											<td>
-											<div class="col-md-6 grid-margin stretch-card">
-													<form method="post" action="assignserviceman.jsp"
-														class="forms-sample">
-														<input type="hidden" name="bid" value="<%= rs.getInt(1) %>">
-														<input type="hidden" name="customerid" value="<%= rs.getInt(2) %>">
-														<input type="hidden" name="serviceid" value="<%= rs.getInt(10) %>">
-														<input type="hidden" name="subid" value="<%= rs.getInt(11) %>">
-														<button type="submit" class="btn btn-primary mr-2"
-															name="action">Assign Serviceman</button>
-													</form>
-												</div>
-											</td>
 										</tr>
 										<%
 										}
