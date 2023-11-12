@@ -1,0 +1,36 @@
+.rating-container {
+            display: inline-block;
+        }
+
+        .star {
+            cursor: pointer;
+            font-size: 24px;
+            color: gray;
+            transition: color 0.2s;
+        }
+
+        .star:hover,
+        .star.selected {
+            color: gold;
+        }
+
+        #feedback-input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        #submit-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }

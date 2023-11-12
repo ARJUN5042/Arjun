@@ -341,6 +341,8 @@ public class ServicemanController extends HttpServlet {
 					otpsession.setAttribute("otp", otp);
 					otpsession.setMaxInactiveInterval(10 * 60); /* Session Set for 10 minutes */
 					otpsession.setAttribute("UserData", f);
+					otpsession.setAttribute("bid", bid);
+					otpsession.setAttribute("additionalCharge", additionalCharge);
 					response.sendRedirect("serviceman/enterOTP.jsp");
 				} catch (Exception e) {
 					request.setAttribute("msg", "Otp Not Send");
@@ -356,13 +358,14 @@ public class ServicemanController extends HttpServlet {
 			HttpSession session = request.getSession(false);
 			String G_otp = String.valueOf(session.getAttribute("otp"));
 			String E_otp = request.getParameter("EnterOTP");
-
+			int bid=Integer.parseInt(String.valueOf(session.getAttribute("bid")));
+			String additionalCharge=String.valueOf(session.getAttribute("additionalCharge"));
 			if (G_otp.equalsIgnoreCase(E_otp)) 
 			{	
 				BookModel bmodel=new BookModel();
 				bmodel.setBstatus("completed");
-				bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
-				String addtionalCharge=request.getParameter("additionalCharge");
+				bmodel.setBid(bid);
+				String addtionalCharge=additionalCharge;
 				int x=new ServicemanDao().endService(bmodel, addtionalCharge);
 				if(x>0)
 				{
@@ -376,9 +379,12 @@ public class ServicemanController extends HttpServlet {
 		}
 
 
-		
-		
-		
+		else if(action.equalsIgnoreCase("rating_feedback")) 
+		{
+			int bid=Integer.parseInt(request.getParameter("bid"));
+			response.sendRedirect("serviceman/rating_feedback.jsp?bid="+bid);
+			
+		}
 		
 		
 		

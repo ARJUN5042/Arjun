@@ -38,27 +38,17 @@
 
 			</ul>
 			<ul class="navbar-nav navbar-nav-right">
-
-				<li class="nav-item dropdown"><a
-					class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
-					id="messageDropdown" href="#" data-toggle="dropdown"> <i
-						class="typcn typcn-cog-outline mx-0"></i> <span class="count"></span>
-				</a>
-					<div
-						class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-						aria-labelledby="messageDropdown">
-						<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-
-
-
-					</div></li>
-
+			<li class="nav-item nav-profile dropdown">
+			<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+						aria-labelledby="profileDropdown">
+			<form method="post" action="logout.jsp"	class="forms-sample">
+				<button type="submit" class="btn btn-primary mr-2"
+				name="action">Log out</button>
+			</form>
+			</div>
+			</li>
 			</ul>
-			<button
-				class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
-				type="button" data-toggle="offcanvas">
-				<span class="typcn typcn-th-menu"></span>
-			</button>
+			
 		</div>
 	</nav>
 	<!-- partial -->

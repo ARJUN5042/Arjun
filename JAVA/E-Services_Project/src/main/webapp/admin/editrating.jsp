@@ -40,9 +40,9 @@
 	display: inline-block;
 	position: relative;
 	width: 1.1em;
+	cursor: pointer;
 	font-size: 2em;
 	color: #ccc;
-	pointer-events: none;
 }
 
 .rating>span:before {
@@ -76,6 +76,7 @@
 						<div class="card-body">
 							<h4 class="card-title">Rating-Feedback</h4>
 							<div class="table-responsive">
+							<form method="post" action="../AdminController">
 								<table class="table" cellpadding="10">
 									<thead>
 										<tr>
@@ -89,7 +90,7 @@
 										<%
 										int bid = Integer.parseInt(request.getParameter("bid"));
 										Connection cn = new DBUtil().getConnectionData();
-										String qry = "SELECT rating_feedback.`rating`,rating_feedback.`feedback` FROM rating_feedback INNER JOIN book ON book.`bid`=rating_feedback.`bid` WHERE book.bid=?";
+										String qry = "SELECT * FROM rating_feedback WHERE bid=?";
 										PreparedStatement st = cn.prepareStatement(qry);
 										st.setInt(1, bid);
 										ResultSet rs = st.executeQuery();
@@ -99,44 +100,31 @@
 											<td>
 												<div class="d-flex px-2 py-1">
 													<div class="d-flex flex-column justify-content-center">
-														<div class="rating">
-															<%
-															int rating = rs.getInt(1);
-															for (int i = 5; i >= 1; i--) {
-															%>
-															<span class="star <%=i <= rating ? "selected" : ""%>"
-																data-value="<%=i%>">&#9733;</span>
-															<%
-															}
-															%>
-															<input type="hidden" name="rating" id="rating"
-																value="<%=rating%>">
-
+														
+															<div class="rating">
+																<span class="star" data-value="5">&#9733;</span> 
+																<span class="star" data-value="4">&#9733;</span> 
+																<span class="star" data-value="3">&#9733;</span> 
+																<span class="star" data-value="2">&#9733;</span> 
+																<span class="star" data-value="1">&#9733;</span> 
+																<input type="hidden" name="rating" id="rating" value="<%=rs.getInt(8)%>">
+										
 														</div>
 													</div>
 												</div>
 											</td>
-											<td><%=rs.getString(2)%></td>
+											<td>
+											<input type="text" name="feedback" value="<%=rs.getString(9) %>" required></textarea>
+											</td>
 
 											<td>
 												<div class="col-md-6 grid-margin stretch-card">
-													<form method="post" action="editrating.jsp" class="forms-sample">
-														<input type="hidden" name="bid" value="<%=bid%>">
-														<button type="submit" class="btn btn-primary mr-2"
-															name="editAction">Edit</button>
-													</form>
 
-													<form method="post" action="../AdminController"
-														class="forms-sample">
-														<input type="hidden" name="action" value="deleterating">
-														<input type="hidden" name="bid" value="<%=bid%>">
-														<input type="hidden" name="rating"
-															value="<%=rs.getInt(1)%>">
-															<input type="hidden" name="feedback"
-															value="<%=rs.getString(2)%>">
-														<button type="submit" class="btn btn-primary mr-2"
-															name="deleteAction">Delete</button>
-													</form>
+													<div class="col-md-6 grid-margin stretch-card">
+														<input type="hidden" name="bid" value="<%=bid%> ">
+														<input type="submit" name="action" class="site-btn" value="Update Rating">
+											</td>
+													</div>
 												</div>
 											</td>
 										</tr>
@@ -176,6 +164,28 @@
 	<!-- endinject -->
 	<!-- Custom js for this page-->
 	<script src="js/dashboard.js"></script>
+	<script>
+        // Add JavaScript to handle star rating selection
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.getElementById('rating');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const ratingValue = star.getAttribute('data-value');
+                ratingInput.value = ratingValue;
+                
+                // Add 'selected' class to the clicked star and all previous stars
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute('data-value')) <= parseInt(ratingValue)) {
+                        s.classList.add('selected');
+                    } else {
+                        s.classList.remove('selected');
+                    }
+                });
+            });
+        });
+    </script>
+
 	<!-- End custom js for this page-->
 </body>
 </html>

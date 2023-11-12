@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.dao.CustomerDao;
 import com.model.BookModel;
 import com.model.CustomerModel;
+import com.model.RatingFeedbackModel;
 
 @WebServlet("/CustomerController")
 public class CustomerController extends HttpServlet {
@@ -68,6 +69,10 @@ public class CustomerController extends HttpServlet {
 						session.setAttribute("firstname", model.getFirstname());
 						session.setAttribute("lastname", model.getLastname());
 						response.sendRedirect("cust-home.jsp");
+					}
+					else
+					{
+						response.sendRedirect("login.jsp");
 					}
 					
 				}
@@ -171,11 +176,9 @@ public class CustomerController extends HttpServlet {
 					if (!currentPassword.equals("npassword")) 
 					{
 						int x = new CustomerDao().updatePassword(hmodel, currentPassword);
-						
 						if (x > 0) 
 						{
 							System.out.println("Password Changed");
-
 							try 
 							{
 								out.println("<h1>Processing..." + "<br>" + "<h2>Please wait.</h2>");
@@ -185,17 +188,13 @@ public class CustomerController extends HttpServlet {
 								try 
 								{
 									Thread.sleep(3000);
-
 									request.getRequestDispatcher("login.jsp").forward(request, response);
-
 									out.close();
-
 								}
 								catch (Exception e) 
 								{
 									e.printStackTrace();
 								}
-//							response.sendRedirect("login.jsp");
 							}
 						}
 						else 
@@ -209,6 +208,32 @@ public class CustomerController extends HttpServlet {
 						response.sendRedirect("changepassword.jsp");
 					}
 				}
+				
+				else if(action.equalsIgnoreCase("Submit Feedback"))
+				{
+					RatingFeedbackModel rfm=new RatingFeedbackModel();
+					rfm.setAssignid(Integer.parseInt(request.getParameter("assignid").trim()));
+					rfm.setServicemanid(Integer.parseInt(request.getParameter("servicemanid").trim()));
+					rfm.setServiceid(Integer.parseInt(request.getParameter("serviceid").trim()));
+					rfm.setSubid(Integer.parseInt(request.getParameter("subid").trim()));
+					rfm.setBid(Integer.parseInt(request.getParameter("bid").trim()));
+					rfm.setCustomerid(Integer.parseInt(request.getParameter("customerid").trim()));
+					rfm.setRating(Integer.parseInt(request.getParameter("rating").trim()));
+					rfm.setFeedback(request.getParameter("feedback"));
+					int x=new CustomerDao().insertRating(rfm);
+					if(x>0)
+					{
+						response.sendRedirect("cust-home.jsp");
+					}
+					else
+					{
+						System.out.println("Change Method");
+					}
+				}
+				
+				
+				
+				
 	}
 
 }

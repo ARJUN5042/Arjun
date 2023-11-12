@@ -2,11 +2,14 @@ package com.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.model.AddServicesModel;
+import com.model.AdminModel;
 import com.model.AssignServicemanModel;
 import com.model.BookModel;
+import com.model.RatingFeedbackModel;
 import com.model.SubServiceModel;
 import com.util.DBUtil;
 
@@ -14,6 +17,31 @@ public class AdminDao
 {
 	Connection cn;
 	int x=0;
+	public AdminModel getAdmin(AdminModel amodel)
+	{
+		AdminModel model=null;
+		cn=new DBUtil().getConnectionData();
+		String qry="select * from admin where username=? and password=?";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setString(1, amodel.getUsername());
+			st.setString(2, amodel.getPassword());
+			ResultSet rs=st.executeQuery();
+			while(rs.next())
+			{
+				model=new AdminModel();
+				model.setUsername(rs.getString(1));
+				model.setPassword(rs.getString(2));
+			}
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return model;
+	}
 	public int addMainServices(AddServicesModel asm)
 	{
 		cn=new DBUtil().getConnectionData();
@@ -95,5 +123,32 @@ public class AdminDao
 			e.printStackTrace();
 		}
 		return x;
+	}
+	
+	public void updateRating(int bid,int rating,String feedback)
+	{	
+		cn=new DBUtil().getConnectionData();
+	
+		String qry="update rating_feedback set rating=?,feedback=? where bid=?";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setInt(1, rating);
+			st.setString(2, feedback);
+			st.setInt(3, bid);
+			int x=st.executeUpdate();
+			if(x>0)
+			{
+				System.out.println("updated");
+			}
+			else {
+				System.out.println("error");
+			}
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

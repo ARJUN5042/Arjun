@@ -27,6 +27,8 @@
                                 <ul class="dropdown">
                                     <li><a href="viewprofile.jsp?customerid=<%=session.getAttribute("customerid") %>">View Profile</a></li>
                                     <li><a href="viewbookedservices.jsp?customerid=<%=session.getAttribute("customerid") %>">View Booked Services</a></li>
+                                    <li><a href="viewconfirmedservices.jsp?customerid=<%=session.getAttribute("customerid") %>">View Confirmed Services</a></li>
+                                    <li><a href="viewcompletedservices.jsp?customerid=<%=session.getAttribute("customerid") %>">View Completed Services</a></li>
                                     <li><a href="logout.jsp">Logout</a></li>
                                 </ul>
                             </li>

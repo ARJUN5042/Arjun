@@ -202,7 +202,6 @@
 			<li class="nav-item"><a class="nav-link" href="dashboard.jsp">
 					<i class="typcn typcn-device-desktop menu-icon"></i> <span
 					class="menu-title">Dashboard</span>
-					<div class="badge badge-danger">new</div>
 			</a></li>
 			<li class="nav-item"><a class="nav-link" data-toggle="collapse"
 				href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">

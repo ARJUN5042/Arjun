@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.model.BookModel;
 import com.model.CustomerModel;
+import com.model.RatingFeedbackModel;
 import com.util.DBUtil;
 
 public class CustomerDao 
@@ -221,6 +222,33 @@ public class CustomerDao
 			st.setString(1, hmodel.getPassword());
 			st.setInt(2, hmodel.getCustomerid());
 			st.setString(3,currentPassword);
+			x=st.executeUpdate();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return x;
+	}
+	
+	public int insertRating(RatingFeedbackModel rfm)
+	{
+		int x=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="insert into rating_feedback(assignid,servicemanid,serviceid,subid,bid,customerid,rating,feedback) values(?,?,?,?,?,?,?,?)";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setInt(1, rfm.getAssignid());
+			st.setInt(2, rfm.getServicemanid());
+			st.setInt(3, rfm.getServiceid());
+			st.setInt(4, rfm.getSubid());
+			st.setInt(5, rfm.getBid());
+			st.setInt(6, rfm.getCustomerid());
+			st.setInt(7, rfm.getRating());
+			st.setString(8, rfm.getFeedback());
 			x=st.executeUpdate();
 			cn.close();
 		}

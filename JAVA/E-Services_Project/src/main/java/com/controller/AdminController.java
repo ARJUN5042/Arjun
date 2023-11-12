@@ -11,12 +11,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.dao.AdminDao;
 import com.model.AddServicesModel;
+import com.model.AdminModel;
 import com.model.AssignServicemanModel;
 import com.model.BookModel;
+import com.model.RatingFeedbackModel;
 import com.model.SubServiceModel;
 
 @WebServlet("/AdminController")
@@ -50,7 +53,29 @@ public class AdminController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String action = request.getParameter("action");
-		if (action.equalsIgnoreCase("addservice")) 
+		if(action.equalsIgnoreCase("Login"))
+		{
+			AdminModel amodel=new AdminModel();
+			amodel.setUsername(request.getParameter("username"));
+			amodel.setPassword(request.getParameter("password"));
+			AdminModel model=new AdminDao().getAdmin(amodel);
+			if(model != null)
+			{
+				HttpSession session=request.getSession();
+				session.setAttribute("model", model);
+				session.setAttribute("username", model.getUsername());
+				session.setAttribute("msg", "Into Dashboard");
+				response.sendRedirect("admin/dashboard.jsp");
+				
+			}
+			else
+			{
+				HttpSession session=request.getSession();
+				session.setAttribute("msg", "invalid username or password");
+				response.sendRedirect("admin/index.jsp");
+			}
+		}
+		else if (action.equalsIgnoreCase("addservice")) 
 		{
 			AddServicesModel asm = new AddServicesModel();
 			asm.setServicename(request.getParameter("servicename"));
@@ -122,6 +147,24 @@ public class AdminController extends HttpServlet {
 				System.out.println("assign table error");
 			}
 			
+		}
+		
+		else if(action.equalsIgnoreCase("rating")) 
+		{
+			int bid=Integer.parseInt(request.getParameter("bid"));
+			response.sendRedirect("admin/rating-feedback.jsp?bid="+bid);
+			
+		}
+		
+		else if(action.equalsIgnoreCase("Update Rating"))
+		{
+			int bid = Integer.parseInt(request.getParameter("bid").trim());
+		    int rating = Integer.parseInt(request.getParameter("rating"));
+		    String feedback = request.getParameter("feedback");
+			AdminDao dao=new AdminDao();
+			dao.updateRating(bid, rating, feedback);
+			
+			response.sendRedirect("admin/dashboard.jsp");
 		}
 		
 		

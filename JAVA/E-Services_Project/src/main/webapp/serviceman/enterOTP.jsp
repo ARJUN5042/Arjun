@@ -84,7 +84,7 @@
 										${notmatch }
 										${Otpmatch }
 										<%
-										String email=null;
+										String email=null;										
 										if(session.getAttribute("otp")==null)
 										{
 											response.sendRedirect("serviceman/confirmedservices.jsp");
