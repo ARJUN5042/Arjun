@@ -64,9 +64,7 @@ public class AdminController extends HttpServlet {
 				HttpSession session=request.getSession();
 				session.setAttribute("model", model);
 				session.setAttribute("username", model.getUsername());
-				session.setAttribute("msg", "Into Dashboard");
-				response.sendRedirect("admin/dashboard.jsp");
-				
+				response.sendRedirect("admin/dashboard.jsp");	
 			}
 			else
 			{
@@ -164,6 +162,13 @@ public class AdminController extends HttpServlet {
 			AdminDao dao=new AdminDao();
 			dao.updateRating(bid, rating, feedback);
 			
+			response.sendRedirect("admin/dashboard.jsp");
+		}
+		
+		else if(action.equalsIgnoreCase("deleterating"))
+		{
+			int bid=Integer.parseInt(request.getParameter("bid"));
+			int x=new AdminDao().deleteRating(bid);
 			response.sendRedirect("admin/dashboard.jsp");
 		}
 		

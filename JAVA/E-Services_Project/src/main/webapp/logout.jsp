@@ -25,9 +25,6 @@
 <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <meta http-equiv="refresh" content="3;url=login.jsp">
-
-
-
 </head>
 <body>
 	<%@ include file="header.jsp"%>

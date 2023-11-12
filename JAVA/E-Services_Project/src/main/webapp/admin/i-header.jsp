@@ -22,8 +22,8 @@
 		<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 			<ul class="navbar-nav navbar-nav-right">
 			<li class="nav-item nav-date dropdown">
-            <a class="nav-link d-flex justify-content-center align-items-center" href="logout.jsp">
-              <h6 class="date mb-0">Log out</h6>
+            <a class="nav-link d-flex justify-content-center align-items-center" href="index.jsp">
+              <h6 class="date mb-0">Log In</h6>
             </a>
           </li>
 			</ul>

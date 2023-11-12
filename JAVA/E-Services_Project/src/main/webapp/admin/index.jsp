@@ -23,6 +23,7 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			text-align: center;
 		}
 		input[type=text], input[type=password] {
 			border-radius: 5px;
@@ -30,7 +31,7 @@
 			box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
 			margin: 5px 0px;
 			padding: 10px;
-			width: 100%;
+			width: 90%;
 		}
 		input[type=submit] {
 			background-color: #4CAF50;
@@ -38,9 +39,9 @@
 			border-radius: 5px;
 			color: white;
 			cursor: pointer;
-			margin: 5px 0px;
+			margin: 5px auto;
 			padding: 10px;
-			width: 100%;
+			width: 50%;
 		}
 		input[type=submit]:hover {
 			background-color: #45a049;

@@ -130,10 +130,6 @@
 														class="forms-sample">
 														<input type="hidden" name="action" value="deleterating">
 														<input type="hidden" name="bid" value="<%=bid%>">
-														<input type="hidden" name="rating"
-															value="<%=rs.getInt(1)%>">
-															<input type="hidden" name="feedback"
-															value="<%=rs.getString(2)%>">
 														<button type="submit" class="btn btn-primary mr-2"
 															name="deleteAction">Delete</button>
 													</form>

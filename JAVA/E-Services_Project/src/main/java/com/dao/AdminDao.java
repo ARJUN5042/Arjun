@@ -151,4 +151,23 @@ public class AdminDao
 			e.printStackTrace();
 		}
 	}
+	
+	public int deleteRating(int bid)
+	{
+		int x=0;
+		cn=new DBUtil().getConnectionData();
+		String qry="delete from rating_feedback where bid=?";
+		try
+		{
+			PreparedStatement st=cn.prepareStatement(qry);
+			st.setInt(1, bid);
+			x=st.executeUpdate();
+			cn.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return x;
+	}
 }
