@@ -10,7 +10,7 @@
 <meta name="keywords" content="Male_Fashion, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Male-Fashion | Template</title>
+<title>Book Service</title>
 
 <!-- Google Font -->
 <link
@@ -128,7 +128,7 @@
 
 					</div>
 					<button type="submit" class="site-btn" name="action"
-						value="placeorder">PLACE ORDER</button>
+						value="placeorder">Book Service</button>
 			</div>
 		</div>
 		</form>

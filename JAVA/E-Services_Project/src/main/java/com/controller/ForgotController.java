@@ -137,7 +137,6 @@ public class ForgotController extends HttpServlet {
 			if(r>0)
 			{
 				response.sendRedirect("index.jsp");
-				System.out.println("Password Recovery Success!");
 			}
 			else
 			{

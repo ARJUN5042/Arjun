@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Payment</title>
 <style type="text/css">
 	.bttnStyle
 	{
@@ -37,15 +37,13 @@
 	{
 		alert("3");
 		var number=document.getElementById("amount").value;
-		/* var bid=document.getElementById("bid").value; */
 		alert(number);
 		var options={
 				"key":"rzp_test_sPhCuuWP15dnn6",
 				"amount":number,
-				/* "bid":bid, */
 				"currency":"INR",
-				"name":"Tops",
-				"description":"Test",
+				"name":"Services",
+				"description":"Payment for Booked Services",
 				"order_id":RazorpayOrderId,
 				"callback_url":"http://localhost:8080/E-Services_Project/OrderCreation",
 				//optional

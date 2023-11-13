@@ -13,7 +13,7 @@
 <meta name="keywords" content="Male_Fashion, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Male-Fashion | Template</title>
+<title>Profile</title>
 
 <!-- Google Font -->
 <link
@@ -34,12 +34,13 @@
 
 
 	<%@ include file="cust-header.jsp"%>
-	<section class="checkout spad">
+	<section>
 		<div class="container">
-			<div class="checkout__form">
 				<div class="row">
 					<div class="col-lg-8 col-md-6">
-						<h6 class="checkout__title">Customer Details</h6>
+						<h2 style="color:#0A0F4E;">Customer Profile</h2>
+				<hr>
+				<br />
 						<%
 						int customerid = Integer.parseInt(request.getParameter("customerid"));
 						Connection cn = new DBUtil().getConnectionData();
@@ -151,7 +152,7 @@
 			</div>
 		</div>
 	</section>
-
+<br />
 	<%@ include file="footer.jsp"%>
 
 	<!-- Search Begin -->

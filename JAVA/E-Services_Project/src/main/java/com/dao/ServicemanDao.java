@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.model.BookModel;
-import com.model.CustomerModel;
 import com.model.ServicemanModel;
 import com.util.DBUtil;
 
@@ -37,7 +36,6 @@ public class ServicemanDao
 			x=st.executeUpdate();
 			cn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -71,7 +69,6 @@ public class ServicemanDao
 			}
 			cn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -258,7 +255,6 @@ public class ServicemanDao
 	public String getCustomerEmail(int bid)
 	{
 		String email=null;
-		CustomerModel cmodel=new CustomerModel();
 		try {
 			Connection conn=new DBUtil().getConnectionData();
 			String sql="select customer.email from customer join book on customer.customerid=book.customerid where book.bid=?";

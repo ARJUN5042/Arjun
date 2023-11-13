@@ -21,11 +21,6 @@ import com.model.RatingFeedbackModel;
 public class CustomerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public CustomerController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action=request.getParameter("action");
@@ -99,14 +94,12 @@ public class CustomerController extends HttpServlet {
 					int x = new CustomerDao().doRegister(rmodel);
 					if (x > 0) 
 					{
-						request.setAttribute("msg", "Record Inserted...");
 						if (!response.isCommitted()) 
 						{
 							response.sendRedirect("login.jsp");
 						}
 					} else 
 					{
-						request.setAttribute("msg", "Record Not Inserted...");
 						response.sendRedirect("register.jsp");
 					}
 				}
@@ -127,7 +120,8 @@ public class CustomerController extends HttpServlet {
 						int bid=new CustomerDao().getBookID(bmodel.getCustomerid());
 						response.sendRedirect("payment.jsp?price="+bmodel.getPrice()+"&bid="+bid);
 					}
-					else {
+					else 
+					{
 						System.out.println("did not get book id");
 					}
 				}
@@ -204,7 +198,6 @@ public class CustomerController extends HttpServlet {
 					} 
 					else 
 					{
-						System.out.println("Error while Changing Password.");
 						response.sendRedirect("changepassword.jsp");
 					}
 				}

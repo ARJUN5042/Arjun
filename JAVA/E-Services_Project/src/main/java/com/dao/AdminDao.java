@@ -3,13 +3,11 @@ package com.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import com.model.AddServicesModel;
 import com.model.AdminModel;
 import com.model.AssignServicemanModel;
 import com.model.BookModel;
-import com.model.RatingFeedbackModel;
 import com.model.SubServiceModel;
 import com.util.DBUtil;
 
@@ -54,7 +52,6 @@ public class AdminDao
 			x=st.executeUpdate();
 			cn.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		return x;
@@ -75,7 +72,6 @@ public class AdminDao
 			x=st.executeUpdate();
 			cn.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		return x;

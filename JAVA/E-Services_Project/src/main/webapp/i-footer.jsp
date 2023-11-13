@@ -7,7 +7,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="cust-home.jsp"><h2 style="color:white;">Services</h2></a>
+                            <a href="index.jsp"><h2 style="color:white;">Services</h2></a>
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
                         <!-- <a href="#"><img src="img/payment.png" alt=""></a> -->
@@ -17,8 +17,8 @@
                     <div class="footer__widget">
                         <h6>Services</h6>
                         <ul>
-                            <li><a href="#">Ac Services</a></li>
-                            <li><a href="#">Plumber Services</a></li>
+                            <li><a href="login.jsp">Ac Services</a></li>
+                            <li><a href="login.jsp">Plumber Services</a></li>
                         </ul>
                     </div>
                 </div>
@@ -26,7 +26,8 @@
                     <div class="footer__widget">
                         <h6>Customer</h6>
                         <ul>
-                            <li><a href="logout.jsp">Logout</a></li>
+                            <li><a href="login.jsp">Login</a></li>
+                            <li><a href="register.jsp">Register</a></li>
                         </ul>
                     </div>
                 </div>

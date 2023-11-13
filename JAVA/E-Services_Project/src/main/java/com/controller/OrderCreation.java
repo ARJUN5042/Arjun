@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.*;
 
-import com.model.BookModel;
 import com.razorpay.*;
 @WebServlet("/OrderCreation")
 public class OrderCreation extends HttpServlet {
@@ -17,7 +16,6 @@ public class OrderCreation extends HttpServlet {
 	int bid;
     public OrderCreation() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

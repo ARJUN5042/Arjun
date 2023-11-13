@@ -13,10 +13,9 @@ import com.util.DBUtil;
 public class CustomerDao 
 {
 	Connection cn=null;
+	CustomerModel model=null;
 	public CustomerModel doLogin(CustomerModel lmodel)
 	{
-		CustomerModel model=null;
-		
 		cn=new DBUtil().getConnectionData();
 		String qry="select * from customer where email=? and password=?";
 		try 
@@ -42,14 +41,12 @@ public class CustomerDao
 			}
 			cn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		return model;
 	}
 	public int doRegister(CustomerModel rmodel)
 	{
-		CustomerModel model=null;
 		int x=0;
 		cn=new DBUtil().getConnectionData();
 		String qry="insert into customer(firstname, lastname, gender, address, city, pincode, mobno, email, password, status) values(?,?,?,?,?,?,?,?,?,?)";
@@ -70,7 +67,6 @@ public class CustomerDao
 			x=st.executeUpdate();
 			cn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		return x;
@@ -92,7 +88,6 @@ public class CustomerDao
 			
 			cn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		return subname;
@@ -114,7 +109,6 @@ public class CustomerDao
 			x=st.executeUpdate();
 			cn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		return x;
@@ -134,7 +128,6 @@ public class CustomerDao
 			cn.close();
 		} catch (SQLException e) 
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return x;
@@ -156,7 +149,6 @@ public class CustomerDao
 			cn.close();
 		} catch (SQLException e) 
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return bid;
@@ -164,7 +156,6 @@ public class CustomerDao
 	
 	public int getCustomerid(int customerid)
 	{
-		int cutomerid=0;
 		cn=new DBUtil().getConnectionData();
 		String qry="select customerid from customer";
 		try

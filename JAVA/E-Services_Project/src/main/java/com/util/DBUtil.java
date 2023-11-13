@@ -14,7 +14,6 @@ public class DBUtil
 			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/arjunproject", "root", "");
 			System.out.println("Connection Established....");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return cn;

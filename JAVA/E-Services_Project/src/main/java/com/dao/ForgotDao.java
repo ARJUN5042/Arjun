@@ -9,8 +9,7 @@ import com.model.CustomerModel;
 import com.util.DBUtil;
 
 public class ForgotDao 
-{
-	
+{	
 	public CustomerModel checkEmail(String email)
 	{
 		CustomerModel f=new CustomerModel();

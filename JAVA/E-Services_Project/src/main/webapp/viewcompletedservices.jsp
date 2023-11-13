@@ -37,6 +37,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
+				<h2 style="color:#0A0F4E;">View Completed Services</h2>
+				<hr>
+				<br />
 					<div class="shopping__cart__table">
 						<table>
 							<thead>

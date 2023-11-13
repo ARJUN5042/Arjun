@@ -19,8 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dao.CustomerDao;
-import com.dao.ForgotDao;
+
 import com.dao.ServicemanDao;
 import com.model.BookModel;
 import com.model.CustomerModel;
@@ -59,25 +58,27 @@ public class ServicemanController extends HttpServlet {
 			smodel.setPassword(request.getParameter("password"));
 
 			int x = new ServicemanDao().doRegiser(smodel);
-			if (x > 0) {
-				request.setAttribute("msg", "Record Inserted...");
-				System.out.println("Record Inserted");
-				if (!response.isCommitted()) {
+			if (x > 0) 
+			{
+				if (!response.isCommitted()) 
+				{
 					response.sendRedirect("serviceman/slogin.jsp");
 				}
-			} else {
-				request.setAttribute("msg", "Record Not Inserted...");
-				System.out.println("error");
+			} 
+			else 
+			{
 				response.sendRedirect("serviceman/sregister.jsp");
 			}
 		}
 
-		else if (action.equalsIgnoreCase("login")) {
+		else if (action.equalsIgnoreCase("login")) 
+		{
 			ServicemanModel lmodel = new ServicemanModel();
 			lmodel.setEmail(request.getParameter("email"));
 			lmodel.setPassword(request.getParameter("password"));
 			ServicemanModel model = new ServicemanDao().doLogin(lmodel);
-			if (model != null) {
+			if (model != null) 
+			{
 				HttpSession session = request.getSession();
 				session.setAttribute("model", model);
 				session.setAttribute("servicemanid", model.getServicemanid());
@@ -87,16 +88,19 @@ public class ServicemanController extends HttpServlet {
 			}
 		}
 
-		else if (action.equalsIgnoreCase("edit")) {
+		else if(action.equalsIgnoreCase("edit")) 
+		{
 			HttpSession session = request.getSession();
 			ServicemanModel smodel = (ServicemanModel) session.getAttribute("model");
-			if (smodel != null) {
+			if (smodel != null) 
+			{
 				int servicemanid = new ServicemanDao().getSetvicemanId(smodel.getServicemanid());
 				response.sendRedirect("serviceman/s-editprofile.jsp");
-			} else {
-				System.out.println("smodel is null");
 			}
-		} else if (action.equalsIgnoreCase("update")) {
+		}
+		
+		else if (action.equalsIgnoreCase("update")) 
+		{
 			ServicemanModel smodel = new ServicemanModel();
 			smodel.setServicemanid(Integer.parseInt(request.getParameter("servicemanid")));
 			smodel.setFirstname(request.getParameter("firstname"));
@@ -110,64 +114,76 @@ public class ServicemanController extends HttpServlet {
 			smodel.setExpertise(request.getParameter("expertise"));
 
 			int x = new ServicemanDao().updateServiceman(smodel);
-			if (x > 0) {
+			if (x > 0) 
+			{
 				response.sendRedirect("serviceman/s-dashboard.jsp");
-			} else {
+			}
+			else 
+			{
 				System.out.println("profile not updated");
 			}
 		}
 
-		else if (action.equalsIgnoreCase("changepassword")) {
+		else if (action.equalsIgnoreCase("changepassword")) 
+		{
 			ServicemanModel smodel = new ServicemanModel();
 			int servicemanid = new ServicemanDao().getSetvicemanId(smodel.getServicemanid());
 			response.sendRedirect("serviceman/s-changepassword.jsp");
 		}
 
-		else if (action.equalsIgnoreCase("updatepassword")) {
+		else if (action.equalsIgnoreCase("updatepassword")) 
+		{
 			ServicemanModel smodel = new ServicemanModel();
 			smodel.setServicemanid(Integer.parseInt(request.getParameter("servicemanid")));
 			smodel.setPassword(request.getParameter("npassword"));
 			String currentPassword = request.getParameter("password");
-			if (!currentPassword.equals("npassword")) {
+			if (!currentPassword.equals("npassword")) 
+			{
 				int x = new ServicemanDao().updatePassword(smodel, currentPassword);
 
-				if (x > 0) {
-					System.out.println("Password Changed");
-
-					try {
+				if (x > 0) 
+				{
+					try 
+					{
 						out.println("<h1>Processing..." + "<br>" + "<h2>Please wait.</h2>");
-					} finally {
-						try {
+					}
+					finally 
+					{
+						try 
+						{
 							Thread.sleep(3000);
-							System.out.println("wait 3 second");
-
 							response.sendRedirect("serviceman/slogin.jsp");
-							System.out.println("Redirect to login page");
 							out.close();
-
-						} catch (Exception e) {
+						}
+						catch (Exception e) 
+						{
 							e.printStackTrace();
 						}
 					}
-				} else {
+				} 
+				else 
+				{
 					System.out.println("error");
 				}
-			} else {
-				System.out.println("Error while Changing Password.");
+			} 
+			else 
+			{
 				response.sendRedirect("serviceman/s-changepassword.jsp");
 			}
 		}
 
-		else if (action.equalsIgnoreCase("submit")) {
+		else if (action.equalsIgnoreCase("submit")) 
+		{
 			String email = request.getParameter("email");
 			ServicemanModel f = new ServicemanModel();
 			ServicemanDao dao = new ServicemanDao();
 			f = dao.checkEmail(email);
-			if (f == null) {
+			if (f == null) 
+			{
 				request.setAttribute("invalidemail", "Email Address Not Valid");
 				request.getRequestDispatcher("serviceman/forgotpassword.jsp").forward(request, response);
-			} else {
-
+			} else 
+			{
 				String emailid = f.getEmail();
 				String username = f.getFirstname() + " " + f.getLastname();
 				final String Senderid = "hirparaarjun49@gmail.com";
@@ -189,13 +205,16 @@ public class ServicemanController extends HttpServlet {
 				props.put("mail.smtp.user", Senderid);
 				props.put("mail.smtp.password", password);
 
-				Session session = Session.getInstance(props, new Authenticator() {
-					protected PasswordAuthentication getPasswordAuthentication() {
+				Session session = Session.getInstance(props, new Authenticator() 
+				{
+					protected PasswordAuthentication getPasswordAuthentication() 
+					{
 						return new PasswordAuthentication(Senderid, password);
 					}
 				});
 
-				try {
+				try 
+				{
 					Random rand = new Random();
 					int otp = rand.nextInt(900000) + 100000;
 					Message message = new MimeMessage(session);
@@ -216,7 +235,9 @@ public class ServicemanController extends HttpServlet {
 					otpsession.setMaxInactiveInterval(10 * 60); /* Session Set for 10 minutes */
 					otpsession.setAttribute("UserData", f);
 					response.sendRedirect("serviceman/sendOTP.jsp");
-				} catch (Exception e) {
+				} 
+				catch (Exception e) 
+				{
 					request.setAttribute("msg", "Otp Not Send");
 					request.getRequestDispatcher("serviceman/forgotpassword.jsp").forward(request, response);
 					e.printStackTrace();
@@ -225,21 +246,26 @@ public class ServicemanController extends HttpServlet {
 
 		}
 
-		else if (action.equalsIgnoreCase("verify")) {
+		else if (action.equalsIgnoreCase("verify")) 
+		{
 			HttpSession session = request.getSession(false);
 			String G_otp = String.valueOf(session.getAttribute("otp"));
 			String E_otp = request.getParameter("EnterOTP");
 
-			if (G_otp.equalsIgnoreCase(E_otp)) {
+			if (G_otp.equalsIgnoreCase(E_otp)) 
+			{
 				request.setAttribute("Otpmatch", "OTP Match");
 				response.sendRedirect("serviceman/ResetPassword.jsp");
-			} else {
+			}
+			else 
+			{
 				request.setAttribute("notmatch", "OTP Not Match");
 				request.getRequestDispatcher("serviceman/SendOTP.jsp").forward(request, response);
 			}
 		}
 
-		else if (action.equalsIgnoreCase("Confirm")) {
+		else if (action.equalsIgnoreCase("Confirm")) 
+		{
 			String pswd = request.getParameter("npassword");
 			ServicemanModel f = new ServicemanModel();
 			HttpSession session = request.getSession(false);
@@ -248,37 +274,42 @@ public class ServicemanController extends HttpServlet {
 			f.setServicemanid(f.getServicemanid());
 			ServicemanDao dao = new ServicemanDao();
 			int r = dao.resetPassword(f);
-			if (r > 0) {
+			if (r > 0) 
+			{
 				response.sendRedirect("serviceman/slogin.jsp");
-				System.out.println("Password Reset Successfully..");
-			} else {
+			}
+			else 
+			{
 				System.out.println("error");
 			}
 		}
 
-		else if (action.equalsIgnoreCase("confirmservice")) {
+		else if (action.equalsIgnoreCase("confirmservice")) 
+		{
 			BookModel bmodel = new BookModel();
 			bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
 			bmodel.setBstatus("confirm");
 			int x = new ServicemanDao().confirmService(bmodel);
-			if (x > 0) {
+			if (x > 0) 
+			{
 				response.sendRedirect("serviceman/s-dashboard.jsp");
 			}
 		}
 
-		else if (action.equalsIgnoreCase("rejectservice")) {
+		else if (action.equalsIgnoreCase("rejectservice")) 
+		{
 			BookModel bmodel = new BookModel();
 			bmodel.setBid(Integer.parseInt(request.getParameter("bid")));
 			bmodel.setBstatus("done");
 			int x = new ServicemanDao().rejectService(bmodel);
-			if (x > 0) {
+			if (x > 0) 
+			{
 				response.sendRedirect("serviceman/s-dashboard.jsp");
 			}
 		}
 
 		else if(action.equalsIgnoreCase("endservice"))
 		{
-			BookModel bmodel=new BookModel();
 			int bid=Integer.parseInt(request.getParameter("bid"));
 			String firstname=request.getParameter("firstname");
 			String lastname=request.getParameter("lastname");
@@ -286,14 +317,13 @@ public class ServicemanController extends HttpServlet {
 			
 			CustomerModel  f=new CustomerModel();
 			ServicemanDao dao=new ServicemanDao();
-			String email=dao.getCustomerEmail(bid);
 			if (f == null) 
 			{
 				request.setAttribute("invalidemail", "Email Address Not Valid");
 				request.getRequestDispatcher("serviceman/confirmedservices.jsp").forward(request, response);
 			}
-			else {
-
+			else 
+			{
 				String emailid = dao.getCustomerEmail(bid);
 				String username = firstname + " " + lastname;
 				final String Senderid = "hirparaarjun49@gmail.com";
@@ -315,13 +345,16 @@ public class ServicemanController extends HttpServlet {
 				props.put("mail.smtp.user", Senderid);
 				props.put("mail.smtp.password", password);
 
-				Session session = Session.getInstance(props, new Authenticator() {
-					protected PasswordAuthentication getPasswordAuthentication() {
+				Session session = Session.getInstance(props, new Authenticator() 
+				{
+					protected PasswordAuthentication getPasswordAuthentication() 
+					{
 						return new PasswordAuthentication(Senderid, password);
 					}
 				});
 
-				try {
+				try 
+				{
 					Random rand = new Random();
 					int otp = rand.nextInt(900000) + 100000;
 					Message message = new MimeMessage(session);
@@ -344,13 +377,14 @@ public class ServicemanController extends HttpServlet {
 					otpsession.setAttribute("bid", bid);
 					otpsession.setAttribute("additionalCharge", additionalCharge);
 					response.sendRedirect("serviceman/enterOTP.jsp");
-				} catch (Exception e) {
+				}
+				catch (Exception e) 
+				{
 					request.setAttribute("msg", "Otp Not Send");
 					request.getRequestDispatcher("serviceman/confirmedservices.jsp").forward(request, response);
 					e.printStackTrace();
 				}
 			}
-
 		}
 		
 		else if(action.equalsIgnoreCase("verifyotpendservice"))
@@ -372,7 +406,9 @@ public class ServicemanController extends HttpServlet {
 					request.setAttribute("Otpmatch", "OTP Match");
 					response.sendRedirect("serviceman/s-dashboard.jsp");
 				}
-			} else {
+			}
+			else 
+			{
 				request.setAttribute("notmatch", "OTP Not Match");
 				request.getRequestDispatcher("serviceman/enterOTP.jsp").forward(request, response);
 			}
@@ -385,10 +421,5 @@ public class ServicemanController extends HttpServlet {
 			response.sendRedirect("serviceman/rating_feedback.jsp?bid="+bid);
 			
 		}
-		
-		
-		
-
 	}
-
 }
