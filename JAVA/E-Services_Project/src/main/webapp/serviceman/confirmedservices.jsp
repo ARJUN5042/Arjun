@@ -1,3 +1,4 @@
+<%@page import="com.model.ServicemanModel"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.util.DBUtil"%>
@@ -31,29 +32,15 @@
 <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.0"
 	rel="stylesheet" />
 <script>
-	function changeTextAndDisable() 
-	{
-		var spanElement = document.getElementById("statusSpan");
+	function changeTextAndDisable(button) {
+	    var spanElement = button.querySelector(".statusSpan");
 
-	    if (spanElement.textContent !== "In Process...") 
-	    {
+	    if (spanElement.textContent !== "In Process...") {
 	        spanElement.textContent = "In Process...";
-
-	        var buttonElement = document.getElementById("statusSpan").parentNode;
-	        buttonElement.disabled = true;
-
-	        /* localStorage.setItem("status", "In Process"); */
+	        button.disabled = true;
 	    }
 	}
-	/* window.onload = function () {
-	    var status = localStorage.getItem("status");
-	    if (status === "In Process") {
-	        var spanElement = document.getElementById("statusSpan");
-	        spanElement.textContent = "In Process...";
-	        var buttonElement = document.getElementById("statusSpan").parentNode;
-	        buttonElement.disabled = false;
-	    }
-	}; */
+	
 	function promptForAdditionalCharge() {
 	    var additionalCharge = prompt("Enter additional charge:");
 	    if (additionalCharge !== null) 
@@ -123,7 +110,6 @@
                   <thead>
                     <tr>
                       <th class="text-secondary text-x  font-weight-bolder opacity-7 ps-2">Book Id</th>
-                      <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Customer Id</th>
                       <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Customer Name</th>
                       <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Sub Service Name</th>
                       <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Booking Date</th>
@@ -133,10 +119,13 @@
                   </thead>
                   <tbody>
                   <%
+                  Object o=session.getAttribute("servicemanid");
+                  int servicemanid=Integer.parseInt(o.toString());
+                  System.out.println("Servicemanid: "+servicemanid);
                   Connection cn=new DBUtil().getConnectionData();
-                  String qry="SELECT book.bid,customer.`customerid`,customer.`firstname`,subservices.`subsname`,book.`bdate`,book.`bstatus`,serviceman.`servicemanid`,serviceman.`expertise`,customer.lastname FROM assignserviceman JOIN book ON book.`bid`=assignserviceman.`bid` JOIN customer ON customer.`customerid`=assignserviceman.`customerid` JOIN serviceman ON serviceman.`servicemanid`=assignserviceman.`servicemanid` JOIN services ON services.`serviceid`=assignserviceman.`serviceid` JOIN subservices ON subservices.`subid`=assignserviceman.`subid` WHERE book.bstatus='confirm'";
+                  String qry="SELECT book.bid,customer.`customerid`,customer.`firstname`,subservices.`subsname`,book.`bdate`,book.`bstatus`,serviceman.`servicemanid`,serviceman.`expertise`,customer.lastname FROM assignserviceman JOIN book ON book.`bid`=assignserviceman.`bid` JOIN customer ON customer.`customerid`=assignserviceman.`customerid` JOIN serviceman ON serviceman.`servicemanid`=assignserviceman.`servicemanid` JOIN services ON services.`serviceid`=assignserviceman.`serviceid` JOIN subservices ON subservices.`subid`=assignserviceman.`subid` WHERE book.bstatus='confirm' AND serviceman.servicemanid=?";
                   PreparedStatement st = cn.prepareStatement(qry);
-                  /* st.setInt(1, servicemanid); */
+                  st.setInt(1, servicemanid);
 				  ResultSet rs = st.executeQuery();
 				  while(rs.next())
 				  {
@@ -146,13 +135,6 @@
                         <div class="d-flex px-2 py-1">
                           <div class="d-flex flex-column justify-content-center">
                             <p class="text-xs text-secondary mb-0"><%=rs.getInt(1) %></p>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div class="d-flex flex-column justify-content-center">
-                            <p class="text-xs text-secondary mb-0"><%=rs.getInt(2) %></p>
                           </div>
                         </div>
                       </td>
@@ -185,8 +167,9 @@
                         </div>
                       </td>
                     <td class="align-middle">
-                      	<button type="submit" class="btn-link text-secondary font-weight-bold text-xs" style="border:none; border-radius:15px; padding:0;" onclick="changeTextAndDisable()">
-            			<span id="statusSpan" class="badge badge-sm bg-gradient-success">Start</span>
+                      	<button type="submit" class="btn-link text-secondary font-weight-bold text-xs" style="border:none; border-radius:15px; padding:0;" onclick="changeTextAndDisable(this)">
+    						<span class="badge badge-sm bg-gradient-success statusSpan">Start</span>
+						</button>
             		</td>
 					<td class="align-middle">
     					<form method="post" action="../ServicemanController">

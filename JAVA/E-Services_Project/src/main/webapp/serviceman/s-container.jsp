@@ -7,7 +7,7 @@
 <%
 int servicemanid=(int)session.getAttribute("servicemanid");
 Connection cn=new DBUtil().getConnectionData();
-String qry="SELECT COUNT(book.bid) FROM assignserviceman INNER JOIN book ON book.`bid`=assignserviceman.`bid` INNER JOIN serviceman ON serviceman.`servicemanid`=assignserviceman.`servicemanid` WHERE book.bstatus='pending' AND serviceman.servicemanid=?";
+String qry="SELECT COUNT(book.bid) FROM assignserviceman JOIN book ON book.`bid`=assignserviceman.`bid` JOIN customer ON customer.`customerid`=assignserviceman.`customerid` JOIN serviceman ON serviceman.`servicemanid`=assignserviceman.`servicemanid` JOIN services ON services.`serviceid`=assignserviceman.`serviceid` JOIN subservices ON subservices.`subid`=assignserviceman.`subid`WHERE book.bstatus='assigned' AND serviceman.`servicemanid`=?";
 PreparedStatement st=cn.prepareStatement(qry);
 st.setInt(1, servicemanid);
 ResultSet rs=st.executeQuery();

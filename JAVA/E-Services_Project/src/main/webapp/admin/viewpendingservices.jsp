@@ -53,7 +53,6 @@
 											<th>Bid</th>
 											<th>Cid</th>
 											<th>CName</th>
-											<th>Service Name</th>
 											<th>Sub Service Name</th>
 											<th>Booking Date</th>
 											<th>Price</th>
@@ -65,7 +64,7 @@
 									<tbody>
 										<%
 										Connection cn = new DBUtil().getConnectionData();
-										String qry="SELECT book.`bid`,customer.`customerid`,customer.`firstname`,services.`servicename`,subservices.`subsname`,book.`bdate`,book.`price`,book.`bstatus`,book.pstatus,services.serviceid,subservices.subid FROM book INNER JOIN subservices ON book.`subid`=subservices.`subid` INNER JOIN customer ON book.`customerid`=customer.`customerid` INNER JOIN services ON subservices.`serviceid`=services.`serviceid` where book.bstatus='done'";
+										String qry="SELECT book.`bid`,customer.`customerid`,customer.`firstname`,services.`servicename`,subservices.`subsname`,book.`bdate`,book.`price`,book.`bstatus`,book.pstatus,services.serviceid,subservices.subid FROM book INNER JOIN subservices ON book.`subid`=subservices.`subid` INNER JOIN customer ON book.`customerid`=customer.`customerid` INNER JOIN services ON subservices.`serviceid`=services.`serviceid` where book.bstatus='done' ORDER BY book.bid DESC";
 										PreparedStatement st = cn.prepareStatement(qry);
 										ResultSet rs = st.executeQuery();
 										while (rs.next()) {
@@ -74,7 +73,6 @@
 											<td><%=rs.getInt(1)%></td>
 											<td><%=rs.getInt(2)%></td>
 											<td><%=rs.getString(3)%></td>
-											<td><%=rs.getString(4)%></td>
 											<td><%=rs.getString(5)%></td>
 											<td><%=rs.getString(6)%></td>
 											<td><%=rs.getString(7)%></td>

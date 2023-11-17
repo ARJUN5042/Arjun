@@ -84,7 +84,6 @@
                   <thead>
                     <tr>
                       <th class="text-secondary text-x  font-weight-bolder opacity-7 ps-2">Book Id</th>
-                      <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Customer Id</th>
                       <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Customer Name</th>
                       <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Sub Service Name</th>
                       <th class="text-secondary text-x font-weight-bolder opacity-7 ps-2">Booking Date</th>
@@ -108,13 +107,6 @@
                         <div class="d-flex px-2 py-1">
                           <div class="d-flex flex-column justify-content-center">
                             <p class="text-xs text-secondary mb-0"><%=rs.getInt(1) %></p>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div class="d-flex flex-column justify-content-center">
-                            <p class="text-xs text-secondary mb-0"><%=rs.getInt(2) %></p>
                           </div>
                         </div>
                       </td>

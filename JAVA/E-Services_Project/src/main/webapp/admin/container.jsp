@@ -19,7 +19,7 @@
 				<div class="row">
 <%
 Connection cn=new DBUtil().getConnectionData();
-String qry="SELECT COUNT(book.bid) FROM assignserviceman INNER JOIN book ON book.`bid`=assignserviceman.`bid` INNER JOIN serviceman ON serviceman.`servicemanid`=assignserviceman.`servicemanid` WHERE book.bstatus='pending'";
+String qry="SELECT COUNT(book.bid) FROM book WHERE book.bstatus='done'";
 PreparedStatement st=cn.prepareStatement(qry);
 ResultSet rs=st.executeQuery();
 while(rs.next())
@@ -103,7 +103,7 @@ while(rs3.next())
 					</div>
 					<%} %>
 <%
-String qry4="SELECT SUM(book.price) FROM assignserviceman INNER JOIN book ON book.`bid`=assignserviceman.`bid` INNER JOIN serviceman ON serviceman.`servicemanid`=assignserviceman.`servicemanid` WHERE book.pstatus='successful'";
+String qry4="SELECT SUM(book.price) FROM book WHERE book.pstatus='successful'";
 PreparedStatement st4=cn.prepareStatement(qry4);
 ResultSet rs4=st4.executeQuery();
 while(rs4.next())
@@ -124,8 +124,6 @@ while(rs4.next())
 					</div>
 					<%} %>
 				</div>
-				
-			
 	</div>
 
 </body>

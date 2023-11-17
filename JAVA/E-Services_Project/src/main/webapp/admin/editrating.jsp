@@ -122,7 +122,7 @@
 
 													<div class="col-md-6 grid-margin stretch-card">
 														<input type="hidden" name="bid" value="<%=bid%> ">
-														<input type="submit" name="action" class="site-btn" value="Update Rating">
+														<input type="submit" name="action" class="btn btn-light" value="Update Rating">
 											</td>
 													</div>
 												</div>
