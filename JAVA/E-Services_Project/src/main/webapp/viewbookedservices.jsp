@@ -67,7 +67,7 @@
 												<h6><%=rs.getInt(1)%></h6>
 											</td>
 											<td>
-												<div class="product__item__pic set-bg" data-setbg="uploadimage/<%=rs.getString(2)%>"></div>
+												<div class="product__item__pic set-bg" data-setbg="uploadimage/<%=rs.getString(2)%>" style="height:150px; width:150px;"></div>
 											</td>
 											<td>
 												<div class="product__item__text">

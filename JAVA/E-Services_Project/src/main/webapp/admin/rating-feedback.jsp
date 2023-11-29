@@ -89,7 +89,7 @@
 										<%
 										int bid = Integer.parseInt(request.getParameter("bid"));
 										Connection cn = new DBUtil().getConnectionData();
-										String qry = "SELECT rating_feedback.`rating`,rating_feedback.`feedback` FROM rating_feedback INNER JOIN book ON book.`bid`=rating_feedback.`bid` WHERE book.bid=?";
+										String qry = "SELECT DISTINCT rating_feedback.`rating`,rating_feedback.`feedback` FROM rating_feedback INNER JOIN book ON book.`bid`=rating_feedback.`bid` WHERE book.bid=?";
 										PreparedStatement st = cn.prepareStatement(qry);
 										st.setInt(1, bid);
 										ResultSet rs = st.executeQuery();
