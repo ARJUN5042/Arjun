@@ -14,7 +14,7 @@ import com.dao.Dao;
 import com.model.Employee;
 
 @Controller
-public class ActionController 
+public class ActionController
 {
 	@Autowired
 	Dao dao;
@@ -22,7 +22,7 @@ public class ActionController
 	@RequestMapping("/addemp")
 	public String addemp(Model m)
 	{
-		m.addAttribute("comand", new Employee());
+		m.addAttribute("command", new Employee());
 		return "addemp";
 	}
 	

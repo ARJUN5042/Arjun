@@ -33,7 +33,7 @@
 		var email = document.forms["registrationForm"]["email"].value;
 		var mobile = document.forms["registrationForm"]["mobile"].value;
 		var password = document.forms["registrationForm"]["password"].value;
-		if(firstName==""||lastName==""||mobile==||email==""||password=="")
+		if(firstName==""||lastName==""||mobile==""||email==""||password=="")
 			{
 				alert("All fields are required.");
 				return false;
