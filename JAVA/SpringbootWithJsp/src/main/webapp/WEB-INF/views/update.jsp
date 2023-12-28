@@ -1,3 +1,4 @@
+<%@page import="com.springbookCrudJsp.SpringbootWithJsp.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -8,19 +9,19 @@
 </head>
 <body>
 <h2>Update</h2>
-<form action="updateForm" method="post">
+<%
+User user=(User)session.getAttribute("u");
+%>
+<form action="${pageContext.request.contextPath}/updateForm" method="post">
 <table>
 <tr>
-<td>Id:</td>
-<td><input type="text" name="id"></td>
-</tr>
-<tr>
 <td>Name:</td>
-<td><input type="text" name="name"></td>
+<td><input type="text" name="name" value="<%=user.getName() %>"></td>
 </tr>
 <tr>
 <td>Address:</td>
-<td><input type="text" name="address"></td>
+<td><input type="text" name="address" value="<%=user.getAddress() %>">
+<input type="hidden" name="id" value="<%=user.getId() %>"></td>
 </tr>
 <tr>
 <td><button type="submit">Update</button></td>

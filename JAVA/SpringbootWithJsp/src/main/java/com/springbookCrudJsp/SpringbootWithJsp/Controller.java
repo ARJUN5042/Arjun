@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -27,41 +28,32 @@ public class Controller
 	@Autowired
 	private UserRepository userRepository;
 	
-		 @GetMapping String home()
+		 //localhost:8080 redirect to index.jsp
+		 @GetMapping 
+		 String home()
 		 {
 			 return "index";
 		 }
 		 
+		 //redirect to register.jsp
 		 @GetMapping("/register")
 		 public String register()
 		 {
 			 return "register";
 		 }
 		 
-		 @GetMapping("/updateData")
-		 public String update()
-		 {
-			 return "update";
-		 }
-		 
+		 //insert data into database and redirect to getAllData url
 		 @PostMapping("/saveData")
-		 @ResponseBody
-		 public String saveData(User user)
+//		 @ResponseBody
+		 public String saveData(User user, RedirectAttributes redirectAttributes)
 		 {
 			 userRepository.save(user);
 			 System.out.println("inserted");
-			 return "Data save successfully!";
+			 redirectAttributes.addFlashAttribute("message", "Data Inserted Successfully");
+			 return "redirect:/getAllData";
 		 }
 		 
-		 @GetMapping("/getSingalData/{id}")
-		 public String getSingalData(@PathVariable int id,HttpSession session)
-		 {
-			 Optional<User> findById = userRepository.findById(id);
-			 User user=findById.get();
-			 session.setAttribute("user", user);
-			 return "singalData";
-		 }
-		 
+		 //get All data by session
 //		 @GetMapping("/getAllData")
 //		 public String getAllData(HttpSession session)
 //		 {
@@ -70,27 +62,41 @@ public class Controller
 //			 return "allData";
 //		 }
 		 
+		 //redirect to allData.jsp with data from database with Model and View
+		 //also redirect to return another GetMapping URL
 		 @GetMapping("/getAllData")
 		 public ModelAndView getAllData()
 		 {
 			 ModelAndView mv=new ModelAndView();
 			 List<User> findAll = userRepository.findAll();
 			 mv.addObject("findAll", findAll);
-			 mv.setViewName("allData");
+			 mv.setViewName("allData");//jsp file name
 			 return mv;
 		 }
 		 
+		 //afterclick on edit link redirect to update.jsp page with id
+		 @GetMapping("/edit/{id}")
+		 public String update(@PathVariable int id, HttpSession session)
+		 {
+			Optional<User> user=userRepository.findById(id);
+			User u=user.get();
+			session.setAttribute("u", u);
+			 return "update";
+		 }
+		 		 
+		 //update data and redirect to getAllData url
 		 @PostMapping("/updateForm")
-		 @ResponseBody
+//		 @ResponseBody
 		 public String updateData(User user)
 		 {
 			 User user1 = userRepository.save(user);
 			 System.out.println(user1);
-			 return "index";
+			 return "redirect:/getAllData";
 		 }
 		 
+		 //delete data by Id
 		 @GetMapping("/deleteData/{id}")
-		 @ResponseBody
+//		 @ResponseBody
 		 public String deleteData(@PathVariable int id)
 		 {
 			 Optional<User> findById = userRepository.findById(id);
@@ -99,6 +105,16 @@ public class Controller
 			 {
 				 userRepository.delete(user);
 			 }
-			 return "Data Deleted Successfully";
+			 return "redirect:/getAllData";
+		 }
+		 
+		//Get Single Data by Id and set data into jsp page
+		 @GetMapping("/getSingalData/{id}")
+		 public String getSingalData(@PathVariable int id,HttpSession session)
+		 {
+			 Optional<User> findById = userRepository.findById(id);
+			 User user=findById.get();
+			 session.setAttribute("user", user);
+			 return "singalData";
 		 }
 }

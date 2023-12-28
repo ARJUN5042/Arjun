@@ -9,9 +9,6 @@
 <body>
 <h1>Home Page</h1>
 <h2><a href="/register">Register Here</a></h2>
-<h2><a href="/getSingalData/1">Single Data</a></h2>
 <h2><a href="/getAllData">All Data</a></h2>
-<h2><a href="/updateData">Update Data</a></h2>
-<h2><a href="/deleteData/6">Delete Data</a></h2>
 </body>
 </html>
