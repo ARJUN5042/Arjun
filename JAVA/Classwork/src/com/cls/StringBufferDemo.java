@@ -18,7 +18,7 @@ public class StringBufferDemo
 		System.out.println("Original is.. "+s1);
 		s1.reverse();
 		System.out.println("Length is.. "+s1.length());
-		System.out.println("Original is.. "+s1);
+		System.out.println("Reverse is.. "+s1);
 		System.out.println("Original is.. "+s1.reverse());
 	}
 }
