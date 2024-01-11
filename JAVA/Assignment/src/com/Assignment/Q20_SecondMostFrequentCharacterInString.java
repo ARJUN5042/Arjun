@@ -62,7 +62,7 @@ public class Q20_SecondMostFrequentCharacterInString
 		//creating an object of class
 		MostSecondFrequent m = new MostSecondFrequent();
 	    System.out.print("Second most frequent character of string is: ");
-	    m.getSecondMost("success");//calling method with parameter
+	    m.getSecondMost("successes");//calling method with parameter
 	    	    
 	}
 }
